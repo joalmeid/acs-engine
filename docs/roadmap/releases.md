@@ -17,7 +17,7 @@ and easier for users to obtain specific fixes. Continuous delivery also reduces 
 necessary to release a product such as acs-engine, which depends on several external projects.
 
 "Components" applies not just to ACS projects, but also to development and release
-tools, orchestrator versions (Kubernetes, DC/OS, Swarm),to Docker base images, and to other Azure
+tools, Kubernetes orchestrator versions, to Docker base images, and to other Azure
 projects that do [semantic version][] releases.
 
 ## acs-engine Releases Each Month
