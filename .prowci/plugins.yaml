@@ -15,8 +15,6 @@ label:
   additional_labels:
   - orchestrator/k8s
   - orchestrator/openshift
-  - orchestrator/dcos
-  - orchestrator/swarm
   - DO-NOT-MERGE
 
 

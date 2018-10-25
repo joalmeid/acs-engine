@@ -11,19 +11,6 @@ func TestConfigParse(t *testing.T) {
       "cluster_definition":"examples/kubernetes.json",
       "location":"westus",
       "skip_validation":true
-    },
-    {
-      "cluster_definition":"examples/dcos.json",
-      "location":"eastus",
-      "skip_validation":false
-    },
-    {
-      "cluster_definition":"examples/swarm.json",
-      "location":"southcentralus"
-    },
-    {
-      "cluster_definition":"examples/swarmmode.json",
-      "location":"westus2"
     }
   ]
 }

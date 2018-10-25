@@ -75,7 +75,6 @@
             "class": "Deployment",
             "regex": "platformFaultDomainCount"
         },
-
 		{
             "name": "K8sNodeNotReady",
             "class": "Validation",
@@ -155,43 +154,6 @@
             "name": "K8sWindowsNoSimpleWebOutboundInternet",
             "class": "Validation",
             "regex": "K8S-Windows: failed to get outbound internet connection inside simpleweb container"
-        },
-
-		{
-            "name": "DcosNodeNotReady",
-            "class": "Validation",
-            "regex": "gave up waiting for DCOS nodes"
-        },
-		{
-            "name": "DcosMarathonValidationFailed",
-            "class": "Validation",
-            "regex": "dcos/test.sh] marathon validation failed"
-        },
-		{
-            "name": "DcosMarathonNotAdded",
-            "class": "Validation",
-            "regex": "dcos/test.sh] gave up waiting for marathon to be added"
-        },
-		{
-            "name": "DcosMarathonLbNotInstalled",
-            "class": "Validation",
-            "regex": "Failed to install marathon-lb"
-        },
-
-		{
-            "name": "DockerCeNetworkNotReady",
-            "class": "Validation",
-            "regex": "DockerCE: gave up waiting for network to be created"
-        },
-		{
-            "name": "DockerCeServiceNotReady",
-            "class": "Validation",
-            "regex": "DockerCE: gave up waiting for service to be created"
-        },
-		{
-            "name": "DockerCeServiceUnreachable",
-            "class": "Validation",
-            "regex": "DockerCE: gave up waiting for service to be externally reachable"
         }
     ]
 }
