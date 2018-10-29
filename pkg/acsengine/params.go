@@ -44,7 +44,7 @@ func getParameters(cs *api.ContainerService, generatorCode string, acsengineVers
 	if properties.LinuxProfile.CustomNodesDNS != nil {
 		addValue(parametersMap, "dnsServer", properties.LinuxProfile.CustomNodesDNS.DNSServer)
 	}
-	// masterEndpointDNSNamePrefix is the basis for storage account creation across dcos, swarm, and k8s
+	// masterEndpointDNSNamePrefix is the basis for storage account creation in k8s
 	if properties.MasterProfile != nil {
 		// MasterProfile exists, uses master DNS prefix
 		addValue(parametersMap, "masterEndpointDNSNamePrefix", properties.MasterProfile.DNSPrefix)
