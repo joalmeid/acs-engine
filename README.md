@@ -27,7 +27,6 @@ More info, including a thorough walkthrough is [here](docs/acsengine.md).
 These guides show how to create your first deployment:
 
 * [Kubernetes Walkthrough](docs/kubernetes.md) - shows how to create a Linux or Windows Kubernetes cluster on Azure
-* [OpenShift Walkthrough](docs/openshift.md) - shows how to create an OpenShift cluster on Azure
 
 These guides cover more advanced features to try out after you have built your first cluster:
 

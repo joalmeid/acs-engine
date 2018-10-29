@@ -53,8 +53,8 @@ type scaleCmd struct {
 
 const (
 	scaleName             = "scale"
-	scaleShortDescription = "Scale an existing Kubernetes or OpenShift cluster"
-	scaleLongDescription  = "Scale an existing Kubernetes or OpenShift cluster by specifying increasing or decreasing the node count of an agentpool"
+	scaleShortDescription = "Scale an existing Kubernetes cluster"
+	scaleLongDescription  = "Scale an existing Kubernetes cluster by specifying increasing or decreasing the node count of an agentpool"
 )
 
 // NewScaleCmd run a command to upgrade a Kubernetes cluster
