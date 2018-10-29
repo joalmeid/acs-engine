@@ -1,8 +1,6 @@
 package engine
 
 import (
-	"crypto/rand"
-	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -256,18 +254,4 @@ func ParseOutput(path string) (*api.ContainerService, error) {
 		return nil, err
 	}
 	return containerService, nil
-}
-
-func generateRandomBytes(n int) ([]byte, error) {
-	b := make([]byte, n)
-	_, err := rand.Read(b)
-	if err != nil {
-		return nil, err
-	}
-	return b, nil
-}
-
-func generateRandomString(s int) (string, error) {
-	b, err := generateRandomBytes(s)
-	return base64.URLEncoding.EncodeToString(b), err
 }
