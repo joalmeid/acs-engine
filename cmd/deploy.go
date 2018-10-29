@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"math/rand"
@@ -12,12 +13,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/leonelquinteros/gotext"
-	log "github.com/sirupsen/logrus"
-	"github.com/spf13/cobra"
-
-	"encoding/json"
-
 	"github.com/Azure/acs-engine/pkg/acsengine"
 	"github.com/Azure/acs-engine/pkg/acsengine/transform"
 	"github.com/Azure/acs-engine/pkg/api"
@@ -26,7 +21,10 @@ import (
 	"github.com/Azure/acs-engine/pkg/i18n"
 	"github.com/Azure/azure-sdk-for-go/services/graphrbac/1.6/graphrbac"
 	"github.com/Azure/go-autorest/autorest/to"
+	"github.com/leonelquinteros/gotext"
 	"github.com/pkg/errors"
+	log "github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
 )
 
 const (
@@ -323,22 +321,6 @@ func autofillApimodel(dc *deployCmd) error {
 			appURL := fmt.Sprintf("https://%s/", appName)
 			var replyURLs *[]string
 			var requiredResourceAccess *[]graphrbac.RequiredResourceAccess
-			if dc.containerService.Properties.OrchestratorProfile.OrchestratorType == api.OpenShift {
-				appName = fmt.Sprintf("%s.%s.cloudapp.azure.com", appName, dc.containerService.Properties.AzProfile.Location)
-				appURL = fmt.Sprintf("https://%s:8443/", appName)
-				replyURLs = to.StringSlicePtr([]string{fmt.Sprintf("https://%s:8443/oauth2callback/Azure%%20AD", appName)})
-				requiredResourceAccess = &[]graphrbac.RequiredResourceAccess{
-					{
-						ResourceAppID: to.StringPtr(aadServicePrincipal),
-						ResourceAccess: &[]graphrbac.ResourceAccess{
-							{
-								ID:   to.StringPtr(aadPermissionUserRead),
-								Type: to.StringPtr("Scope"),
-							},
-						},
-					},
-				}
-			}
 			applicationResp, servicePrincipalObjectID, secret, err := dc.client.CreateApp(ctx, appName, appURL, replyURLs, requiredResourceAccess)
 			if err != nil {
 				return errors.Wrap(err, "apimodel invalid: ServicePrincipalProfile was empty, and we failed to create valid credentials")
@@ -464,11 +446,6 @@ func (dc *deployCmd) run() error {
 			log.Errorf(string(body))
 		}
 		log.Fatalln(err)
-	}
-
-	if dc.containerService.Properties.OrchestratorProfile.OrchestratorType == api.OpenShift {
-		// TODO: when the Azure client library is updated, read this from the template `masterFQDN` output
-		fmt.Printf("OpenShift web UI available at https://%s.%s.cloudapp.azure.com:8443/\n", dc.containerService.Properties.MasterProfile.DNSPrefix, dc.location)
 	}
 
 	return nil
