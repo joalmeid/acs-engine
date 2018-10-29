@@ -74,7 +74,7 @@ node("slave") {
                   try {
                     stage(name) {
                       def scripts = ["generate_template.sh", "deploy_template.sh"]
-                      if(env.ORCHESTRATOR == "dcos" || env.ORCHESTRATOR == "swarmmode" || env.ORCHESTRATOR == "kubernetes") {
+                      if(env.ORCHESTRATOR == "kubernetes") {
                         scripts += "validate_deployment.sh"
                       }
                       for(k = 0; k < scripts.size(); k++) {

@@ -638,14 +638,6 @@ func TestRequireRouteTable(t *testing.T) {
 		{
 			p: Properties{
 				OrchestratorProfile: &OrchestratorProfile{
-					OrchestratorType: DCOS,
-				},
-			},
-			expected: false,
-		},
-		{
-			p: Properties{
-				OrchestratorProfile: &OrchestratorProfile{
 					OrchestratorType: Kubernetes,
 					KubernetesConfig: &KubernetesConfig{
 						NetworkPolicy: "",
@@ -717,32 +709,17 @@ func TestIsAzureCNI(t *testing.T) {
 func TestOrchestrator(t *testing.T) {
 	cases := []struct {
 		p                    Properties
-		expectedIsDCOS       bool
 		expectedIsKubernetes bool
 		expectedIsOpenShift  bool
-		expectedIsSwarmMode  bool
 	}{
-		{
-			p: Properties{
-				OrchestratorProfile: &OrchestratorProfile{
-					OrchestratorType: DCOS,
-				},
-			},
-			expectedIsDCOS:       true,
-			expectedIsKubernetes: false,
-			expectedIsOpenShift:  false,
-			expectedIsSwarmMode:  false,
-		},
 		{
 			p: Properties{
 				OrchestratorProfile: &OrchestratorProfile{
 					OrchestratorType: Kubernetes,
 				},
 			},
-			expectedIsDCOS:       false,
 			expectedIsKubernetes: true,
 			expectedIsOpenShift:  false,
-			expectedIsSwarmMode:  false,
 		},
 		{
 			p: Properties{
@@ -750,36 +727,17 @@ func TestOrchestrator(t *testing.T) {
 					OrchestratorType: OpenShift,
 				},
 			},
-			expectedIsDCOS:       false,
 			expectedIsKubernetes: false,
 			expectedIsOpenShift:  true,
-			expectedIsSwarmMode:  false,
-		},
-		{
-			p: Properties{
-				OrchestratorProfile: &OrchestratorProfile{
-					OrchestratorType: SwarmMode,
-				},
-			},
-			expectedIsDCOS:       false,
-			expectedIsKubernetes: false,
-			expectedIsOpenShift:  false,
-			expectedIsSwarmMode:  true,
 		},
 	}
 
 	for _, c := range cases {
-		if c.expectedIsDCOS != c.p.OrchestratorProfile.IsDCOS() {
-			t.Fatalf("Expected IsDCOS() to be %t with OrchestratorType=%s", c.expectedIsDCOS, c.p.OrchestratorProfile.OrchestratorType)
-		}
 		if c.expectedIsKubernetes != c.p.OrchestratorProfile.IsKubernetes() {
 			t.Fatalf("Expected IsKubernetes() to be %t with OrchestratorType=%s", c.expectedIsKubernetes, c.p.OrchestratorProfile.OrchestratorType)
 		}
 		if c.expectedIsOpenShift != c.p.OrchestratorProfile.IsOpenShift() {
 			t.Fatalf("Expected IsOpenShift() to be %t with OrchestratorType=%s", c.expectedIsOpenShift, c.p.OrchestratorProfile.OrchestratorType)
-		}
-		if c.expectedIsSwarmMode != c.p.OrchestratorProfile.IsSwarmMode() {
-			t.Fatalf("Expected IsSwarmMode() to be %t with OrchestratorType=%s", c.expectedIsSwarmMode, c.p.OrchestratorProfile.OrchestratorType)
 		}
 		if c.expectedIsOpenShift && !c.p.HasStorageAccountDisks() {
 			t.Fatalf("Expected HasStorageAccountDisks() to return true when OrchestratorType is OpenShift")

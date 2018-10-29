@@ -12,7 +12,6 @@ import (
 
 	"github.com/Azure/acs-engine/pkg/acsengine/transform"
 	"github.com/Azure/acs-engine/pkg/api"
-	"github.com/Azure/acs-engine/pkg/api/v20160330"
 	"github.com/Azure/acs-engine/pkg/api/vlabs"
 	"github.com/Azure/acs-engine/pkg/i18n"
 	"github.com/leonelquinteros/gotext"
@@ -48,11 +47,10 @@ func TestExpected(t *testing.T) {
 			continue
 		}
 
-		if version != vlabs.APIVersion && version != v20160330.APIVersion {
+		if version != vlabs.APIVersion {
 			// Set CertificateProfile here to avoid a new one generated.
 			// Kubernetes template needs certificate profile to match expected template
 			// API versions other than vlabs don't expose CertificateProfile
-			// API versions after v20160330 supports Kubernetes
 			containerService.Properties.CertificateProfile = &api.CertificateProfile{}
 			addTestCertificateProfile(containerService.Properties.CertificateProfile)
 		}
@@ -144,11 +142,10 @@ func TestExpected(t *testing.T) {
 			if err != nil {
 				t.Error(err)
 			}
-			if version != vlabs.APIVersion && version != v20160330.APIVersion {
+			if version != vlabs.APIVersion {
 				// Set CertificateProfile here to avoid a new one generated.
 				// Kubernetes template needs certificate profile to match expected template
 				// API versions other than vlabs don't expose CertificateProfile
-				// API versions after v20160330 supports Kubernetes
 				containerService.Properties.CertificateProfile = &api.CertificateProfile{}
 				addTestCertificateProfile(containerService.Properties.CertificateProfile)
 			}
@@ -505,21 +502,6 @@ func TestIsNSeriesSKU(t *testing.T) {
 	for _, sku := range invalidSkus {
 		if isNSeriesSKU(&api.AgentPoolProfile{VMSize: sku}) {
 			t.Fatalf("Expected isNSeriesSKU(%s) to be false", sku)
-		}
-	}
-}
-
-func TestGenerateIpList(t *testing.T) {
-	count := 3
-	forth := 240
-	ipList := generateIPList(count, fmt.Sprintf("10.0.0.%d", forth))
-	if len(ipList) != 3 {
-		t.Fatalf("IP list size should be %d", count)
-	}
-	for i, ip := range ipList {
-		expected := fmt.Sprintf("10.0.0.%d", forth+i)
-		if ip != expected {
-			t.Fatalf("wrong IP %s. Expected %s", ip, expected)
 		}
 	}
 }

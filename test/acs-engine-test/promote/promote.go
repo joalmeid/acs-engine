@@ -24,16 +24,8 @@ type StorageAccount struct {
 }
 
 const (
-	// Mesos is the string constant for MESOS orchestrator type
-	Mesos string = "Mesos"
-	// DCOS is the string constant for DCOS orchestrator type and defaults to DCOS188
-	DCOS string = "DCOS"
-	// Swarm is the string constant for the Swarm orchestrator type
-	Swarm string = "Swarm"
 	// Kubernetes is the string constant for the Kubernetes orchestrator type
 	Kubernetes string = "Kubernetes"
-	// SwarmMode is the string constant for the Swarm Mode orchestrator type
-	SwarmMode string = "SwarmMode"
 	// RecordTestRunTableName for storing RecordTestRun
 	RecordTestRunTableName string = "RecordTestRun"
 	// PromoteToFailureTableName for storing PromoteToFailure

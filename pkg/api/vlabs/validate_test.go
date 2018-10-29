@@ -35,17 +35,6 @@ func Test_OrchestratorProfile_Validate(t *testing.T) {
 		expectedError string
 		isUpdate      bool
 	}{
-		"should error when KubernetesConfig populated for non-Kubernetes OrchestratorType": {
-			properties: &Properties{
-				OrchestratorProfile: &OrchestratorProfile{
-					OrchestratorType: "DCOS",
-					KubernetesConfig: &KubernetesConfig{
-						ClusterSubnet: "10.0.0.0/16",
-					},
-				},
-			},
-			expectedError: "KubernetesConfig can be specified only when OrchestratorType is Kubernetes or OpenShift",
-		},
 		"should error when KubernetesConfig has invalid etcd version": {
 			properties: &Properties{
 				OrchestratorProfile: &OrchestratorProfile{
@@ -160,54 +149,9 @@ func Test_OrchestratorProfile_Validate(t *testing.T) {
 			properties: &Properties{
 				OrchestratorProfile: &OrchestratorProfile{
 					OrchestratorType: "Kubernetes",
-					DcosConfig:       &DcosConfig{},
+					// DcosConfig:       &DcosConfig{},
 				},
 			},
-		},
-		"should error when DcosConfig orchestrator has invalid configuration": {
-			properties: &Properties{
-				OrchestratorProfile: &OrchestratorProfile{
-					OrchestratorType:    "DCOS",
-					OrchestratorVersion: "1.12.0",
-				},
-			},
-			expectedError: "the following OrchestratorProfile configuration is not supported: OrchestratorType: DCOS, OrchestratorRelease: , OrchestratorVersion: 1.12.0. Please check supported Release or Version for this build of acs-engine",
-		},
-		"should error when DcosConfig orchestrator configuration has invalid static IP": {
-			properties: &Properties{
-				OrchestratorProfile: &OrchestratorProfile{
-					OrchestratorType: "DCOS",
-					DcosConfig: &DcosConfig{
-						BootstrapProfile: &BootstrapProfile{
-							StaticIP: "0.0.0.0.0.0",
-						},
-					},
-				},
-			},
-			expectedError: "DcosConfig.BootstrapProfile.StaticIP '0.0.0.0.0.0' is an invalid IP address",
-		},
-		"should error when DcosConfig populated for non-Kubernetes OrchestratorType 1": {
-			properties: &Properties{
-				OrchestratorProfile: &OrchestratorProfile{
-					OrchestratorType: "Kubernetes",
-					DcosConfig: &DcosConfig{
-						DcosWindowsBootstrapURL: "http://www.microsoft.com",
-					},
-				},
-			},
-			expectedError: "DcosConfig can be specified only when OrchestratorType is DCOS",
-		},
-		"should error when DcosConfig populated for non-Kubernetes OrchestratorType 2": {
-			properties: &Properties{
-				OrchestratorProfile: &OrchestratorProfile{
-					OrchestratorType: "Kubernetes",
-					DcosConfig: &DcosConfig{
-						DcosWindowsBootstrapURL: "http://www.microsoft.com",
-						DcosBootstrapURL:        "http://www.microsoft.com",
-					},
-				},
-			},
-			expectedError: "DcosConfig can be specified only when OrchestratorType is DCOS",
 		},
 		"kubernetes should have failed on old patch version": {
 			properties: &Properties{
@@ -2362,7 +2306,7 @@ func TestWindowsProfile_Validate(t *testing.T) {
 			w: &WindowsProfile{
 				WindowsImageSourceURL: "http://fakeWindowsImageSourceURL",
 			},
-			expectedMsg: "Windows Custom Images are only supported if the Orchestrator Type is DCOS or Kubernetes",
+			expectedMsg: "Windows Custom Images are only supported if the Orchestrator Type is Kubernetes",
 		},
 		{
 			name:             "empty adminUsername",
@@ -2373,16 +2317,6 @@ func TestWindowsProfile_Validate(t *testing.T) {
 				AdminPassword:         "password",
 			},
 			expectedMsg: "WindowsProfile.AdminUsername is required, when agent pool specifies windows",
-		},
-		{
-			name:             "empty password",
-			orchestratorType: "DCOS",
-			w: &WindowsProfile{
-				WindowsImageSourceURL: "http://fakeWindowsImageSourceURL",
-				AdminUsername:         "azure",
-				AdminPassword:         "",
-			},
-			expectedMsg: "WindowsProfile.AdminPassword is required, when agent pool specifies windows",
 		},
 	}
 
@@ -2714,15 +2648,15 @@ func TestValidateProperties_CustomNodeLabels(t *testing.T) {
 		}
 	})
 
-	t.Run("Should not support orchestratorTypes other than Kubernetes/DCOS", func(t *testing.T) {
+	t.Run("Should not support orchestratorTypes other than Kubernetes", func(t *testing.T) {
 		t.Parallel()
 		p := getK8sDefaultProperties(false)
-		p.OrchestratorProfile.OrchestratorType = SwarmMode
+		p.OrchestratorProfile.OrchestratorType = "Bogus"
 		agentPoolProfiles := p.AgentPoolProfiles
 		agentPoolProfiles[0].CustomNodeLabels = map[string]string{
 			"foo": "bar",
 		}
-		expectedMsg := "Agent CustomNodeLabels are only supported for DCOS and Kubernetes"
+		expectedMsg := "Agent CustomNodeLabels are only supported for Kubernetes"
 		if err := p.validateAgentPoolProfiles(true); err.Error() != expectedMsg {
 			t.Errorf("expected error with message : %s, but got %s", expectedMsg, err.Error())
 		}

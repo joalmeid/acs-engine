@@ -40,9 +40,6 @@ type Config struct {
 
 const (
 	kubernetesOrchestrator = "kubernetes"
-	dcosOrchestrator       = "dcos"
-	swarmModeOrchestrator  = "swarmmode"
-	swarmOrchestrator      = "swarm"
 )
 
 // ParseConfig will parse needed environment variables for running the tests
@@ -65,7 +62,7 @@ func (c *Config) GetKubeConfig() string {
 	case c.IsKubernetes():
 		file := fmt.Sprintf("kubeconfig.%s.json", c.Location)
 		kubeconfigPath = filepath.Join(c.CurrentWorkingDir, "_output", c.Name, "kubeconfig", file)
-
+	}
 	return kubeconfigPath
 }
 
@@ -145,21 +142,6 @@ func (c *Config) SetSSHKeyPermissions() error {
 // IsKubernetes will return true if the ORCHESTRATOR env var is set to kubernetes or not set at all
 func (c *Config) IsKubernetes() bool {
 	return c.Orchestrator == kubernetesOrchestrator
-}
-
-// IsDCOS will return true if the ORCHESTRATOR env var is set to dcos
-func (c *Config) IsDCOS() bool {
-	return c.Orchestrator == dcosOrchestrator
-}
-
-// IsSwarmMode will return true if the ORCHESTRATOR env var is set to dcos
-func (c *Config) IsSwarmMode() bool {
-	return c.Orchestrator == swarmModeOrchestrator
-}
-
-// IsSwarm will return true if the ORCHESTRATOR env var is set to dcos
-func (c *Config) IsSwarm() bool {
-	return c.Orchestrator == swarmOrchestrator
 }
 
 // SetRandomRegion sets Location to a random region

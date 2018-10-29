@@ -50,29 +50,6 @@ func TestOrchestratorProfile(t *testing.T) {
 		t.Fatalf("expected unmarshal failure for OrchestratorProfile when passing an invalid orchestratorType")
 	}
 
-	OrchestratorProfileText = `{ "orchestratorType": "Swarm" }`
-	op = &OrchestratorProfile{}
-	if e := json.Unmarshal([]byte(OrchestratorProfileText), op); e != nil {
-		t.Fatalf("unexpectedly detected unmarshal failure for OrchestratorProfile, %+v", e)
-	}
-
-	OrchestratorProfileText = `{ "orchestratorType": "SwarmMode" }`
-	op = &OrchestratorProfile{}
-	if e := json.Unmarshal([]byte(OrchestratorProfileText), op); e != nil {
-		t.Fatalf("unexpectedly detected unmarshal failure for OrchestratorProfile, %+v", e)
-	}
-
-	if !op.IsSwarmMode() {
-		t.Fatalf("unexpectedly detected OrchestratorProfile.Type != DockerCE after unmarshal")
-
-	}
-
-	OrchestratorProfileText = `{ "orchestratorType": "DCOS" }`
-	op = &OrchestratorProfile{}
-	if e := json.Unmarshal([]byte(OrchestratorProfileText), op); e != nil {
-		t.Fatalf("unexpectedly detected unmarshal failure for OrchestratorProfile, %+v", e)
-	}
-
 	OrchestratorProfileText = `{ "orchestratorType": "Kubernetes" }`
 	op = &OrchestratorProfile{}
 	if e := json.Unmarshal([]byte(OrchestratorProfileText), op); e != nil {
@@ -164,7 +141,7 @@ func TestAgentPoolProfile(t *testing.T) {
 	}
 
 	// With osType Windows
-	AgentPoolProfileText = `{ "name": "linuxpool1", "osType" : "Windows", "count": 1, "vmSize": "Standard_D2_v2", 
+	AgentPoolProfileText = `{ "name": "linuxpool1", "osType" : "Windows", "count": 1, "vmSize": "Standard_D2_v2",
 "availabilityProfile": "AvailabilitySet", "storageProfile" : "ManagedDisks", "vnetSubnetID" : "12345" }`
 	ap = &AgentPoolProfile{}
 	if e := json.Unmarshal([]byte(AgentPoolProfileText), ap); e != nil {
@@ -184,7 +161,7 @@ func TestAgentPoolProfile(t *testing.T) {
 	}
 
 	// With osType Linux and RHEL distro
-	AgentPoolProfileText = `{ "name": "linuxpool1", "osType" : "Linux", "distro" : "rhel", "count": 1, "vmSize": "Standard_D2_v2", 
+	AgentPoolProfileText = `{ "name": "linuxpool1", "osType" : "Linux", "distro" : "rhel", "count": 1, "vmSize": "Standard_D2_v2",
 "availabilityProfile": "AvailabilitySet", "storageProfile" : "ManagedDisks", "vnetSubnetID" : "12345" }`
 	ap = &AgentPoolProfile{}
 	if e := json.Unmarshal([]byte(AgentPoolProfileText), ap); e != nil {
@@ -208,7 +185,7 @@ func TestAgentPoolProfile(t *testing.T) {
 	}
 
 	// With osType Linux and coreos distro
-	AgentPoolProfileText = `{ "name": "linuxpool1", "osType" : "Linux", "distro" : "coreos", "count": 1, "vmSize": "Standard_D2_v2", 
+	AgentPoolProfileText = `{ "name": "linuxpool1", "osType" : "Linux", "distro" : "coreos", "count": 1, "vmSize": "Standard_D2_v2",
 "availabilityProfile": "VirtualMachineScaleSets", "storageProfile" : "ManagedDisks", "diskSizesGB" : [750, 250, 600, 1000] }`
 	ap = &AgentPoolProfile{}
 	if e := json.Unmarshal([]byte(AgentPoolProfileText), ap); e != nil {
@@ -242,7 +219,7 @@ func TestAgentPoolProfile(t *testing.T) {
 
 func TestContainerServiceProperties(t *testing.T) {
 	// Agent pool with availability zones
-	ContainerServicePropertiesText := `{"orchestratorProfile": {"orchestratorType": "Kubernetes","orchestratorRelease": "1.11"}, "agentPoolProfiles":[{ "name": "linuxpool1", "osType" : "Linux", "count": 1, "vmSize": "Standard_D2_v2", 
+	ContainerServicePropertiesText := `{"orchestratorProfile": {"orchestratorType": "Kubernetes","orchestratorRelease": "1.11"}, "agentPoolProfiles":[{ "name": "linuxpool1", "osType" : "Linux", "count": 1, "vmSize": "Standard_D2_v2",
 		"availabilityProfile": "VirtualMachineScaleSets", "AvailabilityZones": ["1","2"]}]}`
 	prop := &Properties{}
 	if e := json.Unmarshal([]byte(ContainerServicePropertiesText), prop); e != nil {
@@ -254,7 +231,7 @@ func TestContainerServiceProperties(t *testing.T) {
 	}
 
 	// master profile with availability zones
-	ContainerServicePropertiesText = `{"orchestratorProfile": {"orchestratorType": "Kubernetes","orchestratorRelease": "1.12"}, "masterProfile":{"count": 4, "vmSize": "Standard_D2_v2", "availabilityProfile": "VirtualMachineScaleSets", "storageProfile": "ManagedDisks", "diskSizesGB": [750, 250, 600, 1000], "availabilityZones": ["1","2"] }, "agentPoolProfiles":[{ "name": "linuxpool1", "osType" : "Linux", "count": 1, "vmSize": "Standard_D2_v2", 
+	ContainerServicePropertiesText = `{"orchestratorProfile": {"orchestratorType": "Kubernetes","orchestratorRelease": "1.12"}, "masterProfile":{"count": 4, "vmSize": "Standard_D2_v2", "availabilityProfile": "VirtualMachineScaleSets", "storageProfile": "ManagedDisks", "diskSizesGB": [750, 250, 600, 1000], "availabilityZones": ["1","2"] }, "agentPoolProfiles":[{ "name": "linuxpool1", "osType" : "Linux", "count": 1, "vmSize": "Standard_D2_v2",
 		"availabilityProfile": "VirtualMachineScaleSets"}]}`
 	prop = &Properties{}
 	if e := json.Unmarshal([]byte(ContainerServicePropertiesText), prop); e != nil {
@@ -269,7 +246,7 @@ func TestContainerServiceProperties(t *testing.T) {
 		t.Fatalf("unexpectedly detected ContainerServiceProperties MastersAndAgentsUseAvailabilityZones returns true  after unmarshal")
 	}
 	// master profile and agent profile with availability zones
-	ContainerServicePropertiesText = `{"orchestratorProfile": {"orchestratorType": "Kubernetes","orchestratorRelease": "1.12"}, "masterProfile":{"count": 4, "vmSize": "Standard_D2_v2", "availabilityProfile": "VirtualMachineScaleSets", "storageProfile": "ManagedDisks", "diskSizesGB": [750, 250, 600, 1000], "availabilityZones": ["1","2"] }, "agentPoolProfiles":[{ "name": "linuxpool1", "osType" : "Linux", "count": 1, "vmSize": "Standard_D2_v2", 
+	ContainerServicePropertiesText = `{"orchestratorProfile": {"orchestratorType": "Kubernetes","orchestratorRelease": "1.12"}, "masterProfile":{"count": 4, "vmSize": "Standard_D2_v2", "availabilityProfile": "VirtualMachineScaleSets", "storageProfile": "ManagedDisks", "diskSizesGB": [750, 250, 600, 1000], "availabilityZones": ["1","2"] }, "agentPoolProfiles":[{ "name": "linuxpool1", "osType" : "Linux", "count": 1, "vmSize": "Standard_D2_v2",
 		"availabilityProfile": "VirtualMachineScaleSets", "availabilityZones": ["1","2"] }]}`
 	prop = &Properties{}
 	if e := json.Unmarshal([]byte(ContainerServicePropertiesText), prop); e != nil {

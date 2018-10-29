@@ -679,27 +679,6 @@ func TestSetComponentsNetworkDefaults(t *testing.T) {
 			},
 			"",
 		},
-		{
-			"default_swarm",
-			OrchestratorProfile{
-				OrchestratorType: Swarm,
-			},
-			Ubuntu,
-		},
-		{
-			"default_swarmmode",
-			OrchestratorProfile{
-				OrchestratorType: SwarmMode,
-			},
-			Ubuntu,
-		},
-		{
-			"default_dcos",
-			OrchestratorProfile{
-				OrchestratorType: DCOS,
-			},
-			Ubuntu,
-		},
 	}
 
 	for _, test := range tests {
