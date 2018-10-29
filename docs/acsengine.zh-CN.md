@@ -1,6 +1,6 @@
 # 微软Azure容器服务引擎
 
-微软容器服务引擎（`acs-engine`）用于将一个容器集群描述文件转化成一组ARM（Azure Resource Manager）模板，通过在Azure上部署这些模板，用户可以很方便地在Azure上建立一套基于Docker的容器服务集群。用户可以自由地选择集群编排引擎DC/OS, Kubernetes或者是Swarm/Swarm Mode。集群描述文件使用和ARM模板相同的语法，它们都可以用来部署Azure容器服务。
+微软容器服务引擎（`acs-engine`）用于将一个容器集群描述文件转化成一组ARM（Azure Resource Manager）模板，通过在Azure上部署这些模板，用户可以很方便地在Azure上建立一套基于Docker的容器服务集群。用户可以自由地选择集群编排引擎, Kubernetes或者是。集群描述文件使用和ARM模板相同的语法，它们都可以用来部署Azure容器服务。
 
 # 基于Docker的部署
 
@@ -24,8 +24,8 @@ make build
 当项目编译通过后，可以使用如下的命令来验证`acs-engine`是否正常运行：
 
 ```
-# ./bin/acs-engine 
-ACS-Engine deploys and manages Kubernetes, OpenShift, Swarm Mode, and DC/OS clusters in Azure
+# ./bin/acs-engine
+ACS-Engine deploys and manages Kubernetes clusters in Azure
 
 Usage:
   acs-engine [command]
@@ -57,10 +57,10 @@ ACS引擎具有跨平台特性，可以在windows，OS X和Linux上运行。以�
 安装依赖软件：
 - Git for Windows. [点击这里下载安装](https://git-scm.com/download/win)
 - Go for Windows. [点击这里下载安装](https://golang.org/dl/), 缺省默认安装.
-- Powershell 
+- Powershell
 
-编译步骤: 
- 
+编译步骤:
+
 1. 设置工作目录。 这里假设使用`c:\gopath`作为工作目录：
   1. 使用Windows + R组合键打开运行窗口
   2. 执行命令：`rundll32 sysdm.cpl,EditEnvironmentVariables`打开系统环境变量设置对话框
@@ -82,7 +82,7 @@ ACS引擎具有跨平台特性，可以在windows，OS X和Linux上运行。以�
 安装依赖软件：:
 - Go for OS X. [点击这里下载安装](https://golang.org/dl/)
 
-安装步骤: 
+安装步骤:
 
 1. 打开命令行窗口并设置GOPATH环境变量：
   1. `mkdir $HOME/gopath`
@@ -107,7 +107,7 @@ ACS引擎具有跨平台特性，可以在windows，OS X和Linux上运行。以�
   - 执行命令sudo tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz解压并替换原有文件。
 - `git`
 
-编译步骤: 
+编译步骤:
 
 1. 设置GOPATH:
   1. 运行命令`mkdir $HOME/gopath`新建gopath目录

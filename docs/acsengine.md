@@ -1,6 +1,6 @@
 # Microsoft Azure Container Service Engine
 
-The Azure Container Service Engine (`acs-engine`) generates ARM (Azure Resource Manager) templates for Docker enabled clusters on Microsoft Azure with your choice of DCOS, [Kubernetes](kubernetes/deploy.md), or Swarm orchestrators. The input to acs-engine is a cluster definition file which describes the desired cluster, including orchestrator, features, and agents. The structure of the input files is very similar to the public API for Azure Container Service.
+The Azure Container Service Engine (`acs-engine`) generates ARM (Azure Resource Manager) templates for Kubernetes clusters on Microsoft Azure. The input to acs-engine is a cluster definition file which describes the desired cluster, including orchestrator, features, and agents. The structure of the input files is very similar to the public API for Azure Container Service.
 
 <a href="#install-acs-engine"></a>
 
@@ -107,7 +107,7 @@ The build process leaves the compiled `acs-engine` binary in the `bin` directory
 
 ```sh
 $ ./bin/acs-engine
-ACS-Engine deploys and manages Kubernetes, OpenShift, Swarm Mode, and DC/OS clusters in Azure
+ACS-Engine deploys and manages Kubernetes clusters in Azure
 
 Usage:
   acs-engine [command]
