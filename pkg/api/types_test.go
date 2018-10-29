@@ -710,7 +710,6 @@ func TestOrchestrator(t *testing.T) {
 	cases := []struct {
 		p                    Properties
 		expectedIsKubernetes bool
-		expectedIsOpenShift  bool
 	}{
 		{
 			p: Properties{
@@ -719,28 +718,12 @@ func TestOrchestrator(t *testing.T) {
 				},
 			},
 			expectedIsKubernetes: true,
-			expectedIsOpenShift:  false,
-		},
-		{
-			p: Properties{
-				OrchestratorProfile: &OrchestratorProfile{
-					OrchestratorType: OpenShift,
-				},
-			},
-			expectedIsKubernetes: false,
-			expectedIsOpenShift:  true,
 		},
 	}
 
 	for _, c := range cases {
 		if c.expectedIsKubernetes != c.p.OrchestratorProfile.IsKubernetes() {
 			t.Fatalf("Expected IsKubernetes() to be %t with OrchestratorType=%s", c.expectedIsKubernetes, c.p.OrchestratorProfile.OrchestratorType)
-		}
-		if c.expectedIsOpenShift != c.p.OrchestratorProfile.IsOpenShift() {
-			t.Fatalf("Expected IsOpenShift() to be %t with OrchestratorType=%s", c.expectedIsOpenShift, c.p.OrchestratorProfile.OrchestratorType)
-		}
-		if c.expectedIsOpenShift && !c.p.HasStorageAccountDisks() {
-			t.Fatalf("Expected HasStorageAccountDisks() to return true when OrchestratorType is OpenShift")
 		}
 	}
 }

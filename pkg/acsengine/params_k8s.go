@@ -18,8 +18,7 @@ func assignKubernetesParameters(properties *api.Properties, parametersMap params
 
 	orchestratorProfile := properties.OrchestratorProfile
 
-	if orchestratorProfile.IsKubernetes() ||
-		orchestratorProfile.IsOpenShift() {
+	if orchestratorProfile.IsKubernetes() {
 
 		k8sVersion := orchestratorProfile.OrchestratorVersion
 		k8sComponents := api.K8sComponentsByVersionMap[k8sVersion]

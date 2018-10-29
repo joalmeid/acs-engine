@@ -672,13 +672,6 @@ func TestSetComponentsNetworkDefaults(t *testing.T) {
 			},
 			AKS,
 		},
-		{
-			"default_openshift",
-			OrchestratorProfile{
-				OrchestratorType: OpenShift,
-			},
-			"",
-		},
 	}
 
 	for _, test := range tests {
@@ -941,82 +934,6 @@ func TestDefaultCloudProvider(t *testing.T) {
 		t.Fatalf("got unexpected CloudProviderBackoff expected true, got %t",
 			helpers.IsTrueBoolPointer(properties.OrchestratorProfile.KubernetesConfig.CloudProviderBackoff))
 	}
-}
-
-func TestSetOpenShiftCertDefaults(t *testing.T) {
-	cs := &ContainerService{
-		Properties: &Properties{
-			AzProfile: &AzProfile{
-				TenantID:       "sampleTenantID",
-				SubscriptionID: "foobarsubscription",
-				ResourceGroup:  "sampleRG",
-				Location:       "westus2",
-			},
-			ServicePrincipalProfile: &ServicePrincipalProfile{
-				ClientID: "barClientID",
-				Secret:   "bazSecret",
-			},
-			MasterProfile: &MasterProfile{
-				Count:     1,
-				DNSPrefix: "myprefix1",
-				VMSize:    "Standard_DS2_v2",
-			},
-			OrchestratorProfile: &OrchestratorProfile{
-				OrchestratorType:    OpenShift,
-				OrchestratorVersion: "3.9.0",
-				OpenShiftConfig:     &OpenShiftConfig{},
-			},
-		},
-	}
-
-	cs.Properties.setMasterProfileDefaults(false)
-
-	result, err := cs.Properties.setDefaultCerts()
-	if !result {
-		t.Error("expected setOpenShiftDefaultCerts to return true")
-	}
-
-	if err != nil {
-		t.Errorf("unexpected error thrown while executing setOpenShiftDefaultCerts %s", err.Error())
-	}
-
-	cs = &ContainerService{
-		Properties: &Properties{
-			AzProfile: &AzProfile{
-				TenantID:       "sampleTenantID",
-				SubscriptionID: "foobarsubscription",
-				ResourceGroup:  "sampleRG",
-				Location:       "westus2",
-			},
-			ServicePrincipalProfile: &ServicePrincipalProfile{
-				ClientID: "barClientID",
-				Secret:   "bazSecret",
-			},
-			MasterProfile: &MasterProfile{
-				Count:               1,
-				DNSPrefix:           "myprefix1",
-				VMSize:              "Standard_DS2_v2",
-				AvailabilityProfile: VirtualMachineScaleSets,
-			},
-			OrchestratorProfile: &OrchestratorProfile{
-				OrchestratorType:    OpenShift,
-				OrchestratorVersion: "3.7.0",
-				OpenShiftConfig:     &OpenShiftConfig{},
-			},
-		},
-	}
-
-	cs.Properties.setMasterProfileDefaults(false)
-	result, err = cs.Properties.setDefaultCerts()
-
-	if !result {
-		t.Error("expected setOpenShiftDefaultCerts to return true")
-	}
-
-	if err != nil {
-		t.Errorf("unexpected error thrown while executing setOpenShiftDefaultCerts %s", err.Error())
-	}
-
 }
 
 func getMockBaseContainerService(orchestratorVersion string) ContainerService {

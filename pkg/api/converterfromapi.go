@@ -3,7 +3,6 @@ package api
 import (
 	"fmt"
 
-	"github.com/Azure/acs-engine/pkg/api/common"
 	"github.com/Azure/acs-engine/pkg/api/v20160930"
 	"github.com/Azure/acs-engine/pkg/api/v20170131"
 	"github.com/Azure/acs-engine/pkg/api/v20170701"
@@ -126,8 +125,6 @@ func ConvertOrchestratorVersionProfileToVLabs(api *OrchestratorVersionProfile) *
 	switch api.OrchestratorType {
 	case Kubernetes:
 		vlabsProfile.OrchestratorType = vlabs.Kubernetes
-	case OpenShift:
-		vlabsProfile.OrchestratorType = vlabs.OpenShift
 	}
 	vlabsProfile.OrchestratorVersion = api.OrchestratorVersion
 	vlabsProfile.Default = api.Default
@@ -475,34 +472,14 @@ func convertOrchestratorProfileToVLabs(api *OrchestratorProfile, o *vlabs.Orches
 
 	if api.OrchestratorVersion != "" {
 		o.OrchestratorVersion = api.OrchestratorVersion
-		// Enable using "unstable" as a valid version in the openshift orchestrator.
-		// Required for progressing on an unreleased version.
-		if !api.IsOpenShift() || api.OrchestratorVersion != common.OpenShiftVersionUnstable {
-			sv, _ := semver.Make(o.OrchestratorVersion)
-			o.OrchestratorRelease = fmt.Sprintf("%d.%d", sv.Major, sv.Minor)
-		}
+		sv, _ := semver.Make(o.OrchestratorVersion)
+		o.OrchestratorRelease = fmt.Sprintf("%d.%d", sv.Major, sv.Minor)
 	}
 
 	if api.KubernetesConfig != nil {
 		o.KubernetesConfig = &vlabs.KubernetesConfig{}
 		convertKubernetesConfigToVLabs(api.KubernetesConfig, o.KubernetesConfig)
 	}
-
-	if api.OpenShiftConfig != nil {
-		o.OpenShiftConfig = &vlabs.OpenShiftConfig{}
-		convertOpenShiftConfigToVLabs(api.OpenShiftConfig, o.OpenShiftConfig)
-	}
-}
-
-func convertOpenShiftConfigToVLabs(api *OpenShiftConfig, vl *vlabs.OpenShiftConfig) {
-	vl.KubernetesConfig = &vlabs.KubernetesConfig{}
-	if api.KubernetesConfig != nil {
-		convertKubernetesConfigToVLabs(api.KubernetesConfig, vl.KubernetesConfig)
-	}
-	vl.ClusterUsername = api.ClusterUsername
-	vl.ClusterPassword = api.ClusterPassword
-	vl.EnableAADAuthentication = api.EnableAADAuthentication
-	vl.ConfigBundles = api.ConfigBundles
 }
 
 func convertKubernetesConfigToVLabs(api *KubernetesConfig, vlabs *vlabs.KubernetesConfig) {

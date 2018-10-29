@@ -9,8 +9,6 @@ const (
 const (
 	// Kubernetes is the string constant for the Kubernetes orchestrator type
 	Kubernetes string = "Kubernetes"
-	// OpenShift is the string constant for the OpenShift orchestrator type
-	OpenShift string = "OpenShift"
 )
 
 // the OSTypes supported by vlabs

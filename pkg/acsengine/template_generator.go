@@ -111,7 +111,6 @@ func (t *TemplateGenerator) GenerateTemplate(containerService *api.ContainerServ
 func (t *TemplateGenerator) verifyFiles() error {
 	allFiles := commonTemplateFiles
 	allFiles = append(allFiles, kubernetesTemplateFiles...)
-	allFiles = append(allFiles, openshiftTemplateFiles...)
 	for _, file := range allFiles {
 		if _, err := Asset(file); err != nil {
 			return t.Translator.Errorf("template file %s does not exist", file)
@@ -126,9 +125,6 @@ func (t *TemplateGenerator) prepareTemplateFiles(properties *api.Properties) ([]
 	switch properties.OrchestratorProfile.OrchestratorType {
 	case api.Kubernetes:
 		files = append(commonTemplateFiles, kubernetesTemplateFiles...)
-		baseFile = kubernetesBaseFile
-	case api.OpenShift:
-		files = append(commonTemplateFiles, openshiftTemplateFiles...)
 		baseFile = kubernetesBaseFile
 	default:
 		return nil, "", t.Translator.Errorf("orchestrator '%s' is unsupported", properties.OrchestratorProfile.OrchestratorType)
@@ -277,13 +273,10 @@ func (t *TemplateGenerator) getTemplateFuncMap(cs *api.ContainerService) templat
 			return false
 		},
 		"RequiresFakeAgentOutput": func() bool {
-			return cs.Properties.OrchestratorProfile.IsKubernetes() || cs.Properties.OrchestratorProfile.IsOpenShift()
+			return cs.Properties.OrchestratorProfile.IsKubernetes()
 		},
 		"IsKubernetes": func() bool {
 			return cs.Properties.OrchestratorProfile.IsKubernetes()
-		},
-		"IsOpenShift": func() bool {
-			return cs.Properties.OrchestratorProfile.IsOpenShift()
 		},
 		"IsPublic": func(ports []int) bool {
 			return len(ports) > 0
@@ -407,7 +400,7 @@ func (t *TemplateGenerator) getTemplateFuncMap(cs *api.ContainerService) templat
 			return DefaultVNETCIDR
 		},
 		"GetAgentAllowedSizes": func() string {
-			if cs.Properties.OrchestratorProfile.IsKubernetes() || cs.Properties.OrchestratorProfile.IsOpenShift() {
+			if cs.Properties.OrchestratorProfile.IsKubernetes() {
 				return helpers.GetKubernetesAgentAllowedSizes()
 			}
 			return helpers.GetMasterAgentAllowedSizes()
@@ -715,52 +708,6 @@ func (t *TemplateGenerator) getTemplateFuncMap(cs *api.ContainerService) templat
 		},
 		"EnablePodSecurityPolicy": func() bool {
 			return helpers.IsTrueBoolPointer(cs.Properties.OrchestratorProfile.KubernetesConfig.EnablePodSecurityPolicy)
-		},
-		"OpenShiftGetMasterSh": func() (string, error) {
-			masterShAsset := getOpenshiftMasterShAsset(cs.Properties.OrchestratorProfile.OrchestratorVersion)
-			tb := MustAsset(masterShAsset)
-			t, err := template.New("master").Funcs(template.FuncMap{
-				"quote":      strconv.Quote,
-				"shellQuote": helpers.ShellQuote,
-			}).Parse(string(tb))
-			if err != nil {
-				return "", err
-			}
-			b := &bytes.Buffer{}
-			err = t.Execute(b, struct {
-				ConfigBundle           string
-				ExternalMasterHostname string
-				RouterLBHostname       string
-				Location               string
-				MasterIP               string
-			}{
-				ConfigBundle:           base64.StdEncoding.EncodeToString(cs.Properties.OrchestratorProfile.OpenShiftConfig.ConfigBundles["master"]),
-				ExternalMasterHostname: fmt.Sprintf("%s.%s.cloudapp.azure.com", cs.Properties.MasterProfile.DNSPrefix, cs.Properties.AzProfile.Location),
-				RouterLBHostname:       fmt.Sprintf("%s-router.%s.cloudapp.azure.com", cs.Properties.MasterProfile.DNSPrefix, cs.Properties.AzProfile.Location),
-				Location:               cs.Properties.AzProfile.Location,
-				MasterIP:               cs.Properties.MasterProfile.FirstConsecutiveStaticIP,
-			})
-			return b.String(), err
-		},
-		"OpenShiftGetNodeSh": func(profile *api.AgentPoolProfile) (string, error) {
-			nodeShAsset := getOpenshiftNodeShAsset(cs.Properties.OrchestratorProfile.OrchestratorVersion)
-			tb := MustAsset(nodeShAsset)
-			t, err := template.New("node").Funcs(template.FuncMap{
-				"quote":      strconv.Quote,
-				"shellQuote": helpers.ShellQuote,
-			}).Parse(string(tb))
-			if err != nil {
-				return "", err
-			}
-			b := &bytes.Buffer{}
-			err = t.Execute(b, struct {
-				ConfigBundle string
-				Role         api.AgentPoolProfileRole
-			}{
-				ConfigBundle: base64.StdEncoding.EncodeToString(cs.Properties.OrchestratorProfile.OpenShiftConfig.ConfigBundles["bootstrap"]),
-				Role:         profile.Role,
-			})
-			return b.String(), err
 		},
 		// inspired by http://stackoverflow.com/questions/18276173/calling-a-template-with-several-pipeline-parameters/18276968#18276968
 		"dict": func(values ...interface{}) (map[string]interface{}, error) {

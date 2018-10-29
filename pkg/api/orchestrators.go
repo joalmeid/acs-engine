@@ -19,11 +19,9 @@ var versionsMap map[string][]string
 func init() {
 	funcmap = map[string]orchestratorsFunc{
 		Kubernetes: kubernetesInfo,
-		OpenShift:  openShiftInfo,
 	}
 	versionsMap = map[string][]string{
 		Kubernetes: common.GetAllSupportedKubernetesVersions(true, false),
-		OpenShift:  common.GetAllSupportedOpenShiftVersions(),
 	}
 }
 
@@ -31,8 +29,6 @@ func validate(orchestrator, version string) (string, error) {
 	switch {
 	case strings.EqualFold(orchestrator, Kubernetes):
 		return Kubernetes, nil
-	case strings.EqualFold(orchestrator, OpenShift):
-		return OpenShift, nil
 	case orchestrator == "":
 		if version != "" {
 			return "", errors.Errorf("Must specify orchestrator for version '%s'", version)
@@ -183,40 +179,4 @@ func kubernetesUpgrades(csOrch *OrchestratorProfile, hasWindows bool) ([]*Orches
 		})
 	}
 	return ret, nil
-}
-
-func openShiftInfo(csOrch *OrchestratorProfile, hasWindows bool) ([]*OrchestratorVersionProfile, error) {
-	orchs := []*OrchestratorVersionProfile{}
-	if csOrch.OrchestratorVersion == "" {
-		// get info for all supported versions
-		for _, ver := range common.GetAllSupportedOpenShiftVersions() {
-			if ver == common.OpenShiftVersionUnstable {
-				continue
-			}
-			// TODO: populate OrchestratorVersionProfile.Upgrades
-			orchs = append(orchs,
-				&OrchestratorVersionProfile{
-					OrchestratorProfile: OrchestratorProfile{
-						OrchestratorType:    OpenShift,
-						OrchestratorVersion: ver,
-					},
-					Default: ver == common.OpenShiftDefaultVersion,
-				})
-		}
-	} else {
-		if !isVersionSupported(csOrch) {
-			return nil, errors.Errorf("OpenShift version %s is not supported", csOrch.OrchestratorVersion)
-		}
-
-		// TODO: populate OrchestratorVersionProfile.Upgrades
-		orchs = append(orchs,
-			&OrchestratorVersionProfile{
-				OrchestratorProfile: OrchestratorProfile{
-					OrchestratorType:    OpenShift,
-					OrchestratorVersion: csOrch.OrchestratorVersion,
-				},
-				Default: csOrch.OrchestratorVersion == common.OpenShiftDefaultVersion,
-			})
-	}
-	return orchs, nil
 }

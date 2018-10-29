@@ -30,8 +30,6 @@ func getParameters(cs *api.ContainerService, generatorCode string, acsengineVers
 			addValue(parametersMap, "osImageResourceGroup", properties.MasterProfile.ImageRef.ResourceGroup)
 		}
 	}
-	// TODO: Choose the correct image config based on the version
-	// for the openshift orchestrator
 
 	addValue(parametersMap, "fqdnEndpointSuffix", cloudSpecConfig.EndpointConfig.ResourceManagerVMDNSSuffix)
 	addValue(parametersMap, "targetEnvironment", helpers.GetCloudTargetEnv(cs.Location))
@@ -58,7 +56,7 @@ func getParameters(cs *api.ContainerService, generatorCode string, acsengineVers
 			if properties.MasterProfile.IsVirtualMachineScaleSets() {
 				addValue(parametersMap, "agentVnetSubnetID", properties.MasterProfile.AgentVnetSubnetID)
 			}
-			if properties.OrchestratorProfile.IsKubernetes() || properties.OrchestratorProfile.IsOpenShift() {
+			if properties.OrchestratorProfile.IsKubernetes() {
 				addValue(parametersMap, "vnetCidr", properties.MasterProfile.VnetCidr)
 			}
 		} else {
@@ -83,8 +81,7 @@ func getParameters(cs *api.ContainerService, generatorCode string, acsengineVers
 	}
 
 	// Kubernetes Parameters
-	if properties.OrchestratorProfile.IsKubernetes() ||
-		properties.OrchestratorProfile.IsOpenShift() {
+	if properties.OrchestratorProfile.IsKubernetes() {
 		assignKubernetesParameters(properties, parametersMap, cloudSpecConfig, generatorCode)
 	}
 
@@ -140,6 +137,27 @@ func getParameters(cs *api.ContainerService, generatorCode string, acsengineVers
 
 		addValue(parametersMap, "windowsDockerVersion", properties.WindowsProfile.GetWindowsDockerVersion())
 
+		if properties.OrchestratorProfile.IsKubernetes() {
+			k8sVersion := properties.OrchestratorProfile.OrchestratorVersion
+
+			if properties.OrchestratorProfile.KubernetesConfig != nil {
+
+				// Kubernetes packages as zip file as created by scripts/build-windows-k8s.sh
+				// will be removed in future release as if gets phased out (https://github.com/Azure/acs-engine/issues/3851)
+				kubeBinariesSASURL := properties.OrchestratorProfile.KubernetesConfig.CustomWindowsPackageURL
+				if kubeBinariesSASURL == "" {
+					kubeBinariesSASURL = cloudSpecConfig.KubernetesSpecConfig.KubeBinariesSASURLBase + api.K8sComponentsByVersionMap[k8sVersion]["windowszip"]
+				}
+				addValue(parametersMap, "kubeBinariesSASURL", kubeBinariesSASURL)
+
+				// Kubernetes node binaries as packaged by upstream kubernetes
+				// example at https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.11.md#node-binaries-1
+				addValue(parametersMap, "windowsKubeBinariesURL", properties.OrchestratorProfile.KubernetesConfig.WindowsNodeBinariesURL)
+
+				addValue(parametersMap, "kubeBinariesVersion", k8sVersion)
+				addValue(parametersMap, "windowsTelemetryGUID", cloudSpecConfig.KubernetesSpecConfig.WindowsTelemetryGUID)
+			}
+		}
 		for i, s := range properties.WindowsProfile.Secrets {
 			addValue(parametersMap, fmt.Sprintf("windowsKeyVaultID%d", i), s.SourceVault.ID)
 			for j, c := range s.VaultCertificates {

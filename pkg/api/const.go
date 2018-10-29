@@ -4,8 +4,6 @@ package api
 const (
 	// Kubernetes is the string constant for the Kubernetes orchestrator type
 	Kubernetes string = "Kubernetes"
-	// OpenShift is the string constant for the OpenShift orchestrator type
-	OpenShift string = "OpenShift"
 )
 
 // the OSTypes supported by vlabs
@@ -21,9 +19,6 @@ const (
 	CoreOS          Distro = "coreos"
 	AKS             Distro = "aks"
 	AKSDockerEngine Distro = "aks-docker-engine"
-	// Supported distros by OpenShift
-	OpenShift39RHEL Distro = "openshift39_rhel"
-	OpenShiftCentOS Distro = "openshift39_centos"
 )
 
 const (
@@ -51,8 +46,6 @@ const (
 	AvailabilitySet = "AvailabilitySet"
 	// DefaultOrchestratorName specifies the 3 character orchestrator code of the cluster template and affects resource naming.
 	DefaultOrchestratorName = "k8s"
-	// DefaultOpenshiftOrchestratorName specifies the 3 character orchestrator code of the cluster template and affects resource naming.
-	DefaultOpenshiftOrchestratorName = "ocp"
 	// DefaultHostedProfileMasterName specifies the 3 character orchestrator code of the clusters with hosted master profiles.
 	DefaultHostedProfileMasterName = "aks"
 	// DefaultFirstConsecutiveKubernetesStaticIP specifies the static IP address on Kubernetes master 0
@@ -224,10 +217,6 @@ const (
 )
 
 const (
-	// DefaultOpenShiftMasterSubnet is the default value for master subnet for Openshift.
-	DefaultOpenShiftMasterSubnet = "10.0.0.0/24"
-	// DefaultOpenShiftFirstConsecutiveStaticIP is the default static ip address for master 0 for Openshift.
-	DefaultOpenShiftFirstConsecutiveStaticIP = "10.0.0.11"
 	// DefaultMasterSubnet specifies the default master subnet for DCOS or Swarm
 	DefaultMasterSubnet = "172.16.0.0/24"
 	// DefaultFirstConsecutiveStaticIP specifies the static IP address on master 0 for DCOS or Swarm

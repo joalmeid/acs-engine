@@ -264,8 +264,6 @@ func GetSupportedVersions(orchType string, isUpdate, hasWindows bool) (versions 
 	switch orchType {
 	case Kubernetes:
 		return GetAllSupportedKubernetesVersions(isUpdate, hasWindows), GetDefaultKubernetesVersion(hasWindows)
-	case OpenShift:
-		return GetAllSupportedOpenShiftVersions(), string(OpenShiftDefaultVersion)
 	default:
 		return nil, ""
 	}

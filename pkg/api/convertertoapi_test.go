@@ -101,39 +101,12 @@ func TestConvertVLabsOrchestratorProfile(t *testing.T) {
 		"nilOpenShiftConfig": {
 			props: &vlabs.Properties{
 				OrchestratorProfile: &vlabs.OrchestratorProfile{
-					OrchestratorType: OpenShift,
+					OrchestratorType: Kubernetes,
 				},
 			},
 			expect: &OrchestratorProfile{
-				OrchestratorType:    OpenShift,
-				OrchestratorVersion: common.OpenShiftDefaultVersion,
-			},
-		},
-		"setOpenShiftConfig": {
-			props: &vlabs.Properties{
-				OrchestratorProfile: &vlabs.OrchestratorProfile{
-					OrchestratorType: OpenShift,
-					OpenShiftConfig: &vlabs.OpenShiftConfig{
-						KubernetesConfig: &vlabs.KubernetesConfig{
-							NetworkPlugin:    "azure",
-							ContainerRuntime: "docker",
-						},
-					},
-				},
-			},
-			expect: &OrchestratorProfile{
-				OrchestratorType:    OpenShift,
-				OrchestratorVersion: common.OpenShiftDefaultVersion,
-				KubernetesConfig: &KubernetesConfig{
-					NetworkPlugin:    "azure",
-					ContainerRuntime: "docker",
-				},
-				OpenShiftConfig: &OpenShiftConfig{
-					KubernetesConfig: &KubernetesConfig{
-						NetworkPlugin:    "azure",
-						ContainerRuntime: "docker",
-					},
-				},
+				OrchestratorType:    Kubernetes,
+				OrchestratorVersion: common.KubernetesDefaultRelease,
 			},
 		},
 	}
