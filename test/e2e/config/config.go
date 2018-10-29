@@ -43,7 +43,6 @@ const (
 	dcosOrchestrator       = "dcos"
 	swarmModeOrchestrator  = "swarmmode"
 	swarmOrchestrator      = "swarm"
-	openShiftOrchestrator  = "openshift"
 )
 
 // ParseConfig will parse needed environment variables for running the tests
@@ -66,16 +65,6 @@ func (c *Config) GetKubeConfig() string {
 	case c.IsKubernetes():
 		file := fmt.Sprintf("kubeconfig.%s.json", c.Location)
 		kubeconfigPath = filepath.Join(c.CurrentWorkingDir, "_output", c.Name, "kubeconfig", file)
-
-	case c.IsOpenShift():
-		artifactsDir := filepath.Join(c.CurrentWorkingDir, "_output", c.Name)
-		masterTarball := filepath.Join(artifactsDir, "master.tar.gz")
-		out, err := exec.Command("tar", "-xzf", masterTarball, "-C", artifactsDir).CombinedOutput()
-		if err != nil {
-			log.Fatalf("Cannot untar master tarball: %v: %v", string(out), err)
-		}
-		kubeconfigPath = filepath.Join(artifactsDir, "etc", "origin", "master", "admin.kubeconfig")
-	}
 
 	return kubeconfigPath
 }
@@ -171,11 +160,6 @@ func (c *Config) IsSwarmMode() bool {
 // IsSwarm will return true if the ORCHESTRATOR env var is set to dcos
 func (c *Config) IsSwarm() bool {
 	return c.Orchestrator == swarmOrchestrator
-}
-
-// IsOpenShift will return true if the ORCHESTRATOR env var is set to openshift
-func (c *Config) IsOpenShift() bool {
-	return c.Orchestrator == openShiftOrchestrator
 }
 
 // SetRandomRegion sets Location to a random region

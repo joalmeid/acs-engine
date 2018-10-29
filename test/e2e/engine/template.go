@@ -93,49 +93,12 @@ func Build(cfg *config.Config, masterSubnetID string, agentSubnetID string, isVM
 			Secret:   config.ClientSecret,
 		}
 	}
-	if cfg.IsOpenShift() {
-		// azProfile
-		cs.ContainerService.Properties.AzProfile = &vlabs.AzProfile{
-			TenantID:       config.TenantID,
-			SubscriptionID: config.SubscriptionID,
-			ResourceGroup:  cfg.Name,
-			Location:       cfg.Location,
-		}
-		// openshiftConfig
-		pass, err := generateRandomString(32)
-		if err != nil {
-			return nil, err
-		}
-		cs.ContainerService.Properties.OrchestratorProfile.OpenShiftConfig = &vlabs.OpenShiftConfig{
-			ClusterUsername: "test-user",
-			ClusterPassword: pass,
-		}
-		// master and agent config
-		cs.ContainerService.Properties.MasterProfile.Distro = vlabs.Distro(config.Distro)
-		cs.ContainerService.Properties.MasterProfile.ImageRef = nil
-		if config.ImageName != "" && config.ImageResourceGroup != "" {
-			cs.ContainerService.Properties.MasterProfile.ImageRef = &vlabs.ImageReference{
-				Name:          config.ImageName,
-				ResourceGroup: config.ImageResourceGroup,
-			}
-		}
-		for i := range cs.ContainerService.Properties.AgentPoolProfiles {
-			cs.ContainerService.Properties.AgentPoolProfiles[i].Distro = vlabs.Distro(config.Distro)
-			cs.ContainerService.Properties.AgentPoolProfiles[i].ImageRef = nil
-			if config.ImageName != "" && config.ImageResourceGroup != "" {
-				cs.ContainerService.Properties.AgentPoolProfiles[i].ImageRef = &vlabs.ImageReference{
-					Name:          config.ImageName,
-					ResourceGroup: config.ImageResourceGroup,
-				}
-			}
-		}
-	}
 
 	if config.MasterDNSPrefix != "" {
 		cs.ContainerService.Properties.MasterProfile.DNSPrefix = config.MasterDNSPrefix
 	}
 
-	if !cfg.IsKubernetes() && !cfg.IsOpenShift() && config.AgentDNSPrefix != "" {
+	if !cfg.IsKubernetes() && config.AgentDNSPrefix != "" {
 		for idx, pool := range cs.ContainerService.Properties.AgentPoolProfiles {
 			pool.DNSPrefix = fmt.Sprintf("%v-%v", config.AgentDNSPrefix, idx)
 		}
