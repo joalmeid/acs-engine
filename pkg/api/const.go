@@ -2,16 +2,8 @@ package api
 
 // the orchestrators supported by vlabs
 const (
-	// Mesos is the string constant for MESOS orchestrator type
-	Mesos string = "Mesos"
-	// DCOS is the string constant for DCOS orchestrator type and defaults to DCOS188
-	DCOS string = "DCOS"
-	// Swarm is the string constant for the Swarm orchestrator type
-	Swarm string = "Swarm"
 	// Kubernetes is the string constant for the Kubernetes orchestrator type
 	Kubernetes string = "Kubernetes"
-	// SwarmMode is the string constant for the Swarm Mode orchestrator type
-	SwarmMode string = "SwarmMode"
 	// OpenShift is the string constant for the OpenShift orchestrator type
 	OpenShift string = "OpenShift"
 )
@@ -35,14 +27,6 @@ const (
 )
 
 const (
-	// SwarmVersion is the Swarm orchestrator version
-	SwarmVersion = "swarm:1.1.0"
-	// SwarmDockerComposeVersion is the Docker Compose version
-	SwarmDockerComposeVersion = "1.6.2"
-	// DockerCEVersion is the DockerCE orchestrator version
-	DockerCEVersion = "17.03.*"
-	// DockerCEDockerComposeVersion is the Docker Compose version
-	DockerCEDockerComposeVersion = "1.14.0"
 	// KubernetesWindowsDockerVersion is the default version for docker on Windows nodes in kubernetes
 	KubernetesWindowsDockerVersion = "17.06.2-ee-16"
 )
@@ -106,9 +90,6 @@ const (
 	// ManagedDisks means that the nodes use managed disks for their os and attached volumes
 	ManagedDisks = "ManagedDisks"
 )
-
-// To identify programmatically generated public agent pools
-const publicAgentPoolSuffix = "-public"
 
 const (
 	// DefaultTillerAddonEnabled determines the acs-engine provided default for enabling tiller addon
@@ -229,14 +210,6 @@ const (
 )
 
 const (
-	//AzureEdgeDCOSBootstrapDownloadURL is the azure edge CDN download url
-	AzureEdgeDCOSBootstrapDownloadURL = "https://dcosio.azureedge.net/dcos/%s/bootstrap/%s.bootstrap.tar.xz"
-	//AzureChinaCloudDCOSBootstrapDownloadURL is the China specific DCOS package download url.
-	AzureChinaCloudDCOSBootstrapDownloadURL = "https://acsengine.blob.core.chinacloudapi.cn/dcos/%s.bootstrap.tar.xz"
-	//AzureEdgeDCOSWindowsBootstrapDownloadURL
-)
-
-const (
 	// AzureCniPluginVerLinux specifies version of Azure CNI plugin, which has been mirrored from
 	// https://github.com/Azure/azure-container-networking/releases/download/${AZURE_PLUGIN_VER}/azure-vnet-cni-linux-amd64-${AZURE_PLUGIN_VER}.tgz
 	// to https://acs-mirror.azureedge.net/cni
@@ -259,16 +232,6 @@ const (
 	DefaultMasterSubnet = "172.16.0.0/24"
 	// DefaultFirstConsecutiveStaticIP specifies the static IP address on master 0 for DCOS or Swarm
 	DefaultFirstConsecutiveStaticIP = "172.16.0.5"
-	// DefaultSwarmWindowsMasterSubnet specifies the default master subnet for a Swarm Windows cluster
-	DefaultSwarmWindowsMasterSubnet = "192.168.255.0/24"
-	// DefaultSwarmWindowsFirstConsecutiveStaticIP specifies the static IP address on master 0 for a Swarm WIndows cluster
-	DefaultSwarmWindowsFirstConsecutiveStaticIP = "192.168.255.5"
-	// DefaultDCOSMasterSubnet specifies the default master subnet for a DCOS cluster
-	DefaultDCOSMasterSubnet = "192.168.255.0/24"
-	// DefaultDCOSFirstConsecutiveStaticIP  specifies the static IP address on master 0 for a DCOS cluster
-	DefaultDCOSFirstConsecutiveStaticIP = "192.168.255.5"
-	// DefaultDCOSBootstrapStaticIP specifies the static IP address on bootstrap for a DCOS cluster
-	DefaultDCOSBootstrapStaticIP = "192.168.255.240"
 	// DefaultKubernetesMasterSubnet specifies the default subnet for masters and agents.
 	// Except when master VMSS is used, this specifies the default subnet for masters.
 	DefaultKubernetesMasterSubnet = "10.240.0.0/16"

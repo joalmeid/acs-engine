@@ -1,12 +1,9 @@
 package acsengine
 
 import (
-	"encoding/base64"
 	"fmt"
-	"strings"
 
 	"github.com/Azure/acs-engine/pkg/api"
-	"github.com/Azure/acs-engine/pkg/api/common"
 	"github.com/Azure/acs-engine/pkg/helpers"
 )
 
@@ -85,96 +82,10 @@ func getParameters(cs *api.ContainerService, generatorCode string, acsengineVers
 		}
 	}
 
-	//Swarm and SwarmMode Parameters
-	if properties.OrchestratorProfile.OrchestratorType == api.Swarm || properties.OrchestratorProfile.OrchestratorType == api.SwarmMode {
-		var dockerEngineRepo, dockerComposeDownloadURL string
-		if cloudSpecConfig.DockerSpecConfig.DockerEngineRepo == "" {
-			dockerEngineRepo = DefaultDockerEngineRepo
-		} else {
-			dockerEngineRepo = cloudSpecConfig.DockerSpecConfig.DockerEngineRepo
-		}
-		if cloudSpecConfig.DockerSpecConfig.DockerComposeDownloadURL == "" {
-			dockerComposeDownloadURL = DefaultDockerComposeURL
-		} else {
-			dockerComposeDownloadURL = cloudSpecConfig.DockerSpecConfig.DockerComposeDownloadURL
-		}
-		addValue(parametersMap, "dockerEngineDownloadRepo", dockerEngineRepo)
-		addValue(parametersMap, "dockerComposeDownloadURL", dockerComposeDownloadURL)
-	}
-
 	// Kubernetes Parameters
 	if properties.OrchestratorProfile.IsKubernetes() ||
 		properties.OrchestratorProfile.IsOpenShift() {
 		assignKubernetesParameters(properties, parametersMap, cloudSpecConfig, generatorCode)
-	}
-
-	if strings.HasPrefix(properties.OrchestratorProfile.OrchestratorType, api.DCOS) {
-		dcosBootstrapURL := cloudSpecConfig.DCOSSpecConfig.DCOS188BootstrapDownloadURL
-		dcosWindowsBootstrapURL := cloudSpecConfig.DCOSSpecConfig.DCOSWindowsBootstrapDownloadURL
-		dcosRepositoryURL := cloudSpecConfig.DCOSSpecConfig.DcosRepositoryURL
-		dcosClusterPackageListID := cloudSpecConfig.DCOSSpecConfig.DcosClusterPackageListID
-		dcosProviderPackageID := cloudSpecConfig.DCOSSpecConfig.DcosProviderPackageID
-
-		switch properties.OrchestratorProfile.OrchestratorType {
-		case api.DCOS:
-			switch properties.OrchestratorProfile.OrchestratorVersion {
-			case common.DCOSVersion1Dot8Dot8:
-				dcosBootstrapURL = cloudSpecConfig.DCOSSpecConfig.DCOS188BootstrapDownloadURL
-			case common.DCOSVersion1Dot9Dot0:
-				dcosBootstrapURL = cloudSpecConfig.DCOSSpecConfig.DCOS190BootstrapDownloadURL
-			case common.DCOSVersion1Dot9Dot8:
-				dcosBootstrapURL = cloudSpecConfig.DCOSSpecConfig.DCOS198BootstrapDownloadURL
-			case common.DCOSVersion1Dot10Dot0:
-				dcosBootstrapURL = cloudSpecConfig.DCOSSpecConfig.DCOS110BootstrapDownloadURL
-			default:
-				dcosBootstrapURL = getDCOSDefaultBootstrapInstallerURL(properties.OrchestratorProfile)
-				dcosWindowsBootstrapURL = getDCOSDefaultWindowsBootstrapInstallerURL(properties.OrchestratorProfile)
-			}
-		}
-
-		if properties.OrchestratorProfile.DcosConfig != nil {
-			if properties.OrchestratorProfile.DcosConfig.DcosWindowsBootstrapURL != "" {
-				dcosWindowsBootstrapURL = properties.OrchestratorProfile.DcosConfig.DcosWindowsBootstrapURL
-			}
-			if properties.OrchestratorProfile.DcosConfig.DcosBootstrapURL != "" {
-				dcosBootstrapURL = properties.OrchestratorProfile.DcosConfig.DcosBootstrapURL
-			}
-			if len(properties.OrchestratorProfile.DcosConfig.Registry) > 0 {
-				addValue(parametersMap, "registry", properties.OrchestratorProfile.DcosConfig.Registry)
-				addValue(parametersMap, "registryKey", base64.StdEncoding.EncodeToString([]byte(fmt.Sprintf("%s:%s", properties.OrchestratorProfile.DcosConfig.RegistryUser, properties.OrchestratorProfile.DcosConfig.RegistryPass))))
-			}
-			if properties.OrchestratorProfile.DcosConfig.DcosRepositoryURL != "" {
-				dcosRepositoryURL = properties.OrchestratorProfile.DcosConfig.DcosRepositoryURL
-			} else {
-				dcosRepositoryURL = getDCOSDefaultRepositoryURL(
-					properties.OrchestratorProfile.OrchestratorType,
-					properties.OrchestratorProfile.OrchestratorVersion)
-			}
-
-			if properties.OrchestratorProfile.DcosConfig.DcosClusterPackageListID != "" {
-				dcosClusterPackageListID = properties.OrchestratorProfile.DcosConfig.DcosClusterPackageListID
-			}
-
-			if properties.OrchestratorProfile.DcosConfig.DcosProviderPackageID != "" {
-				dcosProviderPackageID = properties.OrchestratorProfile.DcosConfig.DcosProviderPackageID
-			} else {
-				dcosProviderPackageID = getDCOSDefaultProviderPackageGUID(
-					properties.OrchestratorProfile.OrchestratorType,
-					properties.OrchestratorProfile.OrchestratorVersion,
-					properties.MasterProfile.Count)
-			}
-		}
-
-		addValue(parametersMap, "dcosBootstrapURL", dcosBootstrapURL)
-		addValue(parametersMap, "dcosWindowsBootstrapURL", dcosWindowsBootstrapURL)
-		addValue(parametersMap, "dcosRepositoryURL", dcosRepositoryURL)
-		addValue(parametersMap, "dcosClusterPackageListID", dcosClusterPackageListID)
-		addValue(parametersMap, "dcosProviderPackageID", dcosProviderPackageID)
-
-		if properties.OrchestratorProfile.DcosConfig != nil && properties.OrchestratorProfile.DcosConfig.BootstrapProfile != nil {
-			addValue(parametersMap, "bootstrapStaticIP", properties.OrchestratorProfile.DcosConfig.BootstrapProfile.StaticIP)
-			addValue(parametersMap, "bootstrapVMSize", properties.OrchestratorProfile.DcosConfig.BootstrapProfile.VMSize)
-		}
 	}
 
 	// Agent parameters

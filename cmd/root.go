@@ -61,7 +61,6 @@ func NewRootCmd() *cobra.Command {
 	rootCmd.AddCommand(newOrchestratorsCmd())
 	rootCmd.AddCommand(newUpgradeCmd())
 	rootCmd.AddCommand(newScaleCmd())
-	rootCmd.AddCommand(newDcosUpgradeCmd())
 	rootCmd.AddCommand(getCompletionCmd(rootCmd))
 
 	return rootCmd

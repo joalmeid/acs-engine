@@ -10,9 +10,6 @@ import (
 // Validate implements APIObject
 func (o *OrchestratorProfile) Validate() error {
 	switch o.OrchestratorType {
-	case DCOS:
-	case Mesos:
-	case Swarm:
 	case Kubernetes:
 	default:
 		return errors.Errorf("OrchestratorProfile has unknown orchestrator: %s", o.OrchestratorType)
@@ -102,15 +99,8 @@ func (a *Properties) Validate() error {
 				return errors.New("missing WindowsProfile")
 			}
 			switch a.OrchestratorProfile.OrchestratorType {
-			case Swarm:
 			default:
 				return errors.Errorf("Orchestrator %s does not support Windows", a.OrchestratorProfile.OrchestratorType)
-			}
-			if len(a.WindowsProfile.AdminUsername) == 0 {
-				return errors.Errorf("WindowsProfile.AdminUsername must not be empty since agent pool '%s' specifies windows", agentPoolProfile.Name)
-			}
-			if len(a.WindowsProfile.AdminPassword) == 0 {
-				return errors.Errorf("WindowsProfile.AdminPassword must not be empty since  agent pool '%s' specifies windows", agentPoolProfile.Name)
 			}
 		}
 	}

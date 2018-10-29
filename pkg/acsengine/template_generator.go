@@ -110,11 +110,8 @@ func (t *TemplateGenerator) GenerateTemplate(containerService *api.ContainerServ
 
 func (t *TemplateGenerator) verifyFiles() error {
 	allFiles := commonTemplateFiles
-	allFiles = append(allFiles, dcosTemplateFiles...)
-	allFiles = append(allFiles, dcos2TemplateFiles...)
 	allFiles = append(allFiles, kubernetesTemplateFiles...)
 	allFiles = append(allFiles, openshiftTemplateFiles...)
-	allFiles = append(allFiles, swarmTemplateFiles...)
 	for _, file := range allFiles {
 		if _, err := Asset(file); err != nil {
 			return t.Translator.Errorf("template file %s does not exist", file)
@@ -127,23 +124,9 @@ func (t *TemplateGenerator) prepareTemplateFiles(properties *api.Properties) ([]
 	var files []string
 	var baseFile string
 	switch properties.OrchestratorProfile.OrchestratorType {
-	case api.DCOS:
-		if properties.OrchestratorProfile.DcosConfig == nil || properties.OrchestratorProfile.DcosConfig.BootstrapProfile == nil {
-			files = append(commonTemplateFiles, dcosTemplateFiles...)
-			baseFile = dcosBaseFile
-		} else {
-			files = append(commonTemplateFiles, dcos2TemplateFiles...)
-			baseFile = dcos2BaseFile
-		}
-	case api.Swarm:
-		files = append(commonTemplateFiles, swarmTemplateFiles...)
-		baseFile = swarmBaseFile
 	case api.Kubernetes:
 		files = append(commonTemplateFiles, kubernetesTemplateFiles...)
 		baseFile = kubernetesBaseFile
-	case api.SwarmMode:
-		files = append(commonTemplateFiles, swarmModeTemplateFiles...)
-		baseFile = swarmBaseFile
 	case api.OpenShift:
 		files = append(commonTemplateFiles, openshiftTemplateFiles...)
 		baseFile = kubernetesBaseFile
@@ -205,11 +188,6 @@ func (t *TemplateGenerator) getTemplateFuncMap(cs *api.ContainerService) templat
 		},
 		"IsHostedMaster": func() bool {
 			return cs.Properties.IsHostedMasterProfile()
-		},
-		"IsDCOS19": func() bool {
-			return cs.Properties.OrchestratorProfile.OrchestratorType == api.DCOS &&
-				(cs.Properties.OrchestratorProfile.OrchestratorVersion == common.DCOSVersion1Dot9Dot0 ||
-					cs.Properties.OrchestratorProfile.OrchestratorVersion == common.DCOSVersion1Dot9Dot8)
 		},
 		"IsKubernetesVersionGe": func(version string) bool {
 			return cs.Properties.OrchestratorProfile.IsKubernetes() && common.IsKubernetesVersionGe(cs.Properties.OrchestratorProfile.OrchestratorVersion, version)
@@ -296,16 +274,10 @@ func (t *TemplateGenerator) getTemplateFuncMap(cs *api.ContainerService) templat
 			return strings.TrimSuffix(buf.String(), ", ")
 		},
 		"HasPrivateRegistry": func() bool {
-			if cs.Properties.OrchestratorProfile.DcosConfig != nil {
-				return len(cs.Properties.OrchestratorProfile.DcosConfig.Registry) > 0
-			}
 			return false
 		},
 		"RequiresFakeAgentOutput": func() bool {
 			return cs.Properties.OrchestratorProfile.IsKubernetes() || cs.Properties.OrchestratorProfile.IsOpenShift()
-		},
-		"IsSwarmMode": func() bool {
-			return cs.Properties.OrchestratorProfile.IsSwarmMode()
 		},
 		"IsKubernetes": func() bool {
 			return cs.Properties.OrchestratorProfile.IsKubernetes()
@@ -414,7 +386,7 @@ func (t *TemplateGenerator) getTemplateFuncMap(cs *api.ContainerService) templat
 			return getDataDisks(profile)
 		},
 		"HasBootstrap": func() bool {
-			return cs.Properties.OrchestratorProfile.DcosConfig != nil && cs.Properties.OrchestratorProfile.DcosConfig.BootstrapProfile != nil
+			return false
 		},
 		"HasBootstrapPublicIP": func() bool {
 			return false
@@ -428,111 +400,7 @@ func (t *TemplateGenerator) getTemplateFuncMap(cs *api.ContainerService) templat
 			}
 			return false
 		},
-		"GetDCOSBootstrapCustomData": func() string {
-			masterIPList := generateIPList(cs.Properties.MasterProfile.Count, cs.Properties.MasterProfile.FirstConsecutiveStaticIP)
-			for i, v := range masterIPList {
-				masterIPList[i] = "    - " + v
-			}
-
-			str := getSingleLineDCOSCustomData(
-				cs.Properties.OrchestratorProfile.OrchestratorType,
-				dcos2BootstrapCustomdata, 0,
-				map[string]string{
-					"PROVISION_SOURCE_STR":    getDCOSProvisionScript(dcosProvisionSource),
-					"PROVISION_STR":           getDCOSProvisionScript(dcos2BootstrapProvision),
-					"MASTER_IP_LIST":          strings.Join(masterIPList, "\n"),
-					"BOOTSTRAP_IP":            cs.Properties.OrchestratorProfile.DcosConfig.BootstrapProfile.StaticIP,
-					"BOOTSTRAP_OAUTH_ENABLED": strconv.FormatBool(cs.Properties.OrchestratorProfile.DcosConfig.BootstrapProfile.OAuthEnabled)})
-
-			return fmt.Sprintf("\"customData\": \"[base64(concat('#cloud-config\\n\\n', '%s'))]\",", str)
-		},
-		"GetDCOSMasterCustomData": func() string {
-			masterAttributeContents := getDCOSMasterCustomNodeLabels()
-			masterPreprovisionExtension := ""
-			if cs.Properties.MasterProfile.PreprovisionExtension != nil {
-				masterPreprovisionExtension += "\n"
-				masterPreprovisionExtension += makeMasterExtensionScriptCommands(cs)
-			}
-			var bootstrapIP string
-			if cs.Properties.OrchestratorProfile.DcosConfig != nil && cs.Properties.OrchestratorProfile.DcosConfig.BootstrapProfile != nil {
-				bootstrapIP = cs.Properties.OrchestratorProfile.DcosConfig.BootstrapProfile.StaticIP
-			}
-
-			str := getSingleLineDCOSCustomData(
-				cs.Properties.OrchestratorProfile.OrchestratorType,
-				getDCOSCustomDataTemplate(cs.Properties.OrchestratorProfile.OrchestratorType, cs.Properties.OrchestratorProfile.OrchestratorVersion),
-				cs.Properties.MasterProfile.Count,
-				map[string]string{
-					"PROVISION_SOURCE_STR":   getDCOSProvisionScript(dcosProvisionSource),
-					"PROVISION_STR":          getDCOSMasterProvisionScript(cs.Properties.OrchestratorProfile, bootstrapIP),
-					"ATTRIBUTES_STR":         masterAttributeContents,
-					"PREPROVISION_EXTENSION": masterPreprovisionExtension,
-					"ROLENAME":               "master"})
-
-			return fmt.Sprintf("\"customData\": \"[base64(concat('#cloud-config\\n\\n', '%s'))]\",", str)
-		},
-		"GetDCOSAgentCustomData": func(profile *api.AgentPoolProfile) string {
-			attributeContents := getDCOSAgentCustomNodeLabels(profile)
-			agentPreprovisionExtension := ""
-			if profile.PreprovisionExtension != nil {
-				agentPreprovisionExtension += "\n"
-				agentPreprovisionExtension += makeAgentExtensionScriptCommands(cs, profile)
-			}
-			var agentRoleName, bootstrapIP string
-			if len(profile.Ports) > 0 {
-				agentRoleName = "slave_public"
-			} else {
-				agentRoleName = "slave"
-			}
-			if cs.Properties.OrchestratorProfile.DcosConfig != nil && cs.Properties.OrchestratorProfile.DcosConfig.BootstrapProfile != nil {
-				bootstrapIP = cs.Properties.OrchestratorProfile.DcosConfig.BootstrapProfile.StaticIP
-			}
-
-			str := getSingleLineDCOSCustomData(
-				cs.Properties.OrchestratorProfile.OrchestratorType,
-				getDCOSCustomDataTemplate(cs.Properties.OrchestratorProfile.OrchestratorType, cs.Properties.OrchestratorProfile.OrchestratorVersion),
-				cs.Properties.MasterProfile.Count,
-				map[string]string{
-					"PROVISION_SOURCE_STR":   getDCOSProvisionScript(dcosProvisionSource),
-					"PROVISION_STR":          getDCOSAgentProvisionScript(profile, cs.Properties.OrchestratorProfile, bootstrapIP),
-					"ATTRIBUTES_STR":         attributeContents,
-					"PREPROVISION_EXTENSION": agentPreprovisionExtension,
-					"ROLENAME":               agentRoleName})
-
-			return fmt.Sprintf("\"customData\": \"[base64(concat('#cloud-config\\n\\n', '%s'))]\",", str)
-		},
-		"GetDCOSWindowsAgentCustomData": func(profile *api.AgentPoolProfile) string {
-			agentPreprovisionExtension := ""
-			if profile.PreprovisionExtension != nil {
-				agentPreprovisionExtension += "\n"
-				agentPreprovisionExtension += makeAgentExtensionScriptCommands(cs, profile)
-			}
-			b, err := Asset(dcosWindowsProvision)
-			if err != nil {
-				// this should never happen and this is a bug
-				panic(fmt.Sprintf("BUG: %s", err.Error()))
-			}
-			// translate the parameters
-			csStr := string(b)
-			csStr = strings.Replace(csStr, "PREPROVISION_EXTENSION", agentPreprovisionExtension, -1)
-			csStr = strings.Replace(csStr, "\r\n", "\n", -1)
-			str := getBase64CustomScriptFromStr(csStr)
-			return fmt.Sprintf("\"customData\": \"%s\"", str)
-		},
-		"GetDCOSWindowsAgentCustomNodeAttributes": func(profile *api.AgentPoolProfile) string {
-			return getDCOSWindowsAgentCustomAttributes(profile)
-		},
-		"GetDCOSWindowsAgentPreprovisionParameters": func(profile *api.AgentPoolProfile) string {
-			agentPreprovisionExtensionParameters := ""
-			if profile.PreprovisionExtension != nil {
-				agentPreprovisionExtensionParameters = getDCOSWindowsAgentPreprovisionParameters(cs, profile)
-			}
-			return agentPreprovisionExtensionParameters
-		},
 		"GetMasterAllowedSizes": func() string {
-			if cs.Properties.OrchestratorProfile.OrchestratorType == api.DCOS {
-				return helpers.GetDCOSMasterAllowedSizes()
-			}
 			return helpers.GetMasterAgentAllowedSizes()
 		},
 		"GetDefaultVNETCIDR": func() string {
@@ -543,12 +411,6 @@ func (t *TemplateGenerator) getTemplateFuncMap(cs *api.ContainerService) templat
 				return helpers.GetKubernetesAgentAllowedSizes()
 			}
 			return helpers.GetMasterAgentAllowedSizes()
-		},
-		"getSwarmVersions": func() string {
-			return getSwarmVersions(api.SwarmVersion, api.SwarmDockerComposeVersion)
-		},
-		"GetSwarmModeVersions": func() string {
-			return getSwarmVersions(api.DockerCEVersion, api.DockerCEDockerComposeVersion)
 		},
 		"GetSizeMap": func() string {
 			return helpers.GetSizeMap()
@@ -639,40 +501,8 @@ func (t *TemplateGenerator) getTemplateFuncMap(cs *api.ContainerService) templat
 			}
 			return str
 		},
-		"GetMasterSwarmCustomData": func() string {
-			files := []string{swarmProvision}
-			str := buildYamlFileWithWriteFiles(files)
-			if cs.Properties.MasterProfile.PreprovisionExtension != nil {
-				extensionStr := makeMasterExtensionScriptCommands(cs)
-				str += "'runcmd:\n" + extensionStr + "\n\n'"
-			}
-			str = escapeSingleLine(str)
-			return fmt.Sprintf("\"customData\": \"[base64(concat('%s'))]\",", str)
-		},
-		"GetAgentSwarmCustomData": func(profile *api.AgentPoolProfile) string {
-			files := []string{swarmProvision}
-			str := buildYamlFileWithWriteFiles(files)
-			str = escapeSingleLine(str)
-			return fmt.Sprintf("\"customData\": \"[base64(concat('%s',variables('%sRunCmdFile'),variables('%sRunCmd')))]\",", str, profile.Name, profile.Name)
-		},
-		"GetSwarmAgentPreprovisionExtensionCommands": func(profile *api.AgentPoolProfile) string {
-			str := ""
-			if profile.PreprovisionExtension != nil {
-				makeAgentExtensionScriptCommands(cs, profile)
-			}
-			str = escapeSingleLine(str)
-			return str
-		},
 		"GetLocation": func() string {
 			return cs.Location
-		},
-		"GetWinAgentSwarmCustomData": func() string {
-			str := getBase64CustomScript(swarmWindowsProvision)
-			return fmt.Sprintf("\"customData\": \"%s\"", str)
-		},
-		"GetWinAgentSwarmModeCustomData": func() string {
-			str := getBase64CustomScript(swarmModeWindowsProvision)
-			return fmt.Sprintf("\"customData\": \"%s\"", str)
 		},
 		"GetKubernetesWindowsAgentFunctions": func() string {
 			// Collect all the parts into a zip
@@ -723,22 +553,6 @@ func (t *TemplateGenerator) getTemplateFuncMap(cs *api.ContainerService) templat
 			str = strings.Replace(str, "PREPROVISION_EXTENSION", escapeSingleLine(strings.TrimSpace(preprovisionCmd)), -1)
 
 			return fmt.Sprintf("\"customData\": \"[base64(concat('%s'))]\",", str)
-		},
-		"GetMasterSwarmModeCustomData": func() string {
-			files := []string{swarmModeProvision}
-			str := buildYamlFileWithWriteFiles(files)
-			if cs.Properties.MasterProfile.PreprovisionExtension != nil {
-				extensionStr := makeMasterExtensionScriptCommands(cs)
-				str += "runcmd:\n" + extensionStr + "\n\n"
-			}
-			str = escapeSingleLine(str)
-			return fmt.Sprintf("\"customData\": \"[base64(concat('%s'))]\",", str)
-		},
-		"GetAgentSwarmModeCustomData": func(profile *api.AgentPoolProfile) string {
-			files := []string{swarmModeProvision}
-			str := buildYamlFileWithWriteFiles(files)
-			str = escapeSingleLine(str)
-			return fmt.Sprintf("\"customData\": \"[base64(concat('%s',variables('%sRunCmdFile'),variables('%sRunCmd')))]\",", str, profile.Name, profile.Name)
 		},
 		"GetKubernetesSubnets": func() string {
 			return getKubernetesSubnets(cs.Properties)

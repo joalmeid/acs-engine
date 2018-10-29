@@ -13,7 +13,6 @@ import (
 	"github.com/Azure/acs-engine/pkg/api/agentPoolOnlyApi/v20170831"
 	"github.com/Azure/acs-engine/pkg/api/agentPoolOnlyApi/v20180331"
 	"github.com/Azure/acs-engine/pkg/api/common"
-	"github.com/Azure/acs-engine/pkg/api/v20160330"
 	"github.com/Azure/acs-engine/pkg/api/v20160930"
 	"github.com/Azure/acs-engine/pkg/api/v20170131"
 	"github.com/Azure/acs-engine/pkg/api/v20170701"
@@ -222,7 +221,6 @@ type OrchestratorProfile struct {
 	OrchestratorVersion string            `json:"orchestratorVersion"`
 	KubernetesConfig    *KubernetesConfig `json:"kubernetesConfig,omitempty"`
 	OpenShiftConfig     *OpenShiftConfig  `json:"openshiftConfig,omitempty"`
-	DcosConfig          *DcosConfig       `json:"dcosConfig,omitempty"`
 }
 
 // OrchestratorVersionProfile contains information of a supported orchestrator version:
@@ -387,19 +385,6 @@ type BootstrapProfile struct {
 	OAuthEnabled bool   `json:"oauthEnabled,omitempty"`
 	StaticIP     string `json:"staticIP,omitempty"`
 	Subnet       string `json:"subnet,omitempty"`
-}
-
-// DcosConfig Configuration for DC/OS
-type DcosConfig struct {
-	DcosBootstrapURL         string            `json:"dcosBootstrapURL,omitempty"`
-	DcosWindowsBootstrapURL  string            `json:"dcosWindowsBootstrapURL,omitempty"`
-	Registry                 string            `json:"registry,omitempty"`
-	RegistryUser             string            `json:"registryUser,omitempty"`
-	RegistryPass             string            `json:"registryPassword,omitempty"`
-	DcosRepositoryURL        string            `json:"dcosRepositoryURL,omitempty"`        // For CI use, you need to specify
-	DcosClusterPackageListID string            `json:"dcosClusterPackageListID,omitempty"` // all three of these items
-	DcosProviderPackageID    string            `json:"dcosProviderPackageID,omitempty"`    // repo url is the location of the build,
-	BootstrapProfile         *BootstrapProfile `json:"bootstrapProfile,omitempty"`
 }
 
 // OpenShiftConfig holds configuration for OpenShift
@@ -640,14 +625,6 @@ type CustomProfile struct {
 type VlabsARMContainerService struct {
 	TypeMeta
 	*vlabs.ContainerService
-}
-
-// V20160330ARMContainerService is the type we read and write from file
-// needed because the json that is sent to ARM and acs-engine
-// is different from the json that the ACS RP Api gets from ARM
-type V20160330ARMContainerService struct {
-	TypeMeta
-	*v20160330.ContainerService
 }
 
 // V20160930ARMContainerService is the type we read and write from file
@@ -1124,11 +1101,6 @@ func (l *LinuxProfile) HasCustomNodesDNS() bool {
 	return false
 }
 
-// IsSwarmMode returns true if this template is for Swarm Mode orchestrator
-func (o *OrchestratorProfile) IsSwarmMode() bool {
-	return o.OrchestratorType == SwarmMode
-}
-
 // IsKubernetes returns true if this template is for Kubernetes orchestrator
 func (o *OrchestratorProfile) IsKubernetes() bool {
 	return o.OrchestratorType == Kubernetes
@@ -1137,11 +1109,6 @@ func (o *OrchestratorProfile) IsKubernetes() bool {
 // IsOpenShift returns true if this template is for OpenShift orchestrator
 func (o *OrchestratorProfile) IsOpenShift() bool {
 	return o.OrchestratorType == OpenShift
-}
-
-// IsDCOS returns true if this template is for DCOS orchestrator
-func (o *OrchestratorProfile) IsDCOS() bool {
-	return o.OrchestratorType == DCOS
 }
 
 // IsAzureCNI returns true if Azure CNI network plugin is enabled

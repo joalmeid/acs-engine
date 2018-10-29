@@ -158,26 +158,6 @@ func (a *Properties) validateOrchestratorProfile(isUpdate bool) error {
 	// On updates we only need to make sure there is a supported patch version for the minor version
 	if !isUpdate {
 		switch o.OrchestratorType {
-		case DCOS:
-			version := common.RationalizeReleaseAndVersion(
-				o.OrchestratorType,
-				o.OrchestratorRelease,
-				o.OrchestratorVersion,
-				isUpdate,
-				false)
-			if version == "" {
-				return errors.Errorf("the following OrchestratorProfile configuration is not supported: OrchestratorType: %s, OrchestratorRelease: %s, OrchestratorVersion: %s. Please check supported Release or Version for this build of acs-engine", o.OrchestratorType, o.OrchestratorRelease, o.OrchestratorVersion)
-			}
-			if o.DcosConfig != nil && o.DcosConfig.BootstrapProfile != nil {
-				if len(o.DcosConfig.BootstrapProfile.StaticIP) > 0 {
-					if net.ParseIP(o.DcosConfig.BootstrapProfile.StaticIP) == nil {
-						return errors.Errorf("DcosConfig.BootstrapProfile.StaticIP '%s' is an invalid IP address",
-							o.DcosConfig.BootstrapProfile.StaticIP)
-					}
-				}
-			}
-		case Swarm:
-		case SwarmMode:
 		case Kubernetes:
 			version := common.RationalizeReleaseAndVersion(
 				o.OrchestratorType,
@@ -308,7 +288,7 @@ func (a *Properties) validateOrchestratorProfile(isUpdate bool) error {
 		}
 	} else {
 		switch o.OrchestratorType {
-		case DCOS, Kubernetes:
+		case Kubernetes:
 
 			version := common.RationalizeReleaseAndVersion(
 				o.OrchestratorType,
@@ -336,10 +316,6 @@ func (a *Properties) validateOrchestratorProfile(isUpdate bool) error {
 
 	if o.OrchestratorType != OpenShift && o.OpenShiftConfig != nil {
 		return errors.Errorf("OpenShiftConfig can be specified only when OrchestratorType is OpenShift")
-	}
-
-	if o.OrchestratorType != DCOS && o.DcosConfig != nil && (*o.DcosConfig != DcosConfig{}) {
-		return errors.Errorf("DcosConfig can be specified only when OrchestratorType is DCOS")
 	}
 
 	if e := a.validateContainerRuntime(); e != nil {
@@ -802,11 +778,8 @@ func (a *AgentPoolProfile) validateStorageProfile(orchestratorType string) error
 	/* this switch statement is left to protect newly added orchestrators until they support Managed Disks*/
 	if a.StorageProfile == ManagedDisks {
 		switch orchestratorType {
-		case DCOS:
-		case Swarm:
 		case Kubernetes:
 		case OpenShift:
-		case SwarmMode:
 		default:
 			return errors.Errorf("HA volumes are currently unsupported for Orchestrator %s", orchestratorType)
 		}
@@ -822,7 +795,6 @@ func (a *AgentPoolProfile) validateStorageProfile(orchestratorType string) error
 func (a *AgentPoolProfile) validateCustomNodeLabels(orchestratorType string) error {
 	if len(a.CustomNodeLabels) > 0 {
 		switch orchestratorType {
-		case DCOS:
 		case Kubernetes:
 			for k, v := range a.CustomNodeLabels {
 				if e := validateKubernetesLabelKey(k); e != nil {
@@ -833,7 +805,7 @@ func (a *AgentPoolProfile) validateCustomNodeLabels(orchestratorType string) err
 				}
 			}
 		default:
-			return errors.New("Agent CustomNodeLabels are only supported for DCOS and Kubernetes")
+			return errors.New("Agent CustomNodeLabels are only supported for Kubernetes")
 		}
 	}
 	return nil
@@ -891,9 +863,6 @@ func validateVMSS(o *OrchestratorProfile, isUpdate bool, storageProfile string) 
 
 func (a *AgentPoolProfile) validateWindows(o *OrchestratorProfile, w *WindowsProfile, isUpdate bool) error {
 	switch o.OrchestratorType {
-	case DCOS:
-	case Swarm:
-	case SwarmMode:
 	case Kubernetes:
 		version := common.RationalizeReleaseAndVersion(
 			o.OrchestratorType,
@@ -989,8 +958,8 @@ func validateKeyVaultSecrets(secrets []KeyVaultSecrets, requireCertificateStore 
 // Validate ensures that the WindowsProfile is valid
 func (w *WindowsProfile) Validate(orchestratorType string) error {
 	if w.WindowsImageSourceURL != "" {
-		if orchestratorType != DCOS && orchestratorType != Kubernetes {
-			return errors.New("Windows Custom Images are only supported if the Orchestrator Type is DCOS or Kubernetes")
+		if orchestratorType != Kubernetes {
+			return errors.New("Windows Custom Images are only supported if the Orchestrator Type is Kubernetes")
 		}
 	}
 	if e := validate.Var(w.AdminUsername, "required"); e != nil {

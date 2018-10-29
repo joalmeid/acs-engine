@@ -12,7 +12,6 @@ import (
 
 	"github.com/Azure/acs-engine/pkg/api/common"
 	"github.com/Azure/acs-engine/pkg/helpers"
-	"github.com/blang/semver"
 	"github.com/pkg/errors"
 )
 
@@ -233,20 +232,6 @@ func (cs *ContainerService) setOrchestratorDefaults(isUpdate bool) {
 		// Configure scheduler
 		cs.setSchedulerConfig()
 
-	case DCOS:
-		if o.DcosConfig == nil {
-			o.DcosConfig = &DcosConfig{}
-		}
-		dcosSemVer, _ := semver.Make(o.OrchestratorVersion)
-		dcosBootstrapSemVer, _ := semver.Make(common.DCOSVersion1Dot11Dot0)
-		if !dcosSemVer.LT(dcosBootstrapSemVer) {
-			if o.DcosConfig.BootstrapProfile == nil {
-				o.DcosConfig.BootstrapProfile = &BootstrapProfile{}
-			}
-			if len(o.DcosConfig.BootstrapProfile.VMSize) == 0 {
-				o.DcosConfig.BootstrapProfile.VMSize = "Standard_D2s_v3"
-			}
-		}
 	case OpenShift:
 		kc := a.OrchestratorProfile.OpenShiftConfig.KubernetesConfig
 		if kc == nil {
@@ -316,29 +301,6 @@ func (p *Properties) setMasterProfileDefaults(isUpgrade bool) {
 			p.MasterProfile.Subnet = DefaultOpenShiftMasterSubnet
 			if !isUpgrade || len(p.MasterProfile.FirstConsecutiveStaticIP) == 0 {
 				p.MasterProfile.FirstConsecutiveStaticIP = DefaultOpenShiftFirstConsecutiveStaticIP
-			}
-		} else if p.OrchestratorProfile.OrchestratorType == DCOS {
-			p.MasterProfile.Subnet = DefaultDCOSMasterSubnet
-			// FirstConsecutiveStaticIP is not reset if it is upgrade and some value already exists
-			if !isUpgrade || len(p.MasterProfile.FirstConsecutiveStaticIP) == 0 {
-				p.MasterProfile.FirstConsecutiveStaticIP = DefaultDCOSFirstConsecutiveStaticIP
-			}
-			if p.OrchestratorProfile.DcosConfig != nil && p.OrchestratorProfile.DcosConfig.BootstrapProfile != nil {
-				if !isUpgrade || len(p.OrchestratorProfile.DcosConfig.BootstrapProfile.StaticIP) == 0 {
-					p.OrchestratorProfile.DcosConfig.BootstrapProfile.StaticIP = DefaultDCOSBootstrapStaticIP
-				}
-			}
-		} else if p.HasWindows() {
-			p.MasterProfile.Subnet = DefaultSwarmWindowsMasterSubnet
-			// FirstConsecutiveStaticIP is not reset if it is upgrade and some value already exists
-			if !isUpgrade || len(p.MasterProfile.FirstConsecutiveStaticIP) == 0 {
-				p.MasterProfile.FirstConsecutiveStaticIP = DefaultSwarmWindowsFirstConsecutiveStaticIP
-			}
-		} else {
-			p.MasterProfile.Subnet = DefaultMasterSubnet
-			// FirstConsecutiveStaticIP is not reset if it is upgrade and some value already exists
-			if !isUpgrade || len(p.MasterProfile.FirstConsecutiveStaticIP) == 0 {
-				p.MasterProfile.FirstConsecutiveStaticIP = DefaultFirstConsecutiveStaticIP
 			}
 		}
 	}

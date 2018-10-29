@@ -193,7 +193,6 @@ type OrchestratorProfile struct {
 	OrchestratorVersion string            `json:"orchestratorVersion,omitempty"`
 	KubernetesConfig    *KubernetesConfig `json:"kubernetesConfig,omitempty"`
 	OpenShiftConfig     *OpenShiftConfig  `json:"openshiftConfig,omitempty"`
-	DcosConfig          *DcosConfig       `json:"dcosConfig,omitempty"`
 }
 
 // UnmarshalJSON unmarshal json using the default behavior
@@ -209,14 +208,8 @@ func (o *OrchestratorProfile) UnmarshalJSON(b []byte) error {
 	// Unmarshal OrchestratorType, format it as well
 	orchestratorType := o.OrchestratorType
 	switch {
-	case strings.EqualFold(orchestratorType, DCOS):
-		o.OrchestratorType = DCOS
-	case strings.EqualFold(orchestratorType, Swarm):
-		o.OrchestratorType = Swarm
 	case strings.EqualFold(orchestratorType, Kubernetes):
 		o.OrchestratorType = Kubernetes
-	case strings.EqualFold(orchestratorType, SwarmMode):
-		o.OrchestratorType = SwarmMode
 	case strings.EqualFold(orchestratorType, OpenShift):
 		o.OrchestratorType = OpenShift
 	default:
@@ -695,11 +688,6 @@ func (l *LinuxProfile) HasCustomNodesDNS() bool {
 		}
 	}
 	return false
-}
-
-// IsSwarmMode returns true if this template is for Swarm Mode orchestrator
-func (o *OrchestratorProfile) IsSwarmMode() bool {
-	return o.OrchestratorType == SwarmMode
 }
 
 // RequiresDocker returns if the kubernetes settings require docker binary to be installed.
