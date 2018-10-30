@@ -138,7 +138,7 @@ func TestGetOrchestratorVersionProfileListV20170930(t *testing.T) {
 	list, e := GetOrchestratorVersionProfileListV20170930("", "")
 	Expect(e).To(BeNil())
 
-	totalNumVersions := len(common.GetAllSupportedKubernetesVersions(false, false)) - 1
+	totalNumVersions := len(common.GetAllSupportedKubernetesVersions(false, false))
 
 	Expect(len(list.Properties.Orchestrators)).To(Equal(totalNumVersions))
 
