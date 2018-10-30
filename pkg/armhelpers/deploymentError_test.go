@@ -3,7 +3,7 @@ package armhelpers
 import (
 	"testing"
 
-	. "github.com/Azure/acs-engine/pkg/test"
+	. "github.com/Azure/aks-engine/pkg/test"
 	. "github.com/onsi/gomega"
 
 	"github.com/Azure/azure-sdk-for-go/services/resources/mgmt/2018-05-01/resources"

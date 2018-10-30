@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Azure/acs-engine/pkg/helpers"
+	"github.com/Azure/aks-engine/pkg/helpers"
 
 	"github.com/Azure/azure-sdk-for-go/services/authorization/mgmt/2015-07-01/authorization"
 	"github.com/Azure/azure-sdk-for-go/services/compute/mgmt/2018-04-01/compute"

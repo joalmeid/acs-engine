@@ -346,7 +346,7 @@ cleanup_output() {
 }
 
 
-ACS_ENGINE_HOME=${GOPATH}/src/github.com/Azure/acs-engine
+ACS_ENGINE_HOME=${GOPATH}/src/github.com/Azure/aks-engine
 
 usage() {
 	echo "$0 [-v version] [-p acs_patch_version]"

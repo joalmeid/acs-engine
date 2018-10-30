@@ -1,6 +1,6 @@
 # ACS Engine code delivery guide
 
-[![ACS Engine](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/a8f28783-3ddc-4081-a57d-6d97147467bf.png)](https://github.com/azure/acs-engine)
+[![ACS Engine](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/a8f28783-3ddc-4081-a57d-6d97147467bf.png)](https://github.com/Azure/aks-engine)
 
 ACS Engine is an open source project to generate ARM (Azure Resource Manager) templates for Kubernetes clusters on Microsoft Azure.
 This documents provides guidelines to the acs-engine testing and continuous integration process.
@@ -8,7 +8,7 @@ This documents provides guidelines to the acs-engine testing and continuous inte
 ## Development pipeline
 
 ACS Engine employs CI system that incorporates a Jenkins server, configured to interact with ACS Engine GitHub project.
-A recommended way to contribute to ACS Engine is to fork github.com/Azure/acs-engine project.
+A recommended way to contribute to ACS Engine is to fork github.com/Azure/aks-engine project.
 and create a separated branch (a feature branch) for the feature you are working on.
 
 The following steps constitute ACS Engine delivery pipeline
@@ -31,7 +31,7 @@ The following steps constitute ACS Engine delivery pipeline
      --template-file azuredeploy.json \
      --parameters @azuredeploy.parameters.json
 ```
-  5. Create a pull request (PR) from github.com/Azure/acs-engine portal.
+  5. Create a pull request (PR) from github.com/Azure/aks-engine portal.
   6. The PR triggers a Jenkins job that
   + applies the changes to the HEAD of the master branch
   + generates multiple ARM templates for different deployment scenarios

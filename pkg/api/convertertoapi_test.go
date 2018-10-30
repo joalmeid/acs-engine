@@ -3,9 +3,9 @@ package api
 import (
 	"testing"
 
-	"github.com/Azure/acs-engine/pkg/api/common"
-	"github.com/Azure/acs-engine/pkg/api/v20170701"
-	"github.com/Azure/acs-engine/pkg/api/vlabs"
+	"github.com/Azure/aks-engine/pkg/api/common"
+	"github.com/Azure/aks-engine/pkg/api/v20170701"
+	"github.com/Azure/aks-engine/pkg/api/vlabs"
 	"github.com/davecgh/go-spew/spew"
 	"k8s.io/apimachinery/pkg/api/equality"
 )

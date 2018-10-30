@@ -9,12 +9,12 @@ import (
 	"path"
 	"time"
 
-	"github.com/Azure/acs-engine/pkg/acsengine"
-	"github.com/Azure/acs-engine/pkg/api"
-	"github.com/Azure/acs-engine/pkg/armhelpers"
-	"github.com/Azure/acs-engine/pkg/helpers"
-	"github.com/Azure/acs-engine/pkg/i18n"
-	"github.com/Azure/acs-engine/pkg/operations/kubernetesupgrade"
+	"github.com/Azure/aks-engine/pkg/acsengine"
+	"github.com/Azure/aks-engine/pkg/api"
+	"github.com/Azure/aks-engine/pkg/armhelpers"
+	"github.com/Azure/aks-engine/pkg/helpers"
+	"github.com/Azure/aks-engine/pkg/i18n"
+	"github.com/Azure/aks-engine/pkg/operations/kubernetesupgrade"
 	"github.com/leonelquinteros/gotext"
 	"github.com/pkg/errors"
 

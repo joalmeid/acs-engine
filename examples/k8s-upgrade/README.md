@@ -157,7 +157,7 @@ For example,
 
 By its nature, the upgrade operation is long running and potentially could fail for various reasons, such as temporary lack of resources, etc. In this case, rerun the command. The *upgrade* command is idempotent, and will pick up execution from the point it failed on. 
 
-[This directory](https://github.com/Azure/acs-engine/tree/master/examples/k8s-upgrade) contains the following files:
+[This directory](https://github.com/Azure/aks-engine/tree/master/examples/k8s-upgrade) contains the following files:
 - **README.md** - this file
 - **k8s-upgrade.sh** - script invoking upgrade operation
 - **\*.json** - cluster definition examples for various orchestrator versions and configurations: Linux clusters, Windows clusters, hybrid clusters.

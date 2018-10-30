@@ -24,9 +24,9 @@ $ docker image inspect microsoft/acs-engine:0.16.0 --format "{{json .Config.Labe
   "org.label-schema.license": "MIT",
   "org.label-schema.name": "Azure Container Service Engine (acs-engine)",
   "org.label-schema.schema-version": "1.0",
-  "org.label-schema.url": "https://github.com/Azure/acs-engine",
-  "org.label-schema.usage": "https://github.com/Azure/acs-engine/blob/master/docs/acsengine.md",
-  "org.label-schema.vcs-url": "https://github.com/Azure/acs-engine.git",
+  "org.label-schema.url": "https://github.com/Azure/aks-engine",
+  "org.label-schema.usage": "https://github.com/Azure/aks-engine/blob/master/docs/acsengine.md",
+  "org.label-schema.vcs-url": "https://github.com/Azure/aks-engine.git",
   "org.label-schema.vendor": "Microsoft",
   "org.label-schema.version": "0.16.0"
 }
@@ -43,9 +43,9 @@ PS> docker image inspect microsoft/acs-engine:0.16.0 --format "{{json .Config.La
     "org.label-schema.license":  "MIT",
     "org.label-schema.name":  "Azure Container Service Engine (acs-engine)",
     "org.label-schema.schema-version":  "1.0",
-    "org.label-schema.url":  "https://github.com/Azure/acs-engine",
-    "org.label-schema.usage":  "https://github.com/Azure/acs-engine/blob/master/docs/acsengine.md",
-    "org.label-schema.vcs-url":  "https://github.com/Azure/acs-engine.git",
+    "org.label-schema.url":  "https://github.com/Azure/aks-engine",
+    "org.label-schema.usage":  "https://github.com/Azure/aks-engine/blob/master/docs/acsengine.md",
+    "org.label-schema.vcs-url":  "https://github.com/Azure/aks-engine.git",
     "org.label-schema.vendor":  "Microsoft",
     "org.label-schema.version":  "0.16.0"
 }

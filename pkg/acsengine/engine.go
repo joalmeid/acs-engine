@@ -15,8 +15,8 @@ import (
 	"strings"
 	"text/template" //log "github.com/sirupsen/logrus"
 
-	"github.com/Azure/acs-engine/pkg/api"
-	"github.com/Azure/acs-engine/pkg/helpers"
+	"github.com/Azure/aks-engine/pkg/api"
+	"github.com/Azure/aks-engine/pkg/helpers"
 	"github.com/pkg/errors"
 )
 

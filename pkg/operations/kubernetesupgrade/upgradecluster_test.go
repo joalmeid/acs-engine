@@ -6,10 +6,10 @@ import (
 
 	"fmt"
 
-	"github.com/Azure/acs-engine/pkg/api"
-	"github.com/Azure/acs-engine/pkg/armhelpers"
-	"github.com/Azure/acs-engine/pkg/i18n"
-	. "github.com/Azure/acs-engine/pkg/test"
+	"github.com/Azure/aks-engine/pkg/api"
+	"github.com/Azure/aks-engine/pkg/armhelpers"
+	"github.com/Azure/aks-engine/pkg/i18n"
+	. "github.com/Azure/aks-engine/pkg/test"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"github.com/satori/go.uuid"

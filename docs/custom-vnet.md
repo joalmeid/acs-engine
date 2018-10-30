@@ -1,16 +1,16 @@
 # Using a custom virtual network with Azure Container Service
-In this tutorial you are going to learn how to use [ACS Engine](https://github.com/Azure/acs-engine) to deploy a brand new cluster into an existing or pre-created virtual network.
+In this tutorial you are going to learn how to use [ACS Engine](https://github.com/Azure/aks-engine) to deploy a brand new cluster into an existing or pre-created virtual network.
 By doing this, you will be able to control the properties of the virtual network or integrate a new cluster into your existing infrastructure.
 
 *Note: This article describes the procedure with Docker Swarm but it will work in the exact same way with the all the orchestrators available with ACS Engine: Kubernetes.*
 
-*For Kubernetes, the cluster should be deployed in the same resource group as the virtual network and the service principal you use for the cluster needs permissions on the VNET resource's group too. Custom VNET for Kubernetes Windows cluster has a [known issue](https://github.com/Azure/acs-engine/issues/1767).*
+*For Kubernetes, the cluster should be deployed in the same resource group as the virtual network and the service principal you use for the cluster needs permissions on the VNET resource's group too. Custom VNET for Kubernetes Windows cluster has a [known issue](https://github.com/Azure/aks-engine/issues/1767).*
 
 ## Prerequisites
 You can run this walkthrough on OS X, Windows, or Linux.
 - You need an Azure subscription. If you don't have one, you can [sign up for an account](https://azure.microsoft.com/).
 - Install the [Azure CLI 2.0](/cli/azure/install-az-cli2).
-- Install the [ACS Engine](https://github.com/Azure/acs-engine/blob/master/docs/acsengine.md)
+- Install the [ACS Engine](https://github.com/Azure/aks-engine/blob/master/docs/acsengine.md)
 
 ## Create the virtual network
 *You need a virtual network before creating the new cluster. If you already have one, you can skip this step.*
@@ -83,7 +83,7 @@ ACS Engine uses a JSON template in input and generates the ARM template and ARM 
 
 Depending on the orchestrator you want to deploy, the number of agent pools, the machine size you want (etc.) this input template could differ from the one we are going to detail here.
 
-There are a lot of examples available on the [ACS Engine GitHub](https://github.com/Azure/acs-engine/tree/master/examples) and you can find [one dedicated for virtual network](https://github.com/Azure/acs-engine/blob/master/examples/vnet/README.md).
+There are a lot of examples available on the [ACS Engine GitHub](https://github.com/Azure/aks-engine/tree/master/examples) and you can find [one dedicated for virtual network](https://github.com/Azure/aks-engine/blob/master/examples/vnet/README.md).
 
 In this case, we are going to use the following template:
 

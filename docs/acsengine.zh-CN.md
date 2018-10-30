@@ -71,7 +71,7 @@ ACS引擎具有跨平台特性，可以在windows，OS X和Linux上运行。以�
   2. 运行`cmd`命令打开命令行窗口
   3. 运行命令mkdir %GOPATH%
   4. cd %GOPATH%
-  5. 运行`go get github.com/Azure/acs-engine`命令获取ACS引擎在github上的最新代码
+  5. 运行`go get github.com/Azure/aks-engine`命令获取ACS引擎在github上的最新代码
   6. 运行`go get all`命令安装ACS引擎需要的依赖组件
   7. `cd %GOPATH%\src\github.com\Azure\acs-engine`
   8. 运行`go build`编译项目
@@ -93,9 +93,9 @@ ACS引擎具有跨平台特性，可以在windows，OS X和Linux上运行。以�
   ```
   3. `source $HOME/.sh_profile`使配置生效。
 2. 编译ACS引擎:
-  1. 运行`go get github.com/Azure/acs-engine`命令获取ACS引擎在github上的最新代码。
+  1. 运行`go get github.com/Azure/aks-engine`命令获取ACS引擎在github上的最新代码。
   2. 运行`go get all`命令安装ACS引擎需要的依赖组件
-  3. `cd $GOPATH/src/github.com/Azure/acs-engine`
+  3. `cd $GOPATH/src/github.com/Azure/aks-engine`
   4. `go build`编译项目
 3. 运行`acs-engine`命令，如果能看到命令参数提示就说明已经正确编译成功了。
 
@@ -118,9 +118,9 @@ ACS引擎具有跨平台特性，可以在windows，OS X和Linux上运行。以�
   ```
   3. 运行命令`source $HOME/.profile`使配置生效。
 2. 编译ACS引擎:
-  1. 运行命令`go get github.com/Azure/acs-engine`获取ACS引擎在github上的最新代码。
+  1. 运行命令`go get github.com/Azure/aks-engine`获取ACS引擎在github上的最新代码。
   2. 运行`go get all`命令安装ACS引擎需要的依赖组件
-  3. `cd $GOPATH/src/github.com/Azure/acs-engine`
+  3. `cd $GOPATH/src/github.com/Azure/aks-engine`
   4. 运行`go build`命令编译项目
 3. 运行`acs-engine`命令，如果能看到命令参数提示就说明已经正确编译成功了。
 

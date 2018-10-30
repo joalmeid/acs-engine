@@ -247,7 +247,7 @@ v0.20.9 | Windows Server version 1803 | v1.10.6 | v1.0.11 | Pods cannot resolve 
 
 Affects: Windows Server version 1803 (10.0.17134.1)
 
-Issues: https://github.com/Azure/acs-engine/issues/3037 
+Issues: https://github.com/Azure/aks-engine/issues/3037 
 
 There is a problem with the “L2Tunnel” networking mode not forwarding packets correctly specific to Windows Server version 1803. Windows Server version 1709 is not affected.
 

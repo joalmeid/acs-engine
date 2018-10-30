@@ -10,10 +10,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Azure/acs-engine/pkg/acsengine/transform"
-	"github.com/Azure/acs-engine/pkg/api"
-	"github.com/Azure/acs-engine/pkg/api/vlabs"
-	"github.com/Azure/acs-engine/pkg/i18n"
+	"github.com/Azure/aks-engine/pkg/acsengine/transform"
+	"github.com/Azure/aks-engine/pkg/api"
+	"github.com/Azure/aks-engine/pkg/api/vlabs"
+	"github.com/Azure/aks-engine/pkg/i18n"
 	"github.com/leonelquinteros/gotext"
 	"github.com/pkg/errors"
 )

@@ -10,14 +10,14 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/Azure/acs-engine/pkg/api/agentPoolOnlyApi/v20170831"
-	"github.com/Azure/acs-engine/pkg/api/agentPoolOnlyApi/v20180331"
-	"github.com/Azure/acs-engine/pkg/api/common"
-	"github.com/Azure/acs-engine/pkg/api/v20160930"
-	"github.com/Azure/acs-engine/pkg/api/v20170131"
-	"github.com/Azure/acs-engine/pkg/api/v20170701"
-	"github.com/Azure/acs-engine/pkg/api/vlabs"
-	"github.com/Azure/acs-engine/pkg/helpers"
+	"github.com/Azure/aks-engine/pkg/api/agentPoolOnlyApi/v20170831"
+	"github.com/Azure/aks-engine/pkg/api/agentPoolOnlyApi/v20180331"
+	"github.com/Azure/aks-engine/pkg/api/common"
+	"github.com/Azure/aks-engine/pkg/api/v20160930"
+	"github.com/Azure/aks-engine/pkg/api/v20170131"
+	"github.com/Azure/aks-engine/pkg/api/v20170701"
+	"github.com/Azure/aks-engine/pkg/api/vlabs"
+	"github.com/Azure/aks-engine/pkg/helpers"
 	"github.com/blang/semver"
 )
 

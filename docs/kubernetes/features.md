@@ -39,7 +39,7 @@ By default, the cluster will be provisioned with [Role-Based Access Control](htt
       }
 ```
 
-See [cluster definition](https://github.com/Azure/acs-engine/blob/master/docs/clusterdefinition.md#kubernetesconfig) for further detail.
+See [cluster definition](https://github.com/Azure/aks-engine/blob/master/docs/clusterdefinition.md#kubernetesconfig) for further detail.
 
 ## Managed Disks
 
@@ -148,7 +148,7 @@ When using Azure integrated networking the maxPods setting will be set to 30 by 
 
 Using the default configuration, Kubernetes allows communication between all
 Pods within a cluster. To ensure that Pods can only be accessed by authorized
-Pods, a policy enforcement is needed. To enable policy enforcement using Calico refer to the [cluster definition](https://github.com/Azure/acs-engine/blob/master/docs/clusterdefinition.md#kubernetesconfig) document under networkPolicy. There is also a reference cluster definition available [here](https://github.com/Azure/acs-engine/blob/master/examples/networkpolicy/kubernetes-calico.json).
+Pods, a policy enforcement is needed. To enable policy enforcement using Calico refer to the [cluster definition](https://github.com/Azure/aks-engine/blob/master/docs/clusterdefinition.md#kubernetesconfig) document under networkPolicy. There is also a reference cluster definition available [here](https://github.com/Azure/aks-engine/blob/master/examples/networkpolicy/kubernetes-calico.json).
 
 This will deploy a Calico node controller to every instance of the cluster
 using a Kubernetes DaemonSet. After a successful deployment you should be able
@@ -166,7 +166,7 @@ Per default Calico still allows all communication within the cluster. Using Kube
 
 * [NetworkPolicy User Guide](https://kubernetes.io/docs/user-guide/networkpolicies/)
 * [NetworkPolicy Example Walkthrough](https://kubernetes.io/docs/getting-started-guides/network-policy/walkthrough/)
-* [Calico Kubernetes](https://github.com/Azure/acs-engine/blob/master/examples/networkpolicy)
+* [Calico Kubernetes](https://github.com/Azure/aks-engine/blob/master/examples/networkpolicy)
 
 <a name="feat-cilium"></a>
 
@@ -175,9 +175,9 @@ Per default Calico still allows all communication within the cluster. Using Kube
 Using the default configuration, Kubernetes allows communication between all
 Pods within a cluster. To ensure that Pods can only be accessed by authorized
 Pods, a policy enforcement is needed. To enable policy enforcement using Cilium refer to the
-[cluster definition](https://github.com/Azure/acs-engine/blob/master/docs/clusterdefinition.md#kubernetesconfig)
+[cluster definition](https://github.com/Azure/aks-engine/blob/master/docs/clusterdefinition.md#kubernetesconfig)
 document under networkPolicy. There is also a reference cluster definition available
-[here](https://github.com/Azure/acs-engine/blob/master/examples/networkpolicy/kubernetes-cilium.json).
+[here](https://github.com/Azure/aks-engine/blob/master/examples/networkpolicy/kubernetes-cilium.json).
 
 This will deploy a Cilium agent to every instance of the cluster
 using a Kubernetes DaemonSet. After a successful deployment you should be able
@@ -197,13 +197,13 @@ you can define stricter policies. Good resources to get information about that a
 * [Cilum Network Policy Docs](https://cilium.readthedocs.io/en/latest/kubernetes/policy/#k8s-policy)
 * [NetworkPolicy User Guide](https://kubernetes.io/docs/user-guide/networkpolicies/)
 * [NetworkPolicy Example Walkthrough](https://kubernetes.io/docs/getting-started-guides/network-policy/walkthrough/)
-* [Cilium Kubernetes](https://github.com/Azure/acs-engine/blob/master/examples/networkpolicy)
+* [Cilium Kubernetes](https://github.com/Azure/aks-engine/blob/master/examples/networkpolicy)
 
 <a name="feat-custom-vnet"></a>
 
 ## Custom VNET
 
-*Note: Custom VNET for Kubernetes Windows cluster has a [known issue](https://github.com/Azure/acs-engine/issues/1767).*
+*Note: Custom VNET for Kubernetes Windows cluster has a [known issue](https://github.com/Azure/aks-engine/issues/1767).*
 
 ACS Engine supports deploying into an existing VNET. Operators must specify the ARM path/id of Subnets for the `masterProfile` and  any `agentPoolProfiles`, as well as the first IP address to use for static IP allocation in `firstConsecutiveStaticIP`. Please note that in any azure subnet, the first four and the last ip address is reserved and can not be used. Additionally, each pod now gets the IP address from the Subnet. As a result, enough IP addresses (equal to `ipAddressCount` for each node) should be available beyond `firstConsecutiveStaticIP`. By default, the `ipAddressCount` has a value of 31, 1 for the node and 30 for pods, (note that the number of pods can be changed via `KubeletConfig["--max-pods"]`). `ipAddressCount` can be changed if desired. Furthermore, to prevent source address NAT'ing within the VNET, we assign to the `vnetCidr` property in `masterProfile` the CIDR block that represents the usable address space in the existing VNET. Therefore, it is recommended to use a large subnet size such as `/16`.
 

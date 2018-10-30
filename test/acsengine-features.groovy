@@ -7,7 +7,7 @@ node("slave") {
       wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
         env.GOPATH="${WORKSPACE}"
         env.PATH="${env.PATH}:${env.GOPATH}/bin"
-        def clone_dir = "${env.GOPATH}/src/github.com/Azure/acs-engine"
+        def clone_dir = "${env.GOPATH}/src/github.com/Azure/aks-engine"
         env.HOME=clone_dir
         String sendTo = "${SEND_TO}".trim()
         Integer timeoutInMinutes = STAGE_TIMEOUT.toInteger()

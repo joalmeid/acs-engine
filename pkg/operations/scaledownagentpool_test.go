@@ -3,8 +3,8 @@ package operations
 import (
 	"testing"
 
-	"github.com/Azure/acs-engine/pkg/armhelpers"
-	. "github.com/Azure/acs-engine/pkg/test"
+	"github.com/Azure/aks-engine/pkg/armhelpers"
+	. "github.com/Azure/aks-engine/pkg/test"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	log "github.com/sirupsen/logrus"

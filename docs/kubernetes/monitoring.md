@@ -68,7 +68,7 @@ Once you have opened the UI, you can explore node stats (CPU, Memory, etc...) un
 
 ## Monitoring extension
 
-A quick way to scaffold out cloud-native and open source monitoring components is to use the [acs-engine monitoring extension](https://github.com/Azure/acs-engine/tree/master/extensions/prometheus-grafana-k8s). For details on how to use the monitoring extension, please refer to the [extension documentation](https://github.com/Azure/acs-engine/tree/master/extensions/prometheus-grafana-k8s). By embedding the extension in your apimodel, the extension will do much of the work to create a monitoring solution in your cluster, which includes the following:
+A quick way to scaffold out cloud-native and open source monitoring components is to use the [acs-engine monitoring extension](https://github.com/Azure/aks-engine/tree/master/extensions/prometheus-grafana-k8s). For details on how to use the monitoring extension, please refer to the [extension documentation](https://github.com/Azure/aks-engine/tree/master/extensions/prometheus-grafana-k8s). By embedding the extension in your apimodel, the extension will do much of the work to create a monitoring solution in your cluster, which includes the following:
 
 - [cAdvisor](https://github.com/google/cadvisor) daemon set to publish container metrics
 - [Prometheus](https://prometheus.io/) for metrics collection and storage

@@ -1,9 +1,9 @@
 package acsengine
 
 import (
-	"github.com/Azure/acs-engine/pkg/api"
-	"github.com/Azure/acs-engine/pkg/api/vlabs"
-	"github.com/Azure/acs-engine/pkg/i18n"
+	"github.com/Azure/aks-engine/pkg/api"
+	"github.com/Azure/aks-engine/pkg/api/vlabs"
+	"github.com/Azure/aks-engine/pkg/i18n"
 )
 
 // VlabsContainerService is the type we read and write from file

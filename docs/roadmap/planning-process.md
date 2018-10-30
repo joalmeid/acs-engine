@@ -24,5 +24,5 @@ Major decisions affecting the Roadmap are discussed during Release Planning Meet
 
 Release Planning Meetings are not currently open to non-Microsoft contributors, but we may change this in the future.
 
-[Maintainers]: https://github.com/Azure/acs-engine/blob/master/OWNERS
+[Maintainers]: https://github.com/Azure/aks-engine/blob/master/OWNERS
 [Release Schedule]: releases.md

@@ -3,10 +3,10 @@ package api
 import (
 	"encoding/json"
 
-	"github.com/Azure/acs-engine/pkg/api/agentPoolOnlyApi/v20170831"
-	"github.com/Azure/acs-engine/pkg/api/agentPoolOnlyApi/v20180331"
-	"github.com/Azure/acs-engine/pkg/api/common"
-	"github.com/Azure/acs-engine/pkg/i18n"
+	"github.com/Azure/aks-engine/pkg/api/agentPoolOnlyApi/v20170831"
+	"github.com/Azure/aks-engine/pkg/api/agentPoolOnlyApi/v20180331"
+	"github.com/Azure/aks-engine/pkg/api/common"
+	"github.com/Azure/aks-engine/pkg/i18n"
 	"github.com/leonelquinteros/gotext"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

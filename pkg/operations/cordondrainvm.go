@@ -4,7 +4,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Azure/acs-engine/pkg/armhelpers"
+	"github.com/Azure/aks-engine/pkg/armhelpers"
 	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
 	"k8s.io/api/core/v1"

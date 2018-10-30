@@ -35,7 +35,7 @@ This guide will step through everything needed to build your first Kubernetes cl
 
 All of these steps can be done from any OS platform, so some sections are split out by Windows, Mac or Linux to provide the most relevant samples and scripts. If you have a Windows machine but want to use the Linux tools - no problem! Set up the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about) and you can follow the Linux instructions on this page.
 
-> Note: Windows support for Kubernetes is still in beta and under **active development**. If you run into problems, please be sure to check the [Troubleshooting](windows-details.md#troubleshooting) page and [active Windows issues](https://github.com/azure/acs-engine/issues?&q=is:issue+is:open+label:windows) in this repo, then help us by filing new issues for things that aren't already covered.
+> Note: Windows support for Kubernetes is still in beta and under **active development**. If you run into problems, please be sure to check the [Troubleshooting](windows-details.md#troubleshooting) page and [active Windows issues](https://github.com/Azure/aks-engine/issues?&q=is:issue+is:open+label:windows) in this repo, then help us by filing new issues for things that aren't already covered.
 
 ### Install Needed Tools
 
@@ -60,7 +60,7 @@ Once it's installed, make sure you can connect to Azure with it. Open a new Powe
 
 Windows support is evolving rapidly, so be sure to use the latest ACS-Engine  version (v0.20 or later).
 
-1. Browse to the ACS-Engine [releases page](https://github.com/Azure/acs-engine/releases) on GitHub.
+1. Browse to the ACS-Engine [releases page](https://github.com/Azure/aks-engine/releases) on GitHub.
 
 2. Find the latest version, and download the file ending in `-windows-amd64.zip`.
 
@@ -146,7 +146,7 @@ Once you have those installed, make sure you can log into Azure. Open a new Term
 
 Windows support is evolving rapidly, so be sure to use the latest ACS-Engine version (v0.20 or later).
 
-1. Browse to the ACS-Engine [releases page](https://github.com/Azure/acs-engine/releases) on GitHub.
+1. Browse to the ACS-Engine [releases page](https://github.com/Azure/aks-engine/releases) on GitHub.
 
 2. Find the latest version, and download the file ending in `-darwin-amd64.zip`.
 
@@ -198,7 +198,7 @@ Now, make sure you can log into Azure. Open a new Terminal window, then run `az 
 
 Windows support is evolving rapidly, so be sure to use the latest ACS-Engine version (v0.20 or later).
 
-1. Browse to the ACS-Engine [releases page](https://github.com/Azure/acs-engine/releases) on GitHub.
+1. Browse to the ACS-Engine [releases page](https://github.com/Azure/aks-engine/releases) on GitHub.
 
 2. Find the latest version, and download the file ending in `-linux-amd64.zip`.
 

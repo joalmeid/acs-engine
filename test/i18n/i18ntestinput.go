@@ -1,7 +1,7 @@
 package fake
 
 import (
-	"github.com/Azure/acs-engine/pkg/i18n"
+	"github.com/Azure/aks-engine/pkg/i18n"
 	"github.com/leonelquinteros/gotext"
 )
 

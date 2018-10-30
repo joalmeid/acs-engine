@@ -15,11 +15,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Azure/acs-engine/pkg/helpers"
-	"github.com/Azure/acs-engine/test/acs-engine-test/config"
-	"github.com/Azure/acs-engine/test/acs-engine-test/metrics"
-	"github.com/Azure/acs-engine/test/acs-engine-test/promote"
-	"github.com/Azure/acs-engine/test/acs-engine-test/report"
+	"github.com/Azure/aks-engine/pkg/helpers"
+	"github.com/Azure/aks-engine/test/acs-engine-test/config"
+	"github.com/Azure/aks-engine/test/acs-engine-test/metrics"
+	"github.com/Azure/aks-engine/test/acs-engine-test/promote"
+	"github.com/Azure/aks-engine/test/acs-engine-test/report"
 	"github.com/pkg/errors"
 )
 

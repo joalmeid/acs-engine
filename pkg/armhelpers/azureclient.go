@@ -29,7 +29,7 @@ import (
 	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/Azure/acs-engine/pkg/acsengine"
+	"github.com/Azure/aks-engine/pkg/acsengine"
 )
 
 const (

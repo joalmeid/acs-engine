@@ -94,7 +94,7 @@ master CHANGELOG:
 
 ```
 @here acs-engine 0.1.0 is here!
-Master CHANGELOG: https://github.com/Azure/acs-engine/CHANGELOG.md
+Master CHANGELOG: https://github.com/Azure/aks-engine/CHANGELOG.md
 ```
 
 You're done with the release. Nice job!
