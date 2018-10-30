@@ -397,16 +397,16 @@ func WriteTemplate(
 	updatedTemplateJSON, _ := json.Marshal(templateMap)
 	parametersJSON, _ := json.Marshal(parametersMap)
 
-	templateapp, err := acsengine.PrettyPrintArmTemplate(string(updatedTemplateJSON))
+	templateapp, err := engine.PrettyPrintArmTemplate(string(updatedTemplateJSON))
 	if err != nil {
 		logrus.Fatalf("error pretty printing template: %s \n", err.Error())
 	}
-	parametersapp, e := acsengine.PrettyPrintJSON(string(parametersJSON))
+	parametersapp, e := engine.PrettyPrintJSON(string(parametersJSON))
 	if e != nil {
 		logrus.Fatalf("error pretty printing template parameters: %s \n", e.Error())
 	}
 	outputDirectory := path.Join("_output", upgradeContainerService.Properties.MasterProfile.DNSPrefix, "Upgrade")
-	writer := &acsengine.ArtifactWriter{
+	writer := &engine.ArtifactWriter{
 		Translator: translator,
 	}
 	if err := writer.WriteTLSArtifacts(upgradeContainerService, "vlabs", templateapp, parametersapp, outputDirectory, false, false); err != nil {

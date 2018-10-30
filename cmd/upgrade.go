@@ -9,15 +9,14 @@ import (
 	"path"
 	"time"
 
-	"github.com/Azure/aks-engine/pkg/acsengine"
 	"github.com/Azure/aks-engine/pkg/api"
 	"github.com/Azure/aks-engine/pkg/armhelpers"
+	"github.com/Azure/aks-engine/pkg/engine"
 	"github.com/Azure/aks-engine/pkg/helpers"
 	"github.com/Azure/aks-engine/pkg/i18n"
 	"github.com/Azure/aks-engine/pkg/operations/kubernetesupgrade"
 	"github.com/leonelquinteros/gotext"
 	"github.com/pkg/errors"
-
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
@@ -224,7 +223,7 @@ func (uc *upgradeCmd) run(cmd *cobra.Command, args []string) error {
 		StepTimeout: uc.timeout,
 	}
 
-	kubeConfig, err := acsengine.GenerateKubeConfig(uc.containerService.Properties, uc.location)
+	kubeConfig, err := engine.GenerateKubeConfig(uc.containerService.Properties, uc.location)
 	if err != nil {
 		log.Fatalf("failed to generate kube config: %v", err) // TODO: cleanup
 	}

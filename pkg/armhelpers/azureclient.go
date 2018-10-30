@@ -13,6 +13,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/Azure/aks-engine/pkg/engine"
 	"github.com/Azure/azure-sdk-for-go/services/apimanagement/mgmt/2017-03-01/apimanagement"
 	"github.com/Azure/azure-sdk-for-go/services/authorization/mgmt/2015-07-01/authorization"
 	"github.com/Azure/azure-sdk-for-go/services/compute/mgmt/2018-04-01/compute"
@@ -28,8 +29,6 @@ import (
 	"github.com/mitchellh/go-homedir"
 	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
-
-	"github.com/Azure/aks-engine/pkg/acsengine"
 )
 
 const (
@@ -279,7 +278,7 @@ func tryLoadCachedToken(cachePath string) (*adal.Token, error) {
 }
 
 func getOAuthConfig(env azure.Environment, subscriptionID string) (*adal.OAuthConfig, string, error) {
-	tenantID, err := acsengine.GetTenantID(env.ResourceManagerEndpoint, subscriptionID)
+	tenantID, err := engine.GetTenantID(env.ResourceManagerEndpoint, subscriptionID)
 	if err != nil {
 		return nil, "", err
 	}

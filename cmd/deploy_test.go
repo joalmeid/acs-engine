@@ -2,10 +2,9 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 	"strconv"
 	"testing"
-
-	"os"
 
 	"github.com/Azure/aks-engine/pkg/api"
 	"github.com/Azure/aks-engine/pkg/armhelpers"
@@ -504,14 +503,14 @@ func testAutodeployCredentialHandling(t *testing.T, useManagedIdentity bool, cli
 
 func TestDeployCmdMergeAPIModel(t *testing.T) {
 	d := &deployCmd{}
-	d.apimodelPath = "../pkg/acsengine/testdata/simple/kubernetes.json"
+	d.apimodelPath = "../pkg/engine/testdata/simple/kubernetes.json"
 	err := d.mergeAPIModel()
 	if err != nil {
 		t.Fatalf("unexpected error calling mergeAPIModel with no --set flag defined: %s", err.Error())
 	}
 
 	d = &deployCmd{}
-	d.apimodelPath = "../pkg/acsengine/testdata/simple/kubernetes.json"
+	d.apimodelPath = "../pkg/engine/testdata/simple/kubernetes.json"
 	d.set = []string{"masterProfile.count=3,linuxProfile.adminUsername=testuser"}
 	err = d.mergeAPIModel()
 	if err != nil {
@@ -519,7 +518,7 @@ func TestDeployCmdMergeAPIModel(t *testing.T) {
 	}
 
 	d = &deployCmd{}
-	d.apimodelPath = "../pkg/acsengine/testdata/simple/kubernetes.json"
+	d.apimodelPath = "../pkg/engine/testdata/simple/kubernetes.json"
 	d.set = []string{"masterProfile.count=3", "linuxProfile.adminUsername=testuser"}
 	err = d.mergeAPIModel()
 	if err != nil {
@@ -527,7 +526,7 @@ func TestDeployCmdMergeAPIModel(t *testing.T) {
 	}
 
 	d = &deployCmd{}
-	d.apimodelPath = "../pkg/acsengine/testdata/simple/kubernetes.json"
+	d.apimodelPath = "../pkg/engine/testdata/simple/kubernetes.json"
 	d.set = []string{"agentPoolProfiles[0].count=1"}
 	err = d.mergeAPIModel()
 	if err != nil {
@@ -559,7 +558,7 @@ func TestDeployCmdRun(t *testing.T) {
 		t.Fatalf("Invalid SubscriptionId in Test: %s", err)
 	}
 
-	d.apimodelPath = "../pkg/acsengine/testdata/simple/kubernetes.json"
+	d.apimodelPath = "../pkg/engine/testdata/simple/kubernetes.json"
 	d.getAuthArgs().SubscriptionID = fakeSubscriptionID
 	d.getAuthArgs().rawSubscriptionID = fakeRawSubscriptionID
 

@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.3\n"
 
-#: pkg/acsengine/engine.go:239
+#: pkg/engine/engine.go:239
 #, c-format
 msgid "Error reading file %s, Error: %s"
 msgstr "Fout bij het lezen van het bestand %s, Fout: %s"
@@ -27,14 +27,14 @@ msgstr "Fout bij het lezen van het bestand %s, Fout: %s"
 msgid "Error while querying ARM for resources: %+v"
 msgstr "Fout bij het uitvoeren van een query op ARM voor resources: %+v"
 
-#: pkg/acsengine/transform.go:99
+#: pkg/engine/transform.go:99
 #, c-format
 msgid "Found 2 resources with type %s in the template. There should only be 1"
 msgstr ""
 "In de sjabloon zijn twee resources gevonden met het type %s. Hiervan moet "
 "één resource zijn"
 
-#: pkg/acsengine/transform.go:122
+#: pkg/engine/transform.go:122
 #, c-format
 msgid ""
 "Found no resources with type %s in the template. There should have been 1"
@@ -60,12 +60,12 @@ msgid "Upgrade to Kubernetes version: %s is not supported from version: %s"
 msgstr ""
 "Upgraden naar Kubernetes versie %s wordt niet ondersteund voor versie %s"
 
-#: pkg/acsengine/filesaver.go:24
+#: pkg/engine/filesaver.go:24
 #, c-format
 msgid "error creating directory '%s': %s"
 msgstr "fout bij het maken van de map %s: %s"
 
-#: pkg/acsengine/engine.go:1194
+#: pkg/engine/engine.go:1194
 #, c-format
 msgid "error executing template for file %s: %v"
 msgstr "fout bij het uitvoeren van de sjabloon voor het bestand %s: %v"
@@ -77,7 +77,7 @@ msgstr "fout bij het uitvoeren van de sjabloon voor het bestand %s: %v"
 msgid "error generating upgrade template: %s"
 msgstr "fout bij het genereren van de upgradesjabloon: %s"
 
-#: pkg/acsengine/engine.go:1189
+#: pkg/engine/engine.go:1189
 #, c-format
 msgid "error parsing file %s: %v"
 msgstr "fout bij het parseren van het bestand %s: %v"
@@ -87,12 +87,12 @@ msgstr "fout bij het parseren van het bestand %s: %v"
 msgid "error reading file %s: %s"
 msgstr "fout bij het lezen van het bestand %s: %s"
 
-#: pkg/acsengine/ssh.go:55
+#: pkg/engine/ssh.go:55
 #, c-format
 msgid "failed to create openssh public key string: %q"
 msgstr "kan de openbare sleutelreeks voor openssh niet maken: %q"
 
-#: pkg/acsengine/ssh.go:49
+#: pkg/engine/ssh.go:49
 #, c-format
 msgid "failed to generate private key for ssh: %q"
 msgstr "kan de persoonlijke sleutel voor ssh niet maken: %q"
@@ -107,12 +107,12 @@ msgstr "kan de sjabloongenerator niet initialiseren: %s"
 msgid "invalid version %s for conversion back from unversioned object"
 msgstr "ongeldige versie %s voor conversie terug naar object zonder versie"
 
-#: pkg/acsengine/engine.go:322
+#: pkg/engine/engine.go:322
 #, c-format
 msgid "orchestrator '%s' is unsupported"
 msgstr "de orchestrator %s wordt niet ondersteund"
 
-#: pkg/acsengine/engine.go:187
+#: pkg/engine/engine.go:187
 #, c-format
 msgid "template file %s does not exist"
 msgstr "het sjabloonbestand %s bestaat niet"
@@ -122,7 +122,7 @@ msgstr "het sjabloonbestand %s bestaat niet"
 msgid "unrecognized APIVersion '%s'"
 msgstr "de API-versie %s wordt niet herkend"
 
-#: pkg/acsengine/engine.go:1183
+#: pkg/engine/engine.go:1183
 #, c-format
 msgid "yaml file %s does not exist"
 msgstr "het yaml-bestand %s bestaat niet"

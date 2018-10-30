@@ -1,4 +1,4 @@
-package acsengine
+package engine
 
 const (
 	// DefaultVNETCIDR is the default CIDR block for the VNET

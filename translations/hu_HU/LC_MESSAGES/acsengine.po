@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.3\n"
 
-#: pkg/acsengine/engine.go:239
+#: pkg/engine/engine.go:239
 #, c-format
 msgid "Error reading file %s, Error: %s"
 msgstr "Hiba történt a(z) %s fájl olvasása közben. Hiba: %s"
@@ -28,12 +28,12 @@ msgid "Error while querying ARM for resources: %+v"
 msgstr ""
 "Hiba történt a következő erőforrások ARM-ből történő lekérdezése közben: %+v"
 
-#: pkg/acsengine/transform.go:99
+#: pkg/engine/transform.go:99
 #, c-format
 msgid "Found 2 resources with type %s in the template. There should only be 1"
 msgstr "Az engedélyezett 1 helyett 2 %s típusú erőforrás található a sablonban"
 
-#: pkg/acsengine/transform.go:122
+#: pkg/engine/transform.go:122
 #, c-format
 msgid ""
 "Found no resources with type %s in the template. There should have been 1"
@@ -58,12 +58,12 @@ msgid "Upgrade to Kubernetes version: %s is not supported from version: %s"
 msgstr ""
 "A Kubernetes %s verzióról a(z) %s verzióra történő frissítés nem támogatott"
 
-#: pkg/acsengine/filesaver.go:24
+#: pkg/engine/filesaver.go:24
 #, c-format
 msgid "error creating directory '%s': %s"
 msgstr "Hiba történt a(z) %s könyvtár létrehozása közben: %s"
 
-#: pkg/acsengine/engine.go:1194
+#: pkg/engine/engine.go:1194
 #, c-format
 msgid "error executing template for file %s: %v"
 msgstr "Hiba történt a sablon végrehajtása közben (fájl: %s): %v"
@@ -75,7 +75,7 @@ msgstr "Hiba történt a sablon végrehajtása közben (fájl: %s): %v"
 msgid "error generating upgrade template: %s"
 msgstr "Hiba történt a(z) %s frissítési sablon létrehozása közben"
 
-#: pkg/acsengine/engine.go:1189
+#: pkg/engine/engine.go:1189
 #, c-format
 msgid "error parsing file %s: %v"
 msgstr "Hiba történt a(z) %s fájl elemzése közben: %v"
@@ -85,12 +85,12 @@ msgstr "Hiba történt a(z) %s fájl elemzése közben: %v"
 msgid "error reading file %s: %s"
 msgstr "Hiba történt a(z) %s fájl olvasása közben: %s"
 
-#: pkg/acsengine/ssh.go:55
+#: pkg/engine/ssh.go:55
 #, c-format
 msgid "failed to create openssh public key string: %q"
 msgstr "Nem sikerült létrehozni a(z) %q nyilvános OpenSSH-kulcs karakterláncát"
 
-#: pkg/acsengine/ssh.go:49
+#: pkg/engine/ssh.go:49
 #, c-format
 msgid "failed to generate private key for ssh: %q"
 msgstr "Nem sikerült létrehozni a(z) %q titkos SSH-kulcsot"
@@ -105,12 +105,12 @@ msgstr "Nem sikerült inicializálni a(z) %s sablongenerátort"
 msgid "invalid version %s for conversion back from unversioned object"
 msgstr "Verzió nélküli objektum visszaalakítása – érvénytelen verzió (%s)"
 
-#: pkg/acsengine/engine.go:322
+#: pkg/engine/engine.go:322
 #, c-format
 msgid "orchestrator '%s' is unsupported"
 msgstr "A(z) %s vezénylő nem támogatott"
 
-#: pkg/acsengine/engine.go:187
+#: pkg/engine/engine.go:187
 #, c-format
 msgid "template file %s does not exist"
 msgstr "A(z) %s sablonfájl nem létezik"
@@ -120,7 +120,7 @@ msgstr "A(z) %s sablonfájl nem létezik"
 msgid "unrecognized APIVersion '%s'"
 msgstr "Ismeretlen API-verzió: %s"
 
-#: pkg/acsengine/engine.go:1183
+#: pkg/engine/engine.go:1183
 #, c-format
 msgid "yaml file %s does not exist"
 msgstr "A(z) %s YAML-fájl nem létezik"

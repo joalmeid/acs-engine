@@ -7,11 +7,11 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/Azure/aks-engine/pkg/acsengine"
-	"github.com/Azure/aks-engine/pkg/acsengine/transform"
 	"github.com/Azure/aks-engine/pkg/api"
 	"github.com/Azure/aks-engine/pkg/armhelpers"
 	"github.com/Azure/aks-engine/pkg/armhelpers/utils"
+	"github.com/Azure/aks-engine/pkg/engine"
+	"github.com/Azure/aks-engine/pkg/engine/transform"
 	"github.com/Azure/aks-engine/pkg/i18n"
 	"github.com/Azure/aks-engine/pkg/operations"
 	"github.com/sirupsen/logrus"
@@ -522,10 +522,10 @@ func (ku *Upgrader) upgradeAgentScaleSets(ctx context.Context) error {
 
 func (ku *Upgrader) generateUpgradeTemplate(upgradeContainerService *api.ContainerService, acsengineVersion string) (map[string]interface{}, map[string]interface{}, error) {
 	var err error
-	ctx := acsengine.Context{
+	ctx := engine.Context{
 		Translator: ku.Translator,
 	}
-	templateGenerator, err := acsengine.InitializeTemplateGenerator(ctx)
+	templateGenerator, err := engine.InitializeTemplateGenerator(ctx)
 	if err != nil {
 		return nil, nil, ku.Translator.Errorf("failed to initialize template generator: %s", err.Error())
 	}
@@ -538,7 +538,7 @@ func (ku *Upgrader) generateUpgradeTemplate(upgradeContainerService *api.Contain
 
 	var templateJSON string
 	var parametersJSON string
-	if templateJSON, parametersJSON, err = templateGenerator.GenerateTemplate(upgradeContainerService, acsengine.DefaultGeneratorCode, acsengineVersion); err != nil {
+	if templateJSON, parametersJSON, err = templateGenerator.GenerateTemplate(upgradeContainerService, engine.DefaultGeneratorCode, acsengineVersion); err != nil {
 		return nil, nil, ku.Translator.Errorf("error generating upgrade template: %s", err.Error())
 	}
 

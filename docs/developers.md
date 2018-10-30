@@ -105,8 +105,8 @@ dlv debug github.com/Azure/aks-engine -- generate ~/Documents/azure/kubernetes.j
 
 Test individual package and individual test:
 ```
-dlv test github.com/Azure/aks-engine/pkg/acsengine
-dlv test github.com/Azure/aks-engine/pkg/acsengine -- -test.run ^TestNetworkPolicyDefaults$
+dlv test github.com/Azure/aks-engine/pkg/engine
+dlv test github.com/Azure/aks-engine/pkg/engine -- -test.run ^TestNetworkPolicyDefaults$
 ```
 
 #### Visual Code Studio

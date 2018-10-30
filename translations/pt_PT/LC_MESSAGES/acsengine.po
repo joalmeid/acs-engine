@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.3\n"
 
-#: pkg/acsengine/engine.go:239
+#: pkg/engine/engine.go:239
 #, c-format
 msgid "Error reading file %s, Error: %s"
 msgstr "Erro ao ler ficheiro %s, Erro: %s"
@@ -27,13 +27,13 @@ msgstr "Erro ao ler ficheiro %s, Erro: %s"
 msgid "Error while querying ARM for resources: %+v"
 msgstr "Erro ao consultar o ARM para os recursos: %+v"
 
-#: pkg/acsengine/transform.go:99
+#: pkg/engine/transform.go:99
 #, c-format
 msgid "Found 2 resources with type %s in the template. There should only be 1"
 msgstr ""
 "Foram encontrados 2 recursos de tipo %s no modelo. Deve existir apenas 1."
 
-#: pkg/acsengine/transform.go:122
+#: pkg/engine/transform.go:122
 #, c-format
 msgid ""
 "Found no resources with type %s in the template. There should have been 1"
@@ -57,12 +57,12 @@ msgstr ""
 "Atualizar para a versão Kubernetes: %s não é suportado a partir da versão: "
 "%s"
 
-#: pkg/acsengine/filesaver.go:24
+#: pkg/engine/filesaver.go:24
 #, c-format
 msgid "error creating directory '%s': %s"
 msgstr "erro ao criar diretório \"%s\": %s"
 
-#: pkg/acsengine/engine.go:1194
+#: pkg/engine/engine.go:1194
 #, c-format
 msgid "error executing template for file %s: %v"
 msgstr "erro ao executar o modelo para o ficheiro %s: %v"
@@ -74,7 +74,7 @@ msgstr "erro ao executar o modelo para o ficheiro %s: %v"
 msgid "error generating upgrade template: %s"
 msgstr "erro ao gerar modelo de atualização: %s"
 
-#: pkg/acsengine/engine.go:1189
+#: pkg/engine/engine.go:1189
 #, c-format
 msgid "error parsing file %s: %v"
 msgstr "erro ao analisar o ficheiro %s: %v"
@@ -84,12 +84,12 @@ msgstr "erro ao analisar o ficheiro %s: %v"
 msgid "error reading file %s: %s"
 msgstr "erro ao ler o ficheiro %s: %s"
 
-#: pkg/acsengine/ssh.go:55
+#: pkg/engine/ssh.go:55
 #, c-format
 msgid "failed to create openssh public key string: %q"
 msgstr "falha ao criar cadeia de chave pública de openssh: %q"
 
-#: pkg/acsengine/ssh.go:49
+#: pkg/engine/ssh.go:49
 #, c-format
 msgid "failed to generate private key for ssh: %q"
 msgstr "falha ao gerar chave privada para ssh: %q"
@@ -104,12 +104,12 @@ msgstr "falha ao iniciar o gerador de modelo: %s"
 msgid "invalid version %s for conversion back from unversioned object"
 msgstr "versão %s inválida para a reconversão de um objeto sem versão definida"
 
-#: pkg/acsengine/engine.go:322
+#: pkg/engine/engine.go:322
 #, c-format
 msgid "orchestrator '%s' is unsupported"
 msgstr "o orquestrador \"%s\" não é suportado"
 
-#: pkg/acsengine/engine.go:187
+#: pkg/engine/engine.go:187
 #, c-format
 msgid "template file %s does not exist"
 msgstr "o ficheiro do modelo %s não existe"
@@ -119,7 +119,7 @@ msgstr "o ficheiro do modelo %s não existe"
 msgid "unrecognized APIVersion '%s'"
 msgstr "APIVersion \"%s\" não reconhecida"
 
-#: pkg/acsengine/engine.go:1183
+#: pkg/engine/engine.go:1183
 #, c-format
 msgid "yaml file %s does not exist"
 msgstr "o ficheiro yaml %s não existe"

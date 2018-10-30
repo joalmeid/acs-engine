@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.3\n"
 
-#: pkg/acsengine/engine.go:239
+#: pkg/engine/engine.go:239
 #, c-format
 msgid "Error reading file %s, Error: %s"
 msgstr "Det gick inte att läsa filen %s, Fel: %s"
@@ -27,12 +27,12 @@ msgstr "Det gick inte att läsa filen %s, Fel: %s"
 msgid "Error while querying ARM for resources: %+v"
 msgstr "Det uppstod ett fel när ARM tillfrågades om resurser: %+v"
 
-#: pkg/acsengine/transform.go:99
+#: pkg/engine/transform.go:99
 #, c-format
 msgid "Found 2 resources with type %s in the template. There should only be 1"
 msgstr "2 resurser av typen %s påträffades i mallen. Det ska bara finnas 1"
 
-#: pkg/acsengine/transform.go:122
+#: pkg/engine/transform.go:122
 #, c-format
 msgid ""
 "Found no resources with type %s in the template. There should have been 1"
@@ -57,12 +57,12 @@ msgstr "Uppgradering till Kubernetes 1.6.2 stöds inte från version %s"
 msgid "Upgrade to Kubernetes version: %s is not supported from version: %s"
 msgstr "Uppgradering till Kubernetes version %s stöds inte från version %s"
 
-#: pkg/acsengine/filesaver.go:24
+#: pkg/engine/filesaver.go:24
 #, c-format
 msgid "error creating directory '%s': %s"
 msgstr "det uppstod ett fel när katalogen %s': %s skulle skapas"
 
-#: pkg/acsengine/engine.go:1194
+#: pkg/engine/engine.go:1194
 #, c-format
 msgid "error executing template for file %s: %v"
 msgstr "det uppstod ett fel när mallen för filen %s: %v skulle köras"
@@ -74,7 +74,7 @@ msgstr "det uppstod ett fel när mallen för filen %s: %v skulle köras"
 msgid "error generating upgrade template: %s"
 msgstr "det uppstod ett fel när uppgraderingsmallen %s skulle genereras"
 
-#: pkg/acsengine/engine.go:1189
+#: pkg/engine/engine.go:1189
 #, c-format
 msgid "error parsing file %s: %v"
 msgstr "det uppstod ett fel när filen %s: %v skulle parsas"
@@ -84,12 +84,12 @@ msgstr "det uppstod ett fel när filen %s: %v skulle parsas"
 msgid "error reading file %s: %s"
 msgstr "det gick inte att läsa filen %s: %s"
 
-#: pkg/acsengine/ssh.go:55
+#: pkg/engine/ssh.go:55
 #, c-format
 msgid "failed to create openssh public key string: %q"
 msgstr "det gick inte att skapa strängen %q för den offentliga nyckeln openssh"
 
-#: pkg/acsengine/ssh.go:49
+#: pkg/engine/ssh.go:49
 #, c-format
 msgid "failed to generate private key for ssh: %q"
 msgstr "det gick inte att generera den privata nyckeln för ssh: %q"
@@ -104,12 +104,12 @@ msgstr "det gick inte att initiera mallgeneratorn %s"
 msgid "invalid version %s for conversion back from unversioned object"
 msgstr "ogiltig %s-version för abonnemangsändring från versionslöst objekt"
 
-#: pkg/acsengine/engine.go:322
+#: pkg/engine/engine.go:322
 #, c-format
 msgid "orchestrator '%s' is unsupported"
 msgstr "initieraren %s stöds inte"
 
-#: pkg/acsengine/engine.go:187
+#: pkg/engine/engine.go:187
 #, c-format
 msgid "template file %s does not exist"
 msgstr "mallfilen %s finns inte"
@@ -119,7 +119,7 @@ msgstr "mallfilen %s finns inte"
 msgid "unrecognized APIVersion '%s'"
 msgstr "APIVersion %s känns inte igen"
 
-#: pkg/acsengine/engine.go:1183
+#: pkg/engine/engine.go:1183
 #, c-format
 msgid "yaml file %s does not exist"
 msgstr "yaml-filen %s finns inte"

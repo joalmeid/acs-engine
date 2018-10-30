@@ -18,7 +18,7 @@ test/junit/
 test/acs-engine-test/acs-engine-test.exe
 pkg/operations/junit.xml
 pkg/operations/kubernetesupgrade/junit.xml
-pkg/acsengine/templates.go
+pkg/engine/templates.go
 pkg/i18n/translations.go
 
 _logs/

@@ -1,11 +1,11 @@
-package acsengine
+package engine
 
 import (
 	"path"
 	"testing"
 
-	"github.com/Azure/acs-engine/pkg/api"
-	"github.com/Azure/acs-engine/pkg/i18n"
+	"github.com/Azure/aks-engine/pkg/api"
+	"github.com/Azure/aks-engine/pkg/i18n"
 	"github.com/leonelquinteros/gotext"
 )
 

@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.3\n"
 
-#: pkg/acsengine/engine.go:239
+#: pkg/engine/engine.go:239
 #, c-format
 msgid "Error reading file %s, Error: %s"
 msgstr "%s dosyası okunurken hata oluştu, Hata: %s"
@@ -27,12 +27,12 @@ msgstr "%s dosyası okunurken hata oluştu, Hata: %s"
 msgid "Error while querying ARM for resources: %+v"
 msgstr "Kaynaklar için ARM sorgulanırken hata oluştu: %+v"
 
-#: pkg/acsengine/transform.go:99
+#: pkg/engine/transform.go:99
 #, c-format
 msgid "Found 2 resources with type %s in the template. There should only be 1"
 msgstr "Şablonda %s türünde 2 kaynak bulundu. Yalnızca 1 olmalıdır"
 
-#: pkg/acsengine/transform.go:122
+#: pkg/engine/transform.go:122
 #, c-format
 msgid ""
 "Found no resources with type %s in the template. There should have been 1"
@@ -55,12 +55,12 @@ msgid "Upgrade to Kubernetes version: %s is not supported from version: %s"
 msgstr ""
 "%s Kubernetes sürümüne yükseltmek %s sürümünden başlayarak desteklenmiyor"
 
-#: pkg/acsengine/filesaver.go:24
+#: pkg/engine/filesaver.go:24
 #, c-format
 msgid "error creating directory '%s': %s"
 msgstr "'%s' dizini oluşturulurken hata oluştu: %s"
 
-#: pkg/acsengine/engine.go:1194
+#: pkg/engine/engine.go:1194
 #, c-format
 msgid "error executing template for file %s: %v"
 msgstr "%s dosyası için şablon çalıştırılırken hata oluştu :%v"
@@ -72,7 +72,7 @@ msgstr "%s dosyası için şablon çalıştırılırken hata oluştu :%v"
 msgid "error generating upgrade template: %s"
 msgstr "yükseltme şablonu oluşturulurken hata oluştu: %s"
 
-#: pkg/acsengine/engine.go:1189
+#: pkg/engine/engine.go:1189
 #, c-format
 msgid "error parsing file %s: %v"
 msgstr "%s dosyası ayrıştırılırken hata oluştu: %v"
@@ -82,12 +82,12 @@ msgstr "%s dosyası ayrıştırılırken hata oluştu: %v"
 msgid "error reading file %s: %s"
 msgstr "%s dosyası okunurken hata oluştu: %s"
 
-#: pkg/acsengine/ssh.go:55
+#: pkg/engine/ssh.go:55
 #, c-format
 msgid "failed to create openssh public key string: %q"
 msgstr "openssh ortak anahtar dizesi oluşturulamadı: %q"
 
-#: pkg/acsengine/ssh.go:49
+#: pkg/engine/ssh.go:49
 #, c-format
 msgid "failed to generate private key for ssh: %q"
 msgstr "ssh için özel anahtar oluşturulamadı: %q"
@@ -102,12 +102,12 @@ msgstr "şablon oluşturucu başlatılamadı: %s"
 msgid "invalid version %s for conversion back from unversioned object"
 msgstr "Sürüm bilgisi olmayan nesneden geri dönüştürme için geçersiz sürüm %s"
 
-#: pkg/acsengine/engine.go:322
+#: pkg/engine/engine.go:322
 #, c-format
 msgid "orchestrator '%s' is unsupported"
 msgstr "düzenleyici '%s' desteklenmiyor"
 
-#: pkg/acsengine/engine.go:187
+#: pkg/engine/engine.go:187
 #, c-format
 msgid "template file %s does not exist"
 msgstr "şablon dosyası %s yok"
@@ -117,7 +117,7 @@ msgstr "şablon dosyası %s yok"
 msgid "unrecognized APIVersion '%s'"
 msgstr "tanınmayan APIVersion '%s'"
 
-#: pkg/acsengine/engine.go:1183
+#: pkg/engine/engine.go:1183
 #, c-format
 msgid "yaml file %s does not exist"
 msgstr "yaml dosyası %s yok"

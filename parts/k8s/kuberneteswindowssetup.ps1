@@ -8,7 +8,7 @@
         The parameters passed in are required, and will vary per-deployment.
 
         Notes on modifying this file:
-        - This file extension is PS1, but it is actually used as a template from pkg/acsengine/template_generator.go
+        - This file extension is PS1, but it is actually used as a template from pkg/engine/template_generator.go
         - All of the lines that have braces in them will be modified. Please do not change them here, change them in the Go sources
         - Single quotes are forbidden, they are reserved to delineate the different members for the ARM template concat() call
 #>

@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.3\n"
 
-#: pkg/acsengine/engine.go:239
+#: pkg/engine/engine.go:239
 #, c-format
 msgid "Error reading file %s, Error: %s"
 msgstr "Fehler beim Lesen der Datei \"%s\", Fehler: %s"
@@ -27,14 +27,14 @@ msgstr "Fehler beim Lesen der Datei \"%s\", Fehler: %s"
 msgid "Error while querying ARM for resources: %+v"
 msgstr "Fehler beim Abfragen von ARM für Ressourcen: %+v"
 
-#: pkg/acsengine/transform.go:99
+#: pkg/engine/transform.go:99
 #, c-format
 msgid "Found 2 resources with type %s in the template. There should only be 1"
 msgstr ""
 "In der Vorlage wurden zwei Ressourcen vom Typ \"%s\" gefunden. Es darf nur "
 "eine vorliegen."
 
-#: pkg/acsengine/transform.go:122
+#: pkg/engine/transform.go:122
 #, c-format
 msgid ""
 "Found no resources with type %s in the template. There should have been 1"
@@ -62,12 +62,12 @@ msgstr ""
 "Ein Upgrade auf die Kubernetes-Version %s wird von Version %s aus nicht "
 "unterstützt."
 
-#: pkg/acsengine/filesaver.go:24
+#: pkg/engine/filesaver.go:24
 #, c-format
 msgid "error creating directory '%s': %s"
 msgstr "Fehler beim Erstellen des Verzeichnisses \"%s\": %s"
 
-#: pkg/acsengine/engine.go:1194
+#: pkg/engine/engine.go:1194
 #, c-format
 msgid "error executing template for file %s: %v"
 msgstr "Fehler beim Ausführen der Vorlage für die Datei \"%s\": %v"
@@ -79,7 +79,7 @@ msgstr "Fehler beim Ausführen der Vorlage für die Datei \"%s\": %v"
 msgid "error generating upgrade template: %s"
 msgstr "Fehler beim Generieren der Upgradevorlage: %s"
 
-#: pkg/acsengine/engine.go:1189
+#: pkg/engine/engine.go:1189
 #, c-format
 msgid "error parsing file %s: %v"
 msgstr "Fehler beim Analysieren der Datei \"%s\": %v"
@@ -89,14 +89,14 @@ msgstr "Fehler beim Analysieren der Datei \"%s\": %v"
 msgid "error reading file %s: %s"
 msgstr "Fehler beim Lesen der Datei \"%s\": %s"
 
-#: pkg/acsengine/ssh.go:55
+#: pkg/engine/ssh.go:55
 #, c-format
 msgid "failed to create openssh public key string: %q"
 msgstr ""
 "Fehler beim Erstellen der Zeichenfolge des öffentlichen OpenSSH-Schlüssels: "
 "%q"
 
-#: pkg/acsengine/ssh.go:49
+#: pkg/engine/ssh.go:49
 #, c-format
 msgid "failed to generate private key for ssh: %q"
 msgstr "Fehler beim Generieren des privaten Schlüssels für SSH: %q"
@@ -113,12 +113,12 @@ msgstr ""
 "Ungültige Version (%s) für die Rückkonvertierung des Objekts ohne "
 "Versionsangabe."
 
-#: pkg/acsengine/engine.go:322
+#: pkg/engine/engine.go:322
 #, c-format
 msgid "orchestrator '%s' is unsupported"
 msgstr "Der Orchestrator \"%s\" wird nicht unterstützt."
 
-#: pkg/acsengine/engine.go:187
+#: pkg/engine/engine.go:187
 #, c-format
 msgid "template file %s does not exist"
 msgstr "Die Vorlagendatei \"%s\" ist nicht vorhanden."
@@ -128,7 +128,7 @@ msgstr "Die Vorlagendatei \"%s\" ist nicht vorhanden."
 msgid "unrecognized APIVersion '%s'"
 msgstr "Unbekannte APIVersion \"%s\"."
 
-#: pkg/acsengine/engine.go:1183
+#: pkg/engine/engine.go:1183
 #, c-format
 msgid "yaml file %s does not exist"
 msgstr "Die YAML-Datei \"%s\" ist nicht vorhanden."

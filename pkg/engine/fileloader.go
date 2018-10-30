@@ -1,4 +1,4 @@
-package acsengine
+package engine
 
 //go:generate go-bindata -nometadata -pkg $GOPACKAGE -prefix ../../parts/ -o templates.go ../../parts/...
 //go:generate gofmt -s -l -w templates.go

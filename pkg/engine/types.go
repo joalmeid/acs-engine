@@ -1,4 +1,4 @@
-package acsengine
+package engine
 
 import (
 	"github.com/Azure/aks-engine/pkg/api"

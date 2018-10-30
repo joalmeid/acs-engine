@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.3\n"
 
-#: pkg/acsengine/engine.go:239
+#: pkg/engine/engine.go:239
 #, c-format
 msgid "Error reading file %s, Error: %s"
 msgstr "讀取檔案 %s 時發生錯誤，錯誤: %s"
@@ -27,12 +27,12 @@ msgstr "讀取檔案 %s 時發生錯誤，錯誤: %s"
 msgid "Error while querying ARM for resources: %+v"
 msgstr "查詢 ARM 以取得資源時發生錯誤: %+v "
 
-#: pkg/acsengine/transform.go:99
+#: pkg/engine/transform.go:99
 #, c-format
 msgid "Found 2 resources with type %s in the template. There should only be 1"
 msgstr "在範本中找到 2 個類型為 %s 的資源，但只應有 1 個"
 
-#: pkg/acsengine/transform.go:122
+#: pkg/engine/transform.go:122
 #, c-format
 msgid ""
 "Found no resources with type %s in the template. There should have been 1"
@@ -53,12 +53,12 @@ msgstr "不支援從版本 %s 升級為 Kubernetes 1.6.2"
 msgid "Upgrade to Kubernetes version: %s is not supported from version: %s"
 msgstr "Kubernetes 版本 %s 不支援從版本 %s 升級"
 
-#: pkg/acsengine/filesaver.go:24
+#: pkg/engine/filesaver.go:24
 #, c-format
 msgid "error creating directory '%s': %s"
 msgstr "建立目錄 '%s' 時發生錯誤: %s"
 
-#: pkg/acsengine/engine.go:1194
+#: pkg/engine/engine.go:1194
 #, c-format
 msgid "error executing template for file %s: %v"
 msgstr "執行檔案 %s 的範本時發生錯誤: %v"
@@ -70,7 +70,7 @@ msgstr "執行檔案 %s 的範本時發生錯誤: %v"
 msgid "error generating upgrade template: %s"
 msgstr "產生升級範本時發生錯誤: %s"
 
-#: pkg/acsengine/engine.go:1189
+#: pkg/engine/engine.go:1189
 #, c-format
 msgid "error parsing file %s: %v"
 msgstr "剖析檔案 %s 時發生錯誤: %v"
@@ -80,12 +80,12 @@ msgstr "剖析檔案 %s 時發生錯誤: %v"
 msgid "error reading file %s: %s"
 msgstr "讀取檔案 %s 時發生錯誤: %s"
 
-#: pkg/acsengine/ssh.go:55
+#: pkg/engine/ssh.go:55
 #, c-format
 msgid "failed to create openssh public key string: %q"
 msgstr "無法建立 OpenSSH 公開金鑰字串: %q"
 
-#: pkg/acsengine/ssh.go:49
+#: pkg/engine/ssh.go:49
 #, c-format
 msgid "failed to generate private key for ssh: %q"
 msgstr "無法產生 SSH 的私密金鑰: %q"
@@ -100,12 +100,12 @@ msgstr "無法將範本產生器初始化: %s"
 msgid "invalid version %s for conversion back from unversioned object"
 msgstr "無法從未進行版本控制的物件轉換回版本 %s"
 
-#: pkg/acsengine/engine.go:322
+#: pkg/engine/engine.go:322
 #, c-format
 msgid "orchestrator '%s' is unsupported"
 msgstr "不支援協調器 '%s'"
 
-#: pkg/acsengine/engine.go:187
+#: pkg/engine/engine.go:187
 #, c-format
 msgid "template file %s does not exist"
 msgstr "範本檔案 %s 不存在"
@@ -115,7 +115,7 @@ msgstr "範本檔案 %s 不存在"
 msgid "unrecognized APIVersion '%s'"
 msgstr "無法識別的 APIVersion '%s'"
 
-#: pkg/acsengine/engine.go:1183
+#: pkg/engine/engine.go:1183
 #, c-format
 msgid "yaml file %s does not exist"
 msgstr "yaml 檔案 %s 不存在"

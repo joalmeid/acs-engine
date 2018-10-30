@@ -24,7 +24,7 @@ msgstr ""
 msgid "Error generating upgrade template: %s"
 msgstr "Error generating upgrade template: %s"
 
-#: pkg/acsengine/engine.go:251
+#: pkg/engine/engine.go:251
 #, c-format
 msgid "Error reading file %s, Error: %s"
 msgstr "Error reading file %s, Error: %s"
@@ -34,13 +34,13 @@ msgstr "Error reading file %s, Error: %s"
 msgid "Error while querying ARM for resources: %+v"
 msgstr "Error while querying ARM for resources: %+v"
 
-#: pkg/acsengine/transform/transform.go:121
-#: pkg/acsengine/transform/transform.go:129
+#: pkg/engine/transform/transform.go:121
+#: pkg/engine/transform/transform.go:129
 #, c-format
 msgid "Found 2 resources with type %s in the template. There should only be 1"
 msgstr "Found 2 resources with type %s in the template. There should only be 1"
 
-#: pkg/acsengine/transform/transform.go:158
+#: pkg/engine/transform/transform.go:158
 #, c-format
 msgid ""
 "Found no resources with type %s in the template. There should have been 1"
@@ -68,12 +68,12 @@ msgstr "Total count of master VMs: %d exceeded expected count: %d"
 msgid "Upgrade to Kubernetes version %s is not supported"
 msgstr "Upgrade to Kubernetes version %s is not supported"
 
-#: pkg/acsengine/filesaver.go:26
+#: pkg/engine/filesaver.go:26
 #, c-format
 msgid "error creating directory '%s': %s"
 msgstr "error creating directory '%s': %s"
 
-#: pkg/acsengine/engine.go:2545
+#: pkg/engine/engine.go:2545
 #, c-format
 msgid "error executing template for file %s: %v"
 msgstr "error executing template for file %s: %v"
@@ -84,7 +84,7 @@ msgstr "error executing template for file %s: %v"
 msgid "error generating upgrade template: %s"
 msgstr "error generating upgrade template: %s"
 
-#: pkg/acsengine/engine.go:2540
+#: pkg/engine/engine.go:2540
 #, c-format
 msgid "error parsing file %s: %v"
 msgstr "error parsing file %s: %v"
@@ -104,12 +104,12 @@ msgstr "failed to initialize template generator: %s"
 msgid "invalid version %s for conversion back from unversioned object"
 msgstr "invalid version %s for conversion back from unversioned object"
 
-#: pkg/acsengine/engine.go:399
+#: pkg/engine/engine.go:399
 #, c-format
 msgid "orchestrator '%s' is unsupported"
 msgstr "orchestrator '%s' is unsupported"
 
-#: pkg/acsengine/engine.go:195
+#: pkg/engine/engine.go:195
 #, c-format
 msgid "template file %s does not exist"
 msgstr "template file %s does not exist"
@@ -126,7 +126,7 @@ msgid ""
 msgstr ""
 "unrecognized APIVersion in LoadContainerServiceForAgentPoolOnlyCluster '%s'"
 
-#: pkg/acsengine/engine.go:2534
+#: pkg/engine/engine.go:2534
 #, c-format
 msgid "yaml file %s does not exist"
 msgstr "yaml file %s does not exist"

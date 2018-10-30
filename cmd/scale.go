@@ -12,11 +12,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Azure/aks-engine/pkg/acsengine"
-	"github.com/Azure/aks-engine/pkg/acsengine/transform"
 	"github.com/Azure/aks-engine/pkg/api"
 	"github.com/Azure/aks-engine/pkg/armhelpers"
 	"github.com/Azure/aks-engine/pkg/armhelpers/utils"
+	"github.com/Azure/aks-engine/pkg/engine"
+	"github.com/Azure/aks-engine/pkg/engine/transform"
 	"github.com/Azure/aks-engine/pkg/helpers"
 	"github.com/Azure/aks-engine/pkg/i18n"
 	"github.com/Azure/aks-engine/pkg/operations"
@@ -265,7 +265,7 @@ func (sc *scaleCmd) run(cmd *cobra.Command, args []string) error {
 
 			switch orchestratorInfo.OrchestratorType {
 			case api.Kubernetes:
-				kubeConfig, err := acsengine.GenerateKubeConfig(sc.containerService.Properties, sc.location)
+				kubeConfig, err := engine.GenerateKubeConfig(sc.containerService.Properties, sc.location)
 				if err != nil {
 					return errors.Wrap(err, "failed to generate kube config")
 				}
@@ -317,12 +317,12 @@ func (sc *scaleCmd) run(cmd *cobra.Command, args []string) error {
 		}
 	}
 
-	translator := acsengine.Context{
+	translator := engine.Context{
 		Translator: &i18n.Translator{
 			Locale: sc.locale,
 		},
 	}
-	templateGenerator, err := acsengine.InitializeTemplateGenerator(translator)
+	templateGenerator, err := engine.InitializeTemplateGenerator(translator)
 	if err != nil {
 		return errors.Wrap(err, "failed to initialize template generator")
 	}
@@ -334,7 +334,7 @@ func (sc *scaleCmd) run(cmd *cobra.Command, args []string) error {
 		log.Fatalf("error in SetPropertiesDefaults template %s: %s", sc.apiModelPath, err.Error())
 		os.Exit(1)
 	}
-	template, parameters, err := templateGenerator.GenerateTemplate(sc.containerService, acsengine.DefaultGeneratorCode, BuildTag)
+	template, parameters, err := templateGenerator.GenerateTemplate(sc.containerService, engine.DefaultGeneratorCode, BuildTag)
 	if err != nil {
 		return errors.Wrapf(err, "error generating template %s", sc.apiModelPath)
 	}

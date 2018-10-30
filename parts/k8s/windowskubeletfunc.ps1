@@ -329,7 +329,7 @@ Install-KubernetesServices
     $KubeletArgList += "--node-labels=`$global:KubeletNodeLabels"
     # $KubeletArgList += "--hostname-override=`$global:AzureHostname" TODO: remove - dead code?
     $KubeletArgList += "--volume-plugin-dir=`$global:VolumePluginDir"
-    # If you are thinking about adding another arg here, you should be considering pkg/acsengine/defaults-kubelet.go first
+    # If you are thinking about adding another arg here, you should be considering pkg/engine/defaults-kubelet.go first
     # Only args that need to be calculated or combined with other ones on the Windows agent should be added here.
     
 

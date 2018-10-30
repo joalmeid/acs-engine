@@ -13,10 +13,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Azure/aks-engine/pkg/acsengine"
-	"github.com/Azure/aks-engine/pkg/acsengine/transform"
 	"github.com/Azure/aks-engine/pkg/api"
 	"github.com/Azure/aks-engine/pkg/armhelpers"
+	"github.com/Azure/aks-engine/pkg/engine"
+	"github.com/Azure/aks-engine/pkg/engine/transform"
 	"github.com/Azure/aks-engine/pkg/helpers"
 	"github.com/Azure/aks-engine/pkg/i18n"
 	"github.com/Azure/azure-sdk-for-go/services/graphrbac/1.6/graphrbac"
@@ -368,13 +368,13 @@ func (dc *deployCmd) validateApimodel() (*api.ContainerService, string, error) {
 }
 
 func (dc *deployCmd) run() error {
-	ctx := acsengine.Context{
+	ctx := engine.Context{
 		Translator: &i18n.Translator{
 			Locale: dc.locale,
 		},
 	}
 
-	templateGenerator, err := acsengine.InitializeTemplateGenerator(ctx)
+	templateGenerator, err := engine.InitializeTemplateGenerator(ctx)
 	if err != nil {
 		log.Fatalf("failed to initialize template generator: %s", err.Error())
 	}
@@ -385,7 +385,7 @@ func (dc *deployCmd) run() error {
 		os.Exit(1)
 	}
 
-	template, parameters, err := templateGenerator.GenerateTemplate(dc.containerService, acsengine.DefaultGeneratorCode, BuildTag)
+	template, parameters, err := templateGenerator.GenerateTemplate(dc.containerService, engine.DefaultGeneratorCode, BuildTag)
 	if err != nil {
 		log.Fatalf("error generating template %s: %s", dc.apimodelPath, err.Error())
 		os.Exit(1)
@@ -399,7 +399,7 @@ func (dc *deployCmd) run() error {
 		log.Fatalf("error pretty printing template parameters: %s \n", err.Error())
 	}
 
-	writer := &acsengine.ArtifactWriter{
+	writer := &engine.ArtifactWriter{
 		Translator: &i18n.Translator{
 			Locale: dc.locale,
 		},
