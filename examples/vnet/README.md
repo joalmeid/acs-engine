@@ -2,7 +2,7 @@
 
 ## Overview
 
-These examples show you how to build a customized Docker enabled cluster on Microsoft Azure where you can provide your own VNET.
+These examples show you how to build a customized Kubernetes cluster on Microsoft Azure where you can provide your own VNET.
 
 To try:
 

@@ -1,6 +1,6 @@
 # Acs-engine
 
-The Azure Container Service Engine (acs-engine) is a command line tool that generates ARM (Azure Resource Manager) templates in order for one to deploy container-based clusters (like Kubernetes , DCOS, Openshift, Docker swarm) on the Azure platform.
+The Azure Container Service Engine (acs-engine) is a command line tool that generates ARM (Azure Resource Manager) templates in order for one to deploy Kubernetes clusters (like Kubernetes , DCOS, Openshift, Docker swarm) on the Azure platform.
 
 This design document provides a brief and high-level overview of what acs-engine does internally to achieve deployment of containerized clusters. The scope of this document will be limited to the execution of acs-engine when creating Kubernetes clusters.
 
@@ -268,7 +268,7 @@ _**Cons/Challenges**_
 
 **YAML-based templates**
 
-We could also do away with our current JSON-based template skeletons and use YAML templating instead. 
+We could also do away with our current JSON-based template skeletons and use YAML templating instead.
 
 _**Pros**_
 

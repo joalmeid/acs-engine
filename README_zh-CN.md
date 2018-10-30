@@ -5,7 +5,7 @@
 微软容器服务引擎（`acs-engine`）用于将一个容器集群描述文件转化成一组ARM（Azure Resource Manager）模板，通过在Azure上部署这些模板，用户可以很方便地在Azure上建立一套基于Docker的容器服务集群。用户可以自由地选择集群编排引擎Kubernetes。集群描述文件使用和ARM模板相同的语法，它们都可以用来部署Azure容器服务。
 
 集群描述文件提供了一下几个功能：
-* 可以自由选择DC/OS, Kubernetes, Swarm Mode和Swarm等多种编排引擎
+* 可以自由选择Kubernetes等多种编排引擎
 * 可以自由定制集群节点的规格，包括：
     * 虚机的规格
     * 节点的数量

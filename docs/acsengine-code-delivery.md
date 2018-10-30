@@ -2,12 +2,12 @@
 
 [![ACS Engine](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/a8f28783-3ddc-4081-a57d-6d97147467bf.png)](https://github.com/azure/acs-engine)
 
-ACS Engine is an open source project to generate ARM (Azure Resource Manager) templates DC/OS, Kubernetes, Swarm Mode clusters on Microsoft Azure.
+ACS Engine is an open source project to generate ARM (Azure Resource Manager) templates for Kubernetes clusters on Microsoft Azure.
 This documents provides guidelines to the acs-engine testing and continuous integration process.
 
 ## Development pipeline
 
-ACS Engine employs CI system that incorporates Jenkins server, configured to interact with ACS Engine GitHub project.
+ACS Engine employs CI system that incorporates a Jenkins server, configured to interact with ACS Engine GitHub project.
 A recommended way to contribute to ACS Engine is to fork github.com/Azure/acs-engine project.
 and create a separated branch (a feature branch) for the feature you are working on.
 

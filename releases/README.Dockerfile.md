@@ -19,7 +19,7 @@ $ docker image inspect microsoft/acs-engine:0.16.0 --format "{{json .Config.Labe
 {
   "maintainer": "Microsoft",
   "org.label-schema.build-date": "2017-10-25T04:35:06Z",
-  "org.label-schema.description": "The Azure Container Service Engine (acs-engine) generates ARM (Azure Resource Manager) templates for Docker enabled clusters on Microsoft Azure with your choice of DCOS, Kubernetes, or Swarm orchestrators.",
+  "org.label-schema.description": "The Azure Container Service Engine (acs-engine) generates ARM (Azure Resource Manager) templates for Kubernetes clusters on Microsoft Azure.",
   "org.label-schema.docker.cmd": "docker run -v ${PWD}:/acs-engine/workspace -it --rm microsoft/acs-engine:0.16.0",
   "org.label-schema.license": "MIT",
   "org.label-schema.name": "Azure Container Service Engine (acs-engine)",
@@ -38,7 +38,7 @@ PS> docker image inspect microsoft/acs-engine:0.16.0 --format "{{json .Config.La
 {
     "maintainer":  "Microsoft",
     "org.label-schema.build-date":  "2017-10-25T04:35:06Z",
-    "org.label-schema.description":  "The Azure Container Service Engine (acs-engine) generates ARM (Azure Resource Manager) templates for Docker enabled clusters on Microsoft Azure with your choice of DCOS, Kubernetes, or Swarm orchestrators.",
+    "org.label-schema.description":  "The Azure Container Service Engine (acs-engine) generates ARM (Azure Resource Manager) templates for Kubernetes clusters on Microsoft Azure.",
     "org.label-schema.docker.cmd":  "docker run -v ${PWD}:/acs-engine/workspace -it --rm microsoft/acs-engine:0.16.0",
     "org.label-schema.license":  "MIT",
     "org.label-schema.name":  "Azure Container Service Engine (acs-engine)",

@@ -2,7 +2,7 @@
 
 ## Overview
 
-These cluster definition examples demonstrate how to create customized Docker Enabled Cluster with Windows on Microsoft Azure.
+These cluster definition examples demonstrate how to create customized Kubernetes clusters with Windows on Microsoft Azure.
 
 ## User Guides
 
