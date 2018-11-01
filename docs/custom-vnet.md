@@ -143,7 +143,7 @@ As you can see, for all node pools definition (master or agents) you can use the
 Once your are ready with the cluster definition file, you can use ACS Engine to generate the ARM template that will be used to deploy the cluster on Azure:
 
 ```bash
-acs-engine azuredeploy.swarm.clusterdefinition.json
+aks-engine azuredeploy.swarm.clusterdefinition.json
 ```
 
 This command will output three files:

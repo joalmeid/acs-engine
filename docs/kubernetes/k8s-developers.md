@@ -39,4 +39,4 @@ docker push dockerhubid/hyperkube-amd64:sometag
 }
 ```
 
-* Run `./bin/acs-engine deploy --api-model the_json_file_you_just_edited.json ...` [as normal](deploy.md).
+* Run `./bin/aks-engine deploy --api-model the_json_file_you_just_edited.json ...` [as normal](deploy.md).

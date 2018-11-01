@@ -10,7 +10,7 @@
     - [Create a Resource Group and Service Principal](#create-a-resource-group-and-service-principal)
         - [Create a Resource Group and Service Principal (Windows)](#create-a-resource-group-and-service-principal-windows)
         - [Create a Resource Group and Service Principal (Mac+Linux)](#create-a-resource-group-and-service-principal-maclinux)
-    - [Create an acs-engine apimodel](#create-an-acs-engine-apimodel)
+    - [Create an aks-engine apimodel](#create-an-aks-engine-apimodel)
         - [Filling out apimodel (Windows)](#filling-out-apimodel-windows)
         - [Filling out apimodel (Mac & Linux)](#filling-out-apimodel-mac--linux)
     - [Generate Azure Resource Manager template](#generate-azure-resource-manager-template)
@@ -64,12 +64,12 @@ Windows support is evolving rapidly, so be sure to use the latest ACS-Engine  ve
 
 2. Find the latest version, and download the file ending in `-windows-amd64.zip`.
 
-3. Extract the `acs-engine...-windows-amd64.zip` file to a working folder such as `c:\tools`
+3. Extract the `aks-engine...-windows-amd64.zip` file to a working folder such as `c:\tools`
 
-4. Check that it runs with `.\acs-engine.exe version`
+4. Check that it runs with `.\aks-engine.exe version`
 
 ```none
-PS C:\Users\patrick\acs-engine> .\acs-engine.exe version
+PS C:\Users\patrick\aks-engine> .\aks-engine.exe version
 Version: v0.20.6
 GitCommit: 293adfda
 GitTreeState: clean
@@ -88,7 +88,7 @@ $oldPath = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTar
 
 The latest release of Kubernetes Control (kubectl) is available on the [Kubernetes release page](https://kubernetes.io/docs/imported/release/notes/). Look for `kubernetes-client-windows-amd64.tar.gz` and download it.
 
-Windows 10 version 1803 already includes `tar`, so extract the archive and move `kubectl.exe` to the same folder (such as `c:\tools`) that you put `acs-engine.exe`. If you don't already have `tar`, then [busybox-w32](https://frippery.org/busybox/) is a good alternative. Download [busybox.exe](https://frippery.org/files/busybox/busybox.exe), then copy it to `c:\tools\tar.exe`. It must be named to `tar.exe` for the next step to work.
+Windows 10 version 1803 already includes `tar`, so extract the archive and move `kubectl.exe` to the same folder (such as `c:\tools`) that you put `aks-engine.exe`. If you don't already have `tar`, then [busybox-w32](https://frippery.org/busybox/) is a good alternative. Download [busybox.exe](https://frippery.org/files/busybox/busybox.exe), then copy it to `c:\tools\tar.exe`. It must be named to `tar.exe` for the next step to work.
 
 ```powershell
 tar xvzf C:\Users\patrick\Downloads\kubernetes-client-windows-amd64.tar.gz
@@ -116,7 +116,7 @@ If the file already exists, then you can skip forward to [Create a Resource Grou
 If it does not exist, then run `ssh-keygen.exe`. Use the default file, and enter a passphrase if you wish to protect it. Be sure not to use a SSH key with blank passphrase in production.
 
 ```powershell
-PS C:\Users\patrick\acs-engine> ssh-keygen.exe
+PS C:\Users\patrick\aks-engine> ssh-keygen.exe
 Generating public/private rsa key pair.
 Enter file in which to save the key (C:\Users\patrick/.ssh/id_rsa):
 Created directory 'C:\Users\patrick/.ssh'.
@@ -150,12 +150,12 @@ Windows support is evolving rapidly, so be sure to use the latest ACS-Engine ver
 
 2. Find the latest version, and download the file ending in `-darwin-amd64.zip`.
 
-3. Extract the `acs-engine...-darwin-amd64.zip` file to a folder in your path such as `/usr/local/bin`
+3. Extract the `aks-engine...-darwin-amd64.zip` file to a folder in your path such as `/usr/local/bin`
 
-4. Check that it runs with `acs-engine version`
+4. Check that it runs with `aks-engine version`
 
 ```bash
-$ acs-engine.exe version
+$ aks-engine.exe version
 Version: v0.20.6
 GitCommit: 293adfda
 GitTreeState: clean
@@ -202,12 +202,12 @@ Windows support is evolving rapidly, so be sure to use the latest ACS-Engine ver
 
 2. Find the latest version, and download the file ending in `-linux-amd64.zip`.
 
-3. Extract the `acs-engine...-linux-amd64.zip` file to a folder in your path such as `/usr/local/bin`
+3. Extract the `aks-engine...-linux-amd64.zip` file to a folder in your path such as `/usr/local/bin`
 
-4. Check that it runs with `acs-engine version`
+4. Check that it runs with `aks-engine version`
 
 ```bash
-$ acs-engine.exe version
+$ aks-engine.exe version
 Version: v0.20.6
 GitCommit: 293adfda
 GitTreeState: clean
@@ -258,7 +258,7 @@ ACS-Engine and Kubernetes also need access to deploy resources inside that resou
 `az group create --location <location> --name <name>` will create a group for you. Be sure to use a unique name for each cluster. If you need a list of available locations, run `az account list-locations -o table`.
 
 ```powershell
-PS C:\Users\patrick\acs-engine> az group create --location westus2 --name k8s-win1
+PS C:\Users\patrick\aks-engine> az group create --location westus2 --name k8s-win1
 {
   "id": "/subscriptions/df392461-0000-1111-2222-cd3aa2d911a6/resourceGroups/k8s-win1",
   "location": "westus2",
@@ -302,7 +302,7 @@ export SERVICEPRINCIPAL=$(az ad sp create-for-rbac --role="Contributor" --scopes
 ```
 
 
-### Create an acs-engine apimodel
+### Create an aks-engine apimodel
 
 Multiple samples are available in this repo under [examples/windows](../../examples/windows/). This guide will use the [windows/kubernetes.json](../../examples/windows/kubernetes.json) sample to deploy 1 Linux VM to run Kubernetes services, and 2 Windows nodes to run your Windows containers.
 
@@ -324,7 +324,7 @@ $windowsUser = "winuser"
 $windowsPassword = "Cr4shOverride!"
 
 # Download template
-Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/Azure/acs-engine/master/examples/windows/kubernetes.json -OutFile kubernetes-windows.json
+Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/Azure/aks-engine/master/examples/windows/kubernetes.json -OutFile kubernetes-windows.json
 
 # Load template
 $inJson = Get-Content .\kubernetes-windows.json | ConvertFrom-Json
@@ -356,7 +356,7 @@ export DNSPREFIX="wink8s1"
 export WINDOWSUSER="winuser"
 export WINDOWSPASSWORD="Cr4shOverride!"
 
-curl -L https://raw.githubusercontent.com/Azure/acs-engine/master/examples/windows/kubernetes.json -o kubernetes.json
+curl -L https://raw.githubusercontent.com/Azure/aks-engine/master/examples/windows/kubernetes.json -o kubernetes.json
 
 cat kubernetes.json | \
 jq ".properties.masterProfile.dnsPrefix = \"$DNSPREFIX\"" | \
@@ -369,10 +369,10 @@ jq ".properties.windowsProfile.adminUsername = \"$WINDOWSUSER\"" > kubernetes-wi
 
 ### Generate Azure Resource Manager template
 
-Now that the ACS-Engine cluster definition is complete, generate the Azure templates with `acs-engine generate kubernetes-windows-complete.json`
+Now that the ACS-Engine cluster definition is complete, generate the Azure templates with `aks-engine generate kubernetes-windows-complete.json`
 
 ```none
-acs-engine.exe generate kubernetes-windows-complete.json
+aks-engine.exe generate kubernetes-windows-complete.json
 INFO[0000] Generating assets into _output/plangk8swin1...
 ```
 
@@ -399,7 +399,7 @@ After several minutes, it will return the list of resources created in JSON. Loo
 
 #### Check that the cluster is up
 
-As mentioned earlier, `acs-engine generate` also creates Kubernetes configuration files under `_output/<dnsprefix>/kubeconfig`. There will be one per possible region, so find the one matching the region you deployed in.
+As mentioned earlier, `aks-engine generate` also creates Kubernetes configuration files under `_output/<dnsprefix>/kubeconfig`. There will be one per possible region, so find the one matching the region you deployed in.
 
 In the example above with `dnsprefix`=`plangk8swin1` and the `westus2` region, the filename would be `_output/plangk8swin1/kubeconfig/kubeconfig.westus2.json`.
 

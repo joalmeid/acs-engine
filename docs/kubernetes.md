@@ -5,8 +5,8 @@
   * [Windows](kubernetes/windows.md) - Create your first Windows Kubernetes cluster
 * [Kubernetes Next Steps](kubernetes/walkthrough.md) - You have successfully deployed a Kubernetes cluster, now what?
 * [Troubleshooting](kubernetes/troubleshooting.md) - Running into issues? Start here to troubleshoot Kubernetes.
-* [Features](kubernetes/features.md) - Guide to alpha, beta, and stable functionality in acs-engine.
-* [For Kubernetes Developers](kubernetes/k8s-developers.md) - Info for devs working on Kubernetes upstream and wanting to test using acs-engine.
+* [Features](kubernetes/features.md) - Guide to alpha, beta, and stable functionality in aks-engine.
+* [For Kubernetes Developers](kubernetes/k8s-developers.md) - Info for devs working on Kubernetes upstream and wanting to test using aks-engine.
 
 ## Known Issues
 

@@ -3,7 +3,7 @@
 [![ACS Engine](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/a8f28783-3ddc-4081-a57d-6d97147467bf.png)](https://github.com/Azure/aks-engine)
 
 ACS Engine is an open source project to generate ARM (Azure Resource Manager) templates for Kubernetes clusters on Microsoft Azure.
-This documents provides guidelines to the acs-engine testing and continuous integration process.
+This documents provides guidelines to the aks-engine testing and continuous integration process.
 
 ## Development pipeline
 
@@ -20,7 +20,7 @@ The following steps constitute ACS Engine delivery pipeline
 ```
  3. Create a template. Return to step (1) if failed.
 ```sh
-    $ acs-engine generate --api-model kubernetes.json
+    $ aks-engine generate --api-model kubernetes.json
 ```
  4. Deploy the template in Azure. Return to step (1) if failed.
 ```sh

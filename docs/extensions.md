@@ -1,6 +1,6 @@
 # Microsoft Azure Container Service Engine - Extensions
 
-Extensions in acs-engine provide an easy way for acs-engine users to add pre-packaged functionality into their cluster.  For example, an extension could configure a monitoring solution on an ACS cluster.  The user would not need to know the details of how to install the monitoring solution.  Rather, the user would simply add the extension into the extensionProfiles section of the template.
+Extensions in aks-engine provide an easy way for aks-engine users to add pre-packaged functionality into their cluster.  For example, an extension could configure a monitoring solution on an ACS cluster.  The user would not need to know the details of how to install the monitoring solution.  Rather, the user would simply add the extension into the extensionProfiles section of the template.
 
 # extensionProfiles
 
@@ -170,7 +170,7 @@ The following is an example of the template.json file.
    "variables": {
 		"singleQuote": "'",
 		"sampleStorageAccountName": "[concat(uniqueString(concat(parameters('storageAccountBaseName'), 'sample')), 'aa')]"
-		"initScriptUrl": "https://raw.githubusercontent.com/Azure/acs-engine/master/extensions/EXTENSION-NAME/v1/EXTENSION-NAME.sh"
+		"initScriptUrl": "https://raw.githubusercontent.com/Azure/aks-engine/master/extensions/EXTENSION-NAME/v1/EXTENSION-NAME.sh"
    },
    "resources": [
 	{
@@ -210,7 +210,7 @@ The following is an example of the template.json file.
 
 # Creating extension template-link.json
 
-When acs-engine generates the azuredeploy.json file, this JSON snippet will be injected. This code calls the linked template (template.json) defined above.
+When aks-engine generates the azuredeploy.json file, this JSON snippet will be injected. This code calls the linked template (template.json) defined above.
 
 Any parameters from the main azuredeploy.json file that is needed by template.json must be passed in via the parameters section. The parameter, "extensionParameters" is an optional parameter that is passed in directly by the user in the **extensionProfiles** section as defined in an earlier section. This special parameter can be used to pass in information such as an activation key or access code (as an example). If the extension does not need this capability, this optional parameter can be deleted.
 
@@ -229,7 +229,7 @@ Replace "**EXTENSION-NAME**" with the name of the extension.
     "properties": {
         "mode": "Incremental",
         "templateLink": {
-            "uri": "https://raw.githubusercontent.com/Azure/acs-engine/master/extensions/EXTENSION-NAME/v1/template.json",
+            "uri": "https://raw.githubusercontent.com/Azure/aks-engine/master/extensions/EXTENSION-NAME/v1/template.json",
             "contentVersion": "1.0.0.0"
         },
         "parameters": {
