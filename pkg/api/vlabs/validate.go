@@ -239,7 +239,7 @@ func (a *Properties) validateOrchestratorProfile(isUpdate bool) error {
 						return errors.Errorf("could not validate version")
 					}
 					if sv.LT(minVersion) {
-						return errors.Errorf("enablePodSecurityPolicy is only supported in acs-engine for Kubernetes version %s or greater; unable to validate for Kubernetes version %s",
+						return errors.Errorf("enablePodSecurityPolicy is only supported in aks-engine for Kubernetes version %s or greater; unable to validate for Kubernetes version %s",
 							minVersion.String(), version)
 					}
 				}
@@ -280,9 +280,9 @@ func (a *Properties) validateOrchestratorProfile(isUpdate bool) error {
 				// if there isn't a supported patch version for this version fail
 				if patchVersion == "" {
 					if a.HasWindows() {
-						return errors.Errorf("the following OrchestratorProfile configuration is not supported with Windows agentpools: OrchestratorType: \"%s\", OrchestratorRelease: \"%s\", OrchestratorVersion: \"%s\". Please check supported Release or Version for this build of acs-engine", o.OrchestratorType, o.OrchestratorRelease, o.OrchestratorVersion)
+						return errors.Errorf("the following OrchestratorProfile configuration is not supported with Windows agentpools: OrchestratorType: \"%s\", OrchestratorRelease: \"%s\", OrchestratorVersion: \"%s\". Please check supported Release or Version for this build of aks-engine", o.OrchestratorType, o.OrchestratorRelease, o.OrchestratorVersion)
 					}
-					return errors.Errorf("the following OrchestratorProfile configuration is not supported: OrchestratorType: \"%s\", OrchestratorRelease: \"%s\", OrchestratorVersion: \"%s\". Please check supported Release or Version for this build of acs-engine", o.OrchestratorType, o.OrchestratorRelease, o.OrchestratorVersion)
+					return errors.Errorf("the following OrchestratorProfile configuration is not supported: OrchestratorType: \"%s\", OrchestratorRelease: \"%s\", OrchestratorVersion: \"%s\". Please check supported Release or Version for this build of aks-engine", o.OrchestratorType, o.OrchestratorRelease, o.OrchestratorVersion)
 				}
 			}
 
@@ -309,7 +309,7 @@ func (a *Properties) validateMasterProfile() error {
 	}
 
 	if m.IsVirtualMachineScaleSets() && a.OrchestratorProfile.OrchestratorType == Kubernetes {
-		log.Warnf("Clusters with VMSS masters are not yet upgradable! You will not be able to upgrade your cluster until a future version of acs-engine!")
+		log.Warnf("Clusters with VMSS masters are not yet upgradable! You will not be able to upgrade your cluster until a future version of aks-engine!")
 		e := validateVMSS(a.OrchestratorProfile, false, m.StorageProfile)
 		if e != nil {
 			return e
@@ -480,7 +480,7 @@ func (a *Properties) validateAddons() error {
 						false,
 						false)
 					if version == "" {
-						return errors.Errorf("the following user supplied OrchestratorProfile configuration is not supported: OrchestratorType: %s, OrchestratorRelease: %s, OrchestratorVersion: %s. Please check supported Release or Version for this build of acs-engine", a.OrchestratorProfile.OrchestratorType, a.OrchestratorProfile.OrchestratorRelease, a.OrchestratorProfile.OrchestratorVersion)
+						return errors.Errorf("the following user supplied OrchestratorProfile configuration is not supported: OrchestratorType: %s, OrchestratorRelease: %s, OrchestratorVersion: %s. Please check supported Release or Version for this build of aks-engine", a.OrchestratorProfile.OrchestratorType, a.OrchestratorProfile.OrchestratorRelease, a.OrchestratorProfile.OrchestratorVersion)
 					}
 					sv, err := semver.Make(version)
 					if err != nil {
@@ -617,7 +617,7 @@ func (a *Properties) validateManagedIdentity() error {
 				false,
 				false)
 			if version == "" {
-				return errors.Errorf("the following user supplied OrchestratorProfile configuration is not supported: OrchestratorType: %s, OrchestratorRelease: %s, OrchestratorVersion: %s. Please check supported Release or Version for this build of acs-engine", a.OrchestratorProfile.OrchestratorType, a.OrchestratorProfile.OrchestratorRelease, a.OrchestratorProfile.OrchestratorVersion)
+				return errors.Errorf("the following user supplied OrchestratorProfile configuration is not supported: OrchestratorType: %s, OrchestratorRelease: %s, OrchestratorVersion: %s. Please check supported Release or Version for this build of aks-engine", a.OrchestratorProfile.OrchestratorType, a.OrchestratorProfile.OrchestratorRelease, a.OrchestratorProfile.OrchestratorVersion)
 			}
 			sv, err := semver.Make(version)
 			if err != nil {
@@ -745,7 +745,7 @@ func validateVMSS(o *OrchestratorProfile, isUpdate bool, storageProfile string) 
 			isUpdate,
 			false)
 		if version == "" {
-			return errors.Errorf("the following OrchestratorProfile configuration is not supported: OrchestratorType: %s, OrchestratorRelease: %s, OrchestratorVersion: %s. Please check supported Release or Version for this build of acs-engine", o.OrchestratorType, o.OrchestratorRelease, o.OrchestratorVersion)
+			return errors.Errorf("the following OrchestratorProfile configuration is not supported: OrchestratorType: %s, OrchestratorRelease: %s, OrchestratorVersion: %s. Please check supported Release or Version for this build of aks-engine", o.OrchestratorType, o.OrchestratorRelease, o.OrchestratorVersion)
 		}
 
 		sv, err := semver.Make(version)
@@ -971,7 +971,7 @@ func (k *KubernetesConfig) Validate(k8sVersion string, hasWindows bool) error {
 				ctrlMgrNodeMonitorGracePeriod, _ := time.ParseDuration(k.ControllerManagerConfig["--node-monitor-grace-period"])
 				kubeletRetries := ctrlMgrNodeMonitorGracePeriod.Seconds() / nodeStatusUpdateFrequency.Seconds()
 				if kubeletRetries < minKubeletRetries {
-					return errors.Errorf("acs-engine requires that --node-monitor-grace-period(%f)s be larger than nodeStatusUpdateFrequency(%f)s by at least a factor of %d; ", ctrlMgrNodeMonitorGracePeriod.Seconds(), nodeStatusUpdateFrequency.Seconds(), minKubeletRetries)
+					return errors.Errorf("aks-engine requires that --node-monitor-grace-period(%f)s be larger than nodeStatusUpdateFrequency(%f)s by at least a factor of %d; ", ctrlMgrNodeMonitorGracePeriod.Seconds(), nodeStatusUpdateFrequency.Seconds(), minKubeletRetries)
 				}
 			}
 		}

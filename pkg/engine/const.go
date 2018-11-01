@@ -69,7 +69,7 @@ const (
 	// DefaultELBSVCAddonName is the name of the elb service addon deployment
 	DefaultELBSVCAddonName = "elb-svc"
 	// DefaultGeneratorCode specifies the source generator of the cluster template.
-	DefaultGeneratorCode = "acsengine"
+	DefaultGeneratorCode = "aksengine"
 	// DefaultReschedulerAddonName is the name of the rescheduler addon deployment
 	DefaultReschedulerAddonName = "rescheduler"
 	// DefaultMetricsServerAddonName is the name of the kubernetes Metrics server addon deployment
@@ -94,7 +94,7 @@ const (
 
 const (
 	//DefaultExtensionsRootURL  Root URL for extensions
-	DefaultExtensionsRootURL = "https://raw.githubusercontent.com/Azure/acs-engine/master/"
+	DefaultExtensionsRootURL = "https://raw.githubusercontent.com/Azure/aks-engine/master/"
 	// DefaultDockerEngineRepo for grabbing docker engine packages
 	DefaultDockerEngineRepo = "https://download.docker.com/linux/ubuntu"
 	// DefaultDockerComposeURL for grabbing docker images
@@ -103,7 +103,7 @@ const (
 
 const (
 	//DefaultConfigurationScriptRootURL  Root URL for configuration script (used for script extension on RHEL)
-	DefaultConfigurationScriptRootURL = "https://raw.githubusercontent.com/Azure/acs-engine/master/parts/"
+	DefaultConfigurationScriptRootURL = "https://raw.githubusercontent.com/Azure/aks-engine/master/parts/"
 )
 
 const (

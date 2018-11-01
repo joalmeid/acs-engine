@@ -49,7 +49,7 @@
       {
         "name": "hello-world-k8s",
         "version": "v1",
-        "rootURL": "https://raw.githubusercontent.com/Azure/acs-engine/master/"
+        "rootURL": "https://raw.githubusercontent.com/Azure/aks-engine/master/"
       }
     ],
     "servicePrincipalProfile": {

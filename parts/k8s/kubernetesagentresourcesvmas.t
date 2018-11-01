@@ -140,7 +140,7 @@
         "creationSource" : "[concat(parameters('generatorCode'), '-', variables('{{.Name}}VMNamePrefix'), copyIndex(variables('{{.Name}}Offset')))]",
         "resourceNameSuffix" : "[parameters('nameSuffix')]",
         "orchestrator" : "[variables('orchestratorNameVersionTag')]",
-        "acsengineVersion" : "[parameters('acsengineVersion')]",
+        "aksengineVersion" : "[parameters('aksengineVersion')]",
         "poolName" : "{{.Name}}"
       },
       "location": "[variables('location')]",

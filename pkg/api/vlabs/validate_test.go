@@ -143,7 +143,7 @@ func Test_OrchestratorProfile_Validate(t *testing.T) {
 					},
 				},
 			},
-			expectedError: "enablePodSecurityPolicy is only supported in acs-engine for Kubernetes version 1.8.0 or greater; unable to validate for Kubernetes version 1.7.16",
+			expectedError: "enablePodSecurityPolicy is only supported in aks-engine for Kubernetes version 1.8.0 or greater; unable to validate for Kubernetes version 1.7.16",
 		},
 		"should not error with empty object": {
 			properties: &Properties{

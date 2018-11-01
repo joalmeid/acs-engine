@@ -48,7 +48,7 @@ node("slave") {
                 prefix = readFile('INSTANCE_NAME_PREFIX').trim()
                 // Create report directory
                 sh("mkdir -p ${junit_dir}")
-                // Build and test acs-engine
+                // Build and test aks-engine
                 sh('make ci')
               }
               def pairs = "${SCENARIOS_LOCATIONS}".tokenize('|')

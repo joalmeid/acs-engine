@@ -3,7 +3,7 @@
 set -eu -o pipefail
 set -x
 
-docker build --pull -t acs-engine .
+docker build --pull -t aks-engine .
 
 docker run -it \
 	--privileged \
@@ -12,6 +12,6 @@ docker run -it \
 	-v `pwd`:/gopath/src/github.com/Azure/aks-engine \
 	-v ~/.azure:/root/.azure \
 	-w /gopath/src/github.com/Azure/aks-engine \
-		acs-engine /bin/bash
+		aks-engine /bin/bash
 
 chown -R "$(logname):$(id -gn $(logname))" . ~/.azure

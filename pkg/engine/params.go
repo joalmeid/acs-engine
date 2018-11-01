@@ -7,14 +7,14 @@ import (
 	"github.com/Azure/aks-engine/pkg/helpers"
 )
 
-func getParameters(cs *api.ContainerService, generatorCode string, acsengineVersion string) (paramsMap, error) {
+func getParameters(cs *api.ContainerService, generatorCode string, aksengineVersion string) (paramsMap, error) {
 	properties := cs.Properties
 	location := cs.Location
 	parametersMap := paramsMap{}
 	cloudSpecConfig := cs.GetCloudSpecConfig()
 
 	// acsengine Parameters
-	addValue(parametersMap, "acsengineVersion", acsengineVersion)
+	addValue(parametersMap, "aksengineVersion", aksengineVersion)
 
 	// Master Parameters
 	addValue(parametersMap, "location", location)
@@ -143,7 +143,7 @@ func getParameters(cs *api.ContainerService, generatorCode string, acsengineVers
 			if properties.OrchestratorProfile.KubernetesConfig != nil {
 
 				// Kubernetes packages as zip file as created by scripts/build-windows-k8s.sh
-				// will be removed in future release as if gets phased out (https://github.com/Azure/acs-engine/issues/3851)
+				// will be removed in future release as if gets phased out (https://github.com/Azure/aks-engine/issues/3851)
 				kubeBinariesSASURL := properties.OrchestratorProfile.KubernetesConfig.CustomWindowsPackageURL
 				if kubeBinariesSASURL == "" {
 					kubeBinariesSASURL = cloudSpecConfig.KubernetesSpecConfig.KubeBinariesSASURLBase + api.K8sComponentsByVersionMap[k8sVersion]["windowszip"]

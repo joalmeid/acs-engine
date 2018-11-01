@@ -39,14 +39,14 @@ type Config struct {
 
 	ClusterDefinitionPath     string // The original template we want to use to build the cluster from.
 	ClusterDefinitionTemplate string // This is the template after we splice in the environment variables
-	GeneratedDefinitionPath   string // Holds the contents of running acs-engine generate
+	GeneratedDefinitionPath   string // Holds the contents of running aks-engine generate
 	OutputPath                string // This is the root output path
 	DefinitionName            string // Unique cluster name
 	GeneratedTemplatePath     string // azuredeploy.json path
 	GeneratedParametersPath   string // azuredeploy.parameters.json path
 }
 
-// Engine holds necessary information to interact with acs-engine cli
+// Engine holds necessary information to interact with aks-engine cli
 type Engine struct {
 	Config             *Config
 	ClusterDefinition  *api.VlabsARMContainerService // Holds the parsed ClusterDefinition
@@ -122,7 +122,7 @@ func Build(cfg *config.Config, masterSubnetID string, agentSubnetID string, isVM
 			// Or, choose the version string if ENV declares it
 		} else if config.OrchestratorVersion != "" {
 			cs.ContainerService.Properties.OrchestratorProfile.OrchestratorVersion = config.OrchestratorVersion
-			// If ENV similarly has no version opinion, we will rely upon the acs-engine default
+			// If ENV similarly has no version opinion, we will rely upon the aks-engine default
 		} else {
 			log.Println("No orchestrator version specified, will use the default.")
 		}

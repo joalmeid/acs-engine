@@ -47,7 +47,7 @@ uksouth ukwest"
                 sh("az account set --subscription ${SUBSCRIPTION_ID}")
                 // Create report directory
                 sh("mkdir ${junit_dir}")
-                // Build and test acs-engine
+                // Build and test aks-engine
                 sh('make ci')
                 // Create template
                 env.CLUSTER_DEFINITION = "examples/${CLUSTER_DEFINITION}"

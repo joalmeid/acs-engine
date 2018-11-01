@@ -33,7 +33,7 @@ import (
 
 const (
 	// ApplicationDir is the name of the dir where the token is cached
-	ApplicationDir = ".acsengine"
+	ApplicationDir = ".aksengine"
 )
 
 var (

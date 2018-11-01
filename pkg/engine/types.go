@@ -7,7 +7,7 @@ import (
 )
 
 // VlabsContainerService is the type we read and write from file
-// needed because the json that is sent to ARM and acs-engine
+// needed because the json that is sent to ARM and aks-engine
 // is different from the json that the ACS RP Api gets from ARM
 type VlabsContainerService struct {
 	api.TypeMeta

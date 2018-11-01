@@ -228,7 +228,7 @@ func GetMaxVersion(versions []string, preRelease bool) string {
 	return highest.String()
 }
 
-// AllKubernetesWindowsSupportedVersions maintain a set of available k8s Windows versions in acs-engine
+// AllKubernetesWindowsSupportedVersions maintain a set of available k8s Windows versions in aks-engine
 var AllKubernetesWindowsSupportedVersions = getAllKubernetesWindowsSupportedVersionsMap()
 
 func getAllKubernetesWindowsSupportedVersionsMap() map[string]bool {

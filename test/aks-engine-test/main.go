@@ -539,7 +539,7 @@ func mainInternal() error {
 	var logErrorFile string
 	var err error
 	flag.StringVar(&configFile, "c", "", "deployment configurations")
-	flag.StringVar(&rootDir, "d", "", "acs-engine root directory")
+	flag.StringVar(&rootDir, "d", "", "aks-engine root directory")
 	flag.StringVar(&logErrorFile, "e", "", "logError config file")
 	flag.StringVar(&saName, "j", "", "SA Name")
 	flag.StringVar(&saKey, "k", "", "SA Key")
@@ -576,7 +576,7 @@ func mainInternal() error {
 	testManager.Manager = report.New(os.Getenv("JOB_BASE_NAME"), buildNum, len(testManager.config.Deployments), logErrorFile)
 	// check root directory
 	if rootDir == "" {
-		return errors.New("acs-engine root directory is not provided")
+		return errors.New("aks-engine root directory is not provided")
 	}
 	testManager.rootDir = rootDir
 	if _, err = os.Stat(fmt.Sprintf("%s/%s", rootDir, script)); err != nil {

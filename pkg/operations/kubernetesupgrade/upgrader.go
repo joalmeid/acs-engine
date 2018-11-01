@@ -520,7 +520,7 @@ func (ku *Upgrader) upgradeAgentScaleSets(ctx context.Context) error {
 	return nil
 }
 
-func (ku *Upgrader) generateUpgradeTemplate(upgradeContainerService *api.ContainerService, acsengineVersion string) (map[string]interface{}, map[string]interface{}, error) {
+func (ku *Upgrader) generateUpgradeTemplate(upgradeContainerService *api.ContainerService, aksengineVersion string) (map[string]interface{}, map[string]interface{}, error) {
 	var err error
 	ctx := engine.Context{
 		Translator: ku.Translator,
@@ -538,7 +538,7 @@ func (ku *Upgrader) generateUpgradeTemplate(upgradeContainerService *api.Contain
 
 	var templateJSON string
 	var parametersJSON string
-	if templateJSON, parametersJSON, err = templateGenerator.GenerateTemplate(upgradeContainerService, engine.DefaultGeneratorCode, acsengineVersion); err != nil {
+	if templateJSON, parametersJSON, err = templateGenerator.GenerateTemplate(upgradeContainerService, engine.DefaultGeneratorCode, aksengineVersion); err != nil {
 		return nil, nil, ku.Translator.Errorf("error generating upgrade template: %s", err.Error())
 	}
 
