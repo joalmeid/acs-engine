@@ -6,7 +6,7 @@ These cluster definition examples demonstrate how to create a customized Kuberne
 
 ## Walkthroughs
 
-* [ACS Engine](../docs/acsengine.md) - shows you how to use the ACS engine to generate custom Kubernetes container clusters
+* [AKS Engine](../docs/acsengine.md) - shows you how to use the AKS Engine to generate custom Kubernetes container clusters
 * [Cluster Definition](../docs/clusterdefinition.md) - describes the components of the cluster definition file
 * [Kubernetes Walkthrough](../docs/kubernetes.md) - shows how to create a Kubernetes cluster on Azure
 * [Custom VNET](vnet) - shows how to use a custom VNET

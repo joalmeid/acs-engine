@@ -31,9 +31,9 @@ source <(aks-engine completion)
 
 ### Generate Templates
 
-ACS Engine consumes a cluster definition which outlines the desired shape, size, and configuration of Kubernetes. There are a number of features that can be enabled through the cluster definition.
+AKS Engine consumes a cluster definition which outlines the desired shape, size, and configuration of Kubernetes. There are a number of features that can be enabled through the cluster definition.
 
-See [ACS Engine The Long Way](kubernetes/deploy.md#aks-engine-the-long-way) for an example on generating templates by hand.
+See [AKS Engine The Long Way](kubernetes/deploy.md#aks-engine-the-long-way) for an example on generating templates by hand.
 
 <a href="#deployment-usage"></a>
 
@@ -81,7 +81,7 @@ New-AzureRmResourceGroupDeployment `
 
 <a href="#build-from-source"></a>
 
-## Build ACS Engine from Source
+## Build AKS Engine from Source
 
 ### Docker Development Environment
 
@@ -134,7 +134,7 @@ Use "aks-engine [command] --help" for more information about a command.
 
 ## Building on Windows, OSX, and Linux
 
-Building ACS Engine from source has a few requirements for each of the platforms. Download and install the pre-reqs for your platform, Windows, Linux, or Mac:
+Building AKS Engine from source has a few requirements for each of the platforms. Download and install the pre-reqs for your platform, Windows, Linux, or Mac:
 
 ### Prerequisite
 

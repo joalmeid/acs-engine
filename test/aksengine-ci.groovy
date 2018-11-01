@@ -93,7 +93,7 @@ node("slave") {
                 gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
                 emailext(
                   to: to,
-                  subject: "[ACS Engine is BROKEN] ${env.JOB_NAME} #${env.BUILD_NUM}",
+                  subject: "[AKS Engine is BROKEN] ${env.JOB_NAME} #${env.BUILD_NUM}",
                   body: "Commit: ${gitCommit}\n\n${url}${errorMsg}"
                 )
               }
