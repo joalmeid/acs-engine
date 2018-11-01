@@ -753,13 +753,6 @@
       },
       {{end}}
       {{end}}
-      {{if (not UseMasterCustomImage)}}
-      "plan": {
-        "name": "[parameters('osImageSku')]",
-        "publisher": "[parameters('osImagePublisher')]",
-        "product": "[parameters('osImageOffer')]"
-      },
-      {{end}}
       "properties": {
         "availabilitySet": {
           "id": "[resourceId('Microsoft.Compute/availabilitySets',variables('masterAvailabilitySet'))]"
