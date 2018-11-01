@@ -10,7 +10,6 @@ import (
 	"time"
 
 	"github.com/Azure/aks-engine/pkg/helpers"
-
 	"github.com/Azure/azure-sdk-for-go/services/authorization/mgmt/2015-07-01/authorization"
 	"github.com/Azure/azure-sdk-for-go/services/compute/mgmt/2018-04-01/compute"
 	"github.com/Azure/azure-sdk-for-go/services/graphrbac/1.6/graphrbac"
@@ -375,7 +374,7 @@ func (mc *MockACSEngineClient) ListVirtualMachines(ctx context.Context, resource
 	resourceNameSuffixString := "resourceNameSuffix"
 	poolnameString := "poolName"
 
-	creationSource := "acsengine-k8s-agentpool1-12345678-0"
+	creationSource := "aksengine-k8s-agentpool1-12345678-0"
 	orchestrator := "Kubernetes:1.6.9"
 	resourceNameSuffix := "12345678"
 	poolname := "agentpool1"
@@ -443,7 +442,7 @@ func (mc *MockACSEngineClient) GetVirtualMachine(ctx context.Context, resourceGr
 	resourceNameSuffixString := "resourceNameSuffix"
 	poolnameString := "poolName"
 
-	creationSource := "acsengine-k8s-agentpool1-12345678-0"
+	creationSource := "aksengine-k8s-agentpool1-12345678-0"
 	orchestrator := "Kubernetes:1.6.9"
 	resourceNameSuffix := "12345678"
 	poolname := "agentpool1"

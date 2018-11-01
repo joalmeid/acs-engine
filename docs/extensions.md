@@ -1,4 +1,4 @@
-# Microsoft Azure Container Service Engine - Extensions
+# Microsoft Azure Kubernetes Service Engine - Extensions
 
 Extensions in aks-engine provide an easy way for aks-engine users to add pre-packaged functionality into their cluster.  For example, an extension could configure a monitoring solution on an ACS cluster.  The user would not need to know the details of how to install the monitoring solution.  Rather, the user would simply add the extension into the extensionProfiles section of the template.
 

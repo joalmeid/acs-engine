@@ -19,13 +19,13 @@ $ docker image inspect microsoft/aks-engine:0.16.0 --format "{{json .Config.Labe
 {
   "maintainer": "Microsoft",
   "org.label-schema.build-date": "2017-10-25T04:35:06Z",
-  "org.label-schema.description": "The Azure Container Service Engine (aks-engine) generates ARM (Azure Resource Manager) templates for Kubernetes clusters on Microsoft Azure.",
+  "org.label-schema.description": "The Azure Kubernetes Service Engine (aks-engine) generates ARM (Azure Resource Manager) templates for Kubernetes clusters on Microsoft Azure.",
   "org.label-schema.docker.cmd": "docker run -v ${PWD}:/aks-engine/workspace -it --rm microsoft/aks-engine:0.16.0",
   "org.label-schema.license": "MIT",
-  "org.label-schema.name": "Azure Container Service Engine (aks-engine)",
+  "org.label-schema.name": "Azure Kubernetes Service Engine (aks-engine)",
   "org.label-schema.schema-version": "1.0",
   "org.label-schema.url": "https://github.com/Azure/aks-engine",
-  "org.label-schema.usage": "https://github.com/Azure/aks-engine/blob/master/docs/acsengine.md",
+  "org.label-schema.usage": "https://github.com/Azure/aks-engine/blob/master/docs/aksengine.md",
   "org.label-schema.vcs-url": "https://github.com/Azure/aks-engine.git",
   "org.label-schema.vendor": "Microsoft",
   "org.label-schema.version": "0.16.0"
@@ -38,13 +38,13 @@ PS> docker image inspect microsoft/aks-engine:0.16.0 --format "{{json .Config.La
 {
     "maintainer":  "Microsoft",
     "org.label-schema.build-date":  "2017-10-25T04:35:06Z",
-    "org.label-schema.description":  "The Azure Container Service Engine (aks-engine) generates ARM (Azure Resource Manager) templates for Kubernetes clusters on Microsoft Azure.",
+    "org.label-schema.description":  "The Azure Kubernetes Service Engine (aks-engine) generates ARM (Azure Resource Manager) templates for Kubernetes clusters on Microsoft Azure.",
     "org.label-schema.docker.cmd":  "docker run -v ${PWD}:/aks-engine/workspace -it --rm microsoft/aks-engine:0.16.0",
     "org.label-schema.license":  "MIT",
-    "org.label-schema.name":  "Azure Container Service Engine (aks-engine)",
+    "org.label-schema.name":  "Azure Kubernetes Service Engine (aks-engine)",
     "org.label-schema.schema-version":  "1.0",
     "org.label-schema.url":  "https://github.com/Azure/aks-engine",
-    "org.label-schema.usage":  "https://github.com/Azure/aks-engine/blob/master/docs/acsengine.md",
+    "org.label-schema.usage":  "https://github.com/Azure/aks-engine/blob/master/docs/aksengine.md",
     "org.label-schema.vcs-url":  "https://github.com/Azure/aks-engine.git",
     "org.label-schema.vendor":  "Microsoft",
     "org.label-schema.version":  "0.16.0"

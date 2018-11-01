@@ -2,7 +2,7 @@
 
 ## Install Prerequisites
 
-All the commands in this guide require both the Azure CLI and `aks-engine`. Follow the [installation instructions to download aks-engine before continuing](../acsengine.md#install-aks-engine) or [compile from source](../acsengine.md#build-from-source).
+All the commands in this guide require both the Azure CLI and `aks-engine`. Follow the [installation instructions to download aks-engine before continuing](../aksengine.md#install-aks-engine) or [compile from source](../aksengine.md#build-from-source).
 
 For installation instructions see [the Azure CLI GitHub repository](https://github.com/Azure/azure-cli#installation) for the latest release.
 
@@ -135,7 +135,7 @@ aks-engine generate --set agentPoolProfiles[0].count=5,agentPoolProfiles[1].name
 
 ### Step 5: Submit your Templates to Azure Resource Manager (ARM)
 
-[Deploy the output azuredeploy.json and azuredeploy.parameters.json](../acsengine.md#deployment-usage)
+[Deploy the output azuredeploy.json and azuredeploy.parameters.json](../aksengine.md#deployment-usage)
 
 * To enable the optional network policy enforcement using calico, you have to set the parameter during this step according to this [guide](../kubernetes.md#optional-enable-network-policy-enforcement-using-calico)
 * To enable the optional network policy enforcement using cilium, you have to set the parameter during this step according to this [guide](../kubernetes.md#optional-enable-network-policy-enforcement-using-cilium)
@@ -165,7 +165,7 @@ az vm show -g <resource group of cluster> -n <name of Master or agent VM> --quer
 ```json
 {
   "aksengineVersion": "v0.15.0",
-  "creationSource": "acsengine-k8s-master-22116803-0",
+  "creationSource": "aksengine-k8s-master-22116803-0",
   "orchestrator": "Kubernetes:1.9.5",
   "poolName": "master",
   "resourceNameSuffix": "22116803"

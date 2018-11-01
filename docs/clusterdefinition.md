@@ -1,4 +1,4 @@
-# Microsoft Azure Container Service Engine - Cluster Definition
+# Microsoft Azure Kubernetes Service Engine - Cluster Definition
 
 ## Cluster Defintions for apiVersion "vlabs"
 
@@ -641,7 +641,7 @@ format for `keyvaultSecretRef.vaultId`, can be obtained in cli, or found in the 
 
 ## Cluster Defintions for apiVersion "2016-03-30"
 
-Here are the cluster definitions for apiVersion "2016-03-30". This matches the api version of the Azure Container Service Engine.
+Here are the cluster definitions for apiVersion "2016-03-30". This matches the api version of the Azure Kubernetes Service Engine.
 
 ### apiVersion
 

@@ -1,4 +1,4 @@
-# Microsoft Azure Container Service Engine - Builds Kubernetes Clusters
+# Microsoft Azure Kubernetes Service Engine - Builds Kubernetes Clusters
 
 [![Coverage Status](https://codecov.io/gh/Azure/aks-engine/branch/master/graph/badge.svg)](https://codecov.io/gh/Azure/aks-engine)
 [![CircleCI](https://circleci.com/gh/Azure/aks-engine/tree/master.svg?style=svg)](https://circleci.com/gh/Azure/aks-engine/tree/master)
@@ -6,7 +6,7 @@
 
 ## Overview
 
-The Azure Container Service Engine (`aks-engine`) generates ARM (Azure Resource Manager) templates for Kubernetes clusters on Microsoft Azure. The input to the tool is a cluster definition. The cluster definition (or apimodel) is very similar to (in many cases the same as) the ARM template syntax used to deploy a Microsoft Azure Kubernetes Service cluster.
+The Azure Kubernetes Service Engine (`aks-engine`) generates ARM (Azure Resource Manager) templates for Kubernetes clusters on Microsoft Azure. The input to the tool is a cluster definition. The cluster definition (or apimodel) is very similar to (in many cases the same as) the ARM template syntax used to deploy a Microsoft Azure Kubernetes Service cluster.
 
 The cluster definition file enables you to customize your Kubernetes cluster in many ways, including:
 
@@ -20,7 +20,7 @@ The cluster definition file enables you to customize your Kubernetes cluster in 
 * Custom VNET
 * Extensions
 
-More info, including a thorough walkthrough is [here](docs/acsengine.md).
+More info, including a thorough walkthrough is [here](docs/aksengine.md).
 
 ## User guides
 
