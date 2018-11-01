@@ -11,7 +11,7 @@ import (
 const (
 	// ACSRPTests are the rp tests
 	ACSRPTests string = "ACSRpTests"
-	// ACSEngineTests are the ACS-Engine tests
+	// ACSEngineTests are the AKS Engine tests
 	ACSEngineTests string = "ACSEngineTests"
 	// SimDemTests are the SimDem tests
 	SimDemTests string = "SimDemTests"

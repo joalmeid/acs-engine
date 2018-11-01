@@ -6,10 +6,10 @@ All the commands in this guide require both the Azure CLI and `aks-engine`. Foll
 
 For installation instructions see [the Azure CLI GitHub repository](https://github.com/Azure/azure-cli#installation) for the latest release.
 
-This guide assumes you already have deployed a cluster using acs engine. For more details on how to do that see [deploy](./deploy.md).
+This guide assumes you already have deployed a cluster using AKS Engine. For more details on how to do that see [deploy](./deploy.md).
 
 ## Scale
-After a cluster has been deployed using acs engine the cluster can be interacted further by using the scale command. The scale command can add more nodes to an existing node pool or remove them. Nodes will always be added or removed from the end of the agent pool. Nodes will be cordoned and drained before deletion.
+After a cluster has been deployed using AKS Engine the cluster can be interacted further by using the scale command. The scale command can add more nodes to an existing node pool or remove them. Nodes will always be added or removed from the end of the agent pool. Nodes will be cordoned and drained before deletion.
 
 This guide will assume you have a cluster deployed and the output for the deployed cluster is stored at _output/mycluster. It will also assume there is a node pool named "agentpool1" in your cluster. AKS Engine will default to storing the output at ./_output/dns-prefix from where the aks-engine command was ran.
 

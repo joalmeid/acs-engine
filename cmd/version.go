@@ -26,8 +26,8 @@ var (
 
 const (
 	versionName             = "version"
-	versionShortDescription = "Print the version of ACS-Engine"
-	versionLongDescription  = "Print the version of ACS-Engine"
+	versionShortDescription = "Print the version of AKS Engine"
+	versionLongDescription  = "Print the version of AKS Engine"
 )
 
 type versionInfo struct {

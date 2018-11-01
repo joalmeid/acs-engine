@@ -14,7 +14,7 @@ As illustrated on the figure above, we recommand to deploy the Kubernetes cluste
 
 This document assumes that you are familiar with:
 
-- Deploying Kubernetes cluster in a [custom VNET using ACS-Engine](../../examples/vnet/README.md)
+- Deploying Kubernetes cluster in a [custom VNET using AKS Engine](../../examples/vnet/README.md)
 - Azure [VPN Gateway](https://azure.microsoft.com/en-us/services/vpn-gateway/) and/or [Azure Express Route](https://azure.microsoft.com/en-us/services/expressroute/)
 - Azure [Virtual Network Peering](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview)
 
@@ -35,7 +35,7 @@ Note : There is some ongoing work to make this easier. See [aks-engine#2590](htt
 
 ### Private Cluster
 
-By default, Kubernetes deployment with aks-engine expose the the admin api publicly (and securely). This can be avoided. Using peering with private/on-premise virtual network with ACS-Engine also allows you to create cloud-hosted [private cluster](features.md#private-cluster), with no endpoint exposed over the Internet.
+By default, Kubernetes deployment with aks-engine expose the the admin api publicly (and securely). This can be avoided. Using peering with private/on-premise virtual network with AKS Engine also allows you to create cloud-hosted [private cluster](features.md#private-cluster), with no endpoint exposed over the Internet.
 
 ## Kubernetes Network
 
@@ -43,11 +43,11 @@ For your kubernetes cluster to communicate with your on-premise network, you wil
 
 ### Network
 
-Deploying ACS-Engine on Azure, you have 3 options of network policy. Azure CNI, Kubenet, or Calico.
+Deploying AKS Engine on Azure, you have 3 options of network policy. Azure CNI, Kubenet, or Calico.
 
 #### Azure CNI
 
-By default, ACS-Engine is using the [**azure cni** network policy](../../examples/networkpolicy/README.md#azure-container-networking-default) plugin. This has some advantages and some consequences that must be considered when defining the network where we deploy the cluster. CNI provides an integration with azure subnet IP addressing so that every pod created by kubernetes is assigned an IP address from the corresponding subnet.
+By default, AKS Engine is using the [**azure cni** network policy](../../examples/networkpolicy/README.md#azure-container-networking-default) plugin. This has some advantages and some consequences that must be considered when defining the network where we deploy the cluster. CNI provides an integration with azure subnet IP addressing so that every pod created by kubernetes is assigned an IP address from the corresponding subnet.
 All IP addresses are pre-allocated at provisionning time. By default, [aks-engine will pre-allocate 128 IPs per node](https://github.com/Azure/azure-container-networking/blob/master/docs/acs.md#enabling-azure-vnet-plugins-for-an-acs-kubernetes-cluster) on the subnet.
 While this can be configured, new addresses will not be allocated dynamically. That means that you need to anticipate and plan for the maximum number of IP addresses you will need for the maximum scale.
 
@@ -155,7 +155,7 @@ Note: when using service without selector, you can't have any Kubernetes readine
 
 ## Cluster upgrades
 
-As you may know, ACS-Engine proposes an [upgrade command](../../examples/k8s-upgrade/README.md). It is really important to understand that this uprade process is *not* fail-safe. Therefore in most cases, and especially with production clusters, a good practice consists of creating another Kubernetes cluster running the targeted version in another VNET and move the workloads into this new cluster. Once everything is tested and works as desired, set up the network redirection to this new environment.
+As you may know, AKS Engine proposes an [upgrade command](../../examples/k8s-upgrade/README.md). It is really important to understand that this uprade process is *not* fail-safe. Therefore in most cases, and especially with production clusters, a good practice consists of creating another Kubernetes cluster running the targeted version in another VNET and move the workloads into this new cluster. Once everything is tested and works as desired, set up the network redirection to this new environment.
 
 If you plan everything correctly following the documentation above and use Kubernetes Services properly to address both in-cluster and outside services, everything should work fine.
 

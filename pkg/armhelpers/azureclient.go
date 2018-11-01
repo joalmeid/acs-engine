@@ -37,7 +37,7 @@ const (
 )
 
 var (
-	// RequiredResourceProviders is the list of Azure Resource Providers needed for ACS-Engine to function
+	// RequiredResourceProviders is the list of Azure Resource Providers needed for AKS Engine to function
 	RequiredResourceProviders = []string{"Microsoft.Compute", "Microsoft.Storage", "Microsoft.Network"}
 )
 

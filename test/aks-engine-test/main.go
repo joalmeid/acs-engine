@@ -258,7 +258,7 @@ func (m *TestManager) testRun(d config.Deployment, index, attempt int, timeout t
 		d.Location = m.regions[randomIndex]
 	}
 	testName := strings.TrimSuffix(d.ClusterDefinition, filepath.Ext(d.ClusterDefinition))
-	instanceName := fmt.Sprintf("acse-%d-%s-%s-%d-%d", rand.Intn(0x0ffffff), d.Location, os.Getenv("BUILD_NUM"), index, attempt)
+	instanceName := fmt.Sprintf("akse-%d-%s-%s-%d-%d", rand.Intn(0x0ffffff), d.Location, os.Getenv("BUILD_NUM"), index, attempt)
 	resourceGroup := fmt.Sprintf("%s-%s-%s-%s-%d-%d", rgPrefix, strings.Replace(testName, "/", "-", -1), d.Location, os.Getenv("BUILD_NUM"), index, attempt)
 	logFile := fmt.Sprintf("%s/%s.log", logDir, resourceGroup)
 	validateLogFile := fmt.Sprintf("%s/validate-%s.log", logDir, resourceGroup)

@@ -7,7 +7,7 @@ There are 2 different Network Policy options :
 
 ## Calico
 
-The kubernetes-calico deployment template enables Calico networking and policies for the ACS-engine cluster via `"networkPolicy": "calico"` being present inside the `kubernetesConfig`.
+The kubernetes-calico deployment template enables Calico networking and policies for the AKS Engine cluster via `"networkPolicy": "calico"` being present inside the `kubernetesConfig`.
 
 ```json
   "properties": {
@@ -61,7 +61,7 @@ If you have any customized calico resource manifests, you must also follow the [
 
 ## Cilium
 
-The kubernetes-cilium deployment template enables Cilium networking and policies for the ACS-engine cluster via `"networkPolicy": "cilium"` or `"networkPlugin": "cilium"` being present inside the `kubernetesConfig`.
+The kubernetes-cilium deployment template enables Cilium networking and policies for the AKS Engine cluster via `"networkPolicy": "cilium"` or `"networkPlugin": "cilium"` being present inside the `kubernetesConfig`.
 
 ```json
   "properties": {

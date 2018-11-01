@@ -107,7 +107,7 @@ The build process leaves the compiled `aks-engine` binary in the `bin` directory
 
 ```sh
 $ ./bin/aks-engine
-ACS-Engine deploys and manages Kubernetes clusters in Azure
+AKS Engine deploys and manages Kubernetes clusters in Azure
 
 Usage:
   aks-engine [command]
@@ -119,7 +119,7 @@ Available Commands:
   orchestrators Display info about supported orchestrators
   scale         Scale an existing Kubernetes cluster
   upgrade       Upgrade an existing Kubernetes cluster
-  version       Print the version of ACS-Engine
+  version       Print the version of AKS Engine
 
 Flags:
       --debug   enable verbose debug logs

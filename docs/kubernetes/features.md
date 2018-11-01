@@ -49,7 +49,7 @@ Related [upstream PR](https://github.com/kubernetes/kubernetes/pull/46360) for d
 
 ### Using Kubernetes Persistent Volumes
 
-By default, each ACS-Engine cluster is bootstrapped with several StorageClass resources. This bootstrapping is handled by the addon-manager pod that creates resources defined under /etc/kubernetes/addons directory on master VMs.
+By default, each AKS Engine cluster is bootstrapped with several StorageClass resources. This bootstrapping is handled by the addon-manager pod that creates resources defined under /etc/kubernetes/addons directory on master VMs.
 
 #### Non-managed Disks
 
