@@ -18,7 +18,7 @@ node("slave") {
           stage('Init') {
             deleteDir()
             checkout scm
-            img = docker.build('acs-engine-test', '--pull .')
+            img = docker.build('aks-engine-test', '--pull .')
           }
 
           img.inside("-u root:root") {

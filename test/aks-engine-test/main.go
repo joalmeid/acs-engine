@@ -16,10 +16,10 @@ import (
 	"time"
 
 	"github.com/Azure/aks-engine/pkg/helpers"
-	"github.com/Azure/aks-engine/test/acs-engine-test/config"
-	"github.com/Azure/aks-engine/test/acs-engine-test/metrics"
-	"github.com/Azure/aks-engine/test/acs-engine-test/promote"
-	"github.com/Azure/aks-engine/test/acs-engine-test/report"
+	"github.com/Azure/aks-engine/test/aks-engine-test/config"
+	"github.com/Azure/aks-engine/test/aks-engine-test/metrics"
+	"github.com/Azure/aks-engine/test/aks-engine-test/promote"
+	"github.com/Azure/aks-engine/test/aks-engine-test/report"
 	"github.com/pkg/errors"
 )
 
@@ -47,12 +47,12 @@ const (
 )
 
 const usage = `Usage:
-  acs-engine-test <options>
+  aks-engine-test <options>
 
   Options:
     -c <configuration.json> : JSON file containing a list of deployment configurations.
-		Refer to acs-engine/test/acs-engine-test/acs-engine-test.json for examples
-	-d <acs-engine root directory>
+		Refer to aks-engine/test/aks-engine-test/aks-engine-test.json for examples
+	-d <aks-engine root directory>
 	-e <log-errors configuration file>
 `
 

@@ -85,39 +85,39 @@ const (
 )
 
 const (
-	// DefaultTillerAddonEnabled determines the acs-engine provided default for enabling tiller addon
+	// DefaultTillerAddonEnabled determines the aks-engine provided default for enabling tiller addon
 	DefaultTillerAddonEnabled = true
-	// DefaultAADPodIdentityAddonEnabled determines the acs-engine provided default for enabling aad-pod-identity addon
+	// DefaultAADPodIdentityAddonEnabled determines the aks-engine provided default for enabling aad-pod-identity addon
 	DefaultAADPodIdentityAddonEnabled = false
-	// DefaultACIConnectorAddonEnabled determines the acs-engine provided default for enabling aci connector addon
+	// DefaultACIConnectorAddonEnabled determines the aks-engine provided default for enabling aci connector addon
 	DefaultACIConnectorAddonEnabled = false
-	// DefaultClusterAutoscalerAddonEnabled determines the acs-engine provided default for enabling cluster autoscaler addon
+	// DefaultClusterAutoscalerAddonEnabled determines the aks-engine provided default for enabling cluster autoscaler addon
 	DefaultClusterAutoscalerAddonEnabled = false
-	// DefaultBlobfuseFlexVolumeAddonEnabled determines the acs-engine provided default for enabling blobfuse flexvolume addon
+	// DefaultBlobfuseFlexVolumeAddonEnabled determines the aks-engine provided default for enabling blobfuse flexvolume addon
 	DefaultBlobfuseFlexVolumeAddonEnabled = true
-	// DefaultSMBFlexVolumeAddonEnabled determines the acs-engine provided default for enabling smb flexvolume addon
+	// DefaultSMBFlexVolumeAddonEnabled determines the aks-engine provided default for enabling smb flexvolume addon
 	DefaultSMBFlexVolumeAddonEnabled = true
-	// DefaultKeyVaultFlexVolumeAddonEnabled determines the acs-engine provided default for enabling key vault flexvolume addon
+	// DefaultKeyVaultFlexVolumeAddonEnabled determines the aks-engine provided default for enabling key vault flexvolume addon
 	DefaultKeyVaultFlexVolumeAddonEnabled = true
-	// DefaultDashboardAddonEnabled determines the acs-engine provided default for enabling kubernetes-dashboard addon
+	// DefaultDashboardAddonEnabled determines the aks-engine provided default for enabling kubernetes-dashboard addon
 	DefaultDashboardAddonEnabled = true
-	// DefaultReschedulerAddonEnabled determines the acs-engine provided default for enabling kubernetes-rescheduler addon
+	// DefaultReschedulerAddonEnabled determines the aks-engine provided default for enabling kubernetes-rescheduler addon
 	DefaultReschedulerAddonEnabled = false
-	// DefaultRBACEnabled determines the acs-engine provided default for enabling kubernetes RBAC
+	// DefaultRBACEnabled determines the aks-engine provided default for enabling kubernetes RBAC
 	DefaultRBACEnabled = true
-	// DefaultUseInstanceMetadata determines the acs-engine provided default for enabling Azure cloudprovider instance metadata service
+	// DefaultUseInstanceMetadata determines the aks-engine provided default for enabling Azure cloudprovider instance metadata service
 	DefaultUseInstanceMetadata = true
-	// DefaultLoadBalancerSku determines the acs-engine provided default for enabling Azure cloudprovider load balancer SKU
+	// DefaultLoadBalancerSku determines the aks-engine provided default for enabling Azure cloudprovider load balancer SKU
 	DefaultLoadBalancerSku = "Basic"
-	// DefaultExcludeMasterFromStandardLB determines the acs-engine provided default for excluding master nodes from standard load balancer.
+	// DefaultExcludeMasterFromStandardLB determines the aks-engine provided default for excluding master nodes from standard load balancer.
 	DefaultExcludeMasterFromStandardLB = true
-	// DefaultSecureKubeletEnabled determines the acs-engine provided default for securing kubelet communications
+	// DefaultSecureKubeletEnabled determines the aks-engine provided default for securing kubelet communications
 	DefaultSecureKubeletEnabled = true
-	// DefaultMetricsServerAddonEnabled determines the acs-engine provided default for enabling kubernetes metrics-server addon
+	// DefaultMetricsServerAddonEnabled determines the aks-engine provided default for enabling kubernetes metrics-server addon
 	DefaultMetricsServerAddonEnabled = false
-	// DefaultNVIDIADevicePluginAddonEnabled determines the acs-engine provided default for enabling NVIDIA Device Plugin
+	// DefaultNVIDIADevicePluginAddonEnabled determines the aks-engine provided default for enabling NVIDIA Device Plugin
 	DefaultNVIDIADevicePluginAddonEnabled = false
-	// DefaultContainerMonitoringAddonEnabled determines the acs-engine provided default for enabling kubernetes container monitoring addon
+	// DefaultContainerMonitoringAddonEnabled determines the aks-engine provided default for enabling kubernetes container monitoring addon
 	DefaultContainerMonitoringAddonEnabled = false
 	// DefaultAzureCNINetworkMonitoringAddonEnabled Azure CNI networkmonitor addon default
 	DefaultAzureCNINetworkMonitoringAddonEnabled = false
@@ -149,7 +149,7 @@ const (
 	ContainerMonitoringAddonName = "container-monitoring"
 	// IPMASQAgentAddonName is the name of the ip masq agent addon
 	IPMASQAgentAddonName = "ip-masq-agent"
-	// DefaultPrivateClusterEnabled determines the acs-engine provided default for enabling kubernetes Private Cluster
+	// DefaultPrivateClusterEnabled determines the aks-engine provided default for enabling kubernetes Private Cluster
 	DefaultPrivateClusterEnabled = false
 	// NetworkPolicyAzure is the string expression for Azure CNI network policy manager
 	NetworkPolicyAzure = "azure"
@@ -159,20 +159,20 @@ const (
 	NetworkPluginKubenet = "kubenet"
 	// NetworkPluginAzure is the string expression for Azure CNI plugin.
 	NetworkPluginAzure = "azure"
-	// DefaultSinglePlacementGroup determines the acs-engine provided default for supporting large VMSS
+	// DefaultSinglePlacementGroup determines the aks-engine provided default for supporting large VMSS
 	// (true = single placement group 0-100 VMs, false = multiple placement group 0-1000 VMs)
 	DefaultSinglePlacementGroup = true
 	// ARMNetworkNamespace is the ARM-specific namespace for ARM's network providers.
 	ARMNetworkNamespace = "Microsoft.Networks"
 	// ARMVirtualNetworksResourceType is the ARM resource type for virtual network resources of ARM.
 	ARMVirtualNetworksResourceType = "virtualNetworks"
-	// DefaultAcceleratedNetworkingWindowsEnabled determines the acs-engine provided default for enabling accelerated networking on Windows nodes
+	// DefaultAcceleratedNetworkingWindowsEnabled determines the aks-engine provided default for enabling accelerated networking on Windows nodes
 	DefaultAcceleratedNetworkingWindowsEnabled = false
 )
 
 const (
 	// AgentPoolProfileRoleEmpty is the empty role.  Deprecated; only used in
-	// acs-engine.
+	// aks-engine.
 	AgentPoolProfileRoleEmpty AgentPoolProfileRole = ""
 	// AgentPoolProfileRoleCompute is the compute role
 	AgentPoolProfileRoleCompute AgentPoolProfileRole = "compute"
@@ -330,7 +330,7 @@ const (
 
 const (
 	//DefaultExtensionsRootURL  Root URL for extensions
-	DefaultExtensionsRootURL = "https://raw.githubusercontent.com/Azure/acs-engine/master/"
+	DefaultExtensionsRootURL = "https://raw.githubusercontent.com/Azure/aks-engine/master/"
 )
 
 const (

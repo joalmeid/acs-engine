@@ -595,7 +595,7 @@ type CustomProfile struct {
 }
 
 // VlabsARMContainerService is the type we read and write from file
-// needed because the json that is sent to ARM and acs-engine
+// needed because the json that is sent to ARM and aks-engine
 // is different from the json that the ACS RP Api gets from ARM
 type VlabsARMContainerService struct {
 	TypeMeta
@@ -603,7 +603,7 @@ type VlabsARMContainerService struct {
 }
 
 // V20160930ARMContainerService is the type we read and write from file
-// needed because the json that is sent to ARM and acs-engine
+// needed because the json that is sent to ARM and aks-engine
 // is different from the json that the ACS RP Api gets from ARM
 type V20160930ARMContainerService struct {
 	TypeMeta
@@ -611,7 +611,7 @@ type V20160930ARMContainerService struct {
 }
 
 // V20170131ARMContainerService is the type we read and write from file
-// needed because the json that is sent to ARM and acs-engine
+// needed because the json that is sent to ARM and aks-engine
 // is different from the json that the ACS RP Api gets from ARM
 type V20170131ARMContainerService struct {
 	TypeMeta
@@ -619,7 +619,7 @@ type V20170131ARMContainerService struct {
 }
 
 // V20170701ARMContainerService is the type we read and write from file
-// needed because the json that is sent to ARM and acs-engine
+// needed because the json that is sent to ARM and aks-engine
 // is different from the json that the ACS RP Api gets from ARM
 type V20170701ARMContainerService struct {
 	TypeMeta
@@ -627,7 +627,7 @@ type V20170701ARMContainerService struct {
 }
 
 // V20170831ARMManagedContainerService is the type we read and write from file
-// needed because the json that is sent to ARM and acs-engine
+// needed because the json that is sent to ARM and aks-engine
 // is different from the json that the ACS RP Api gets from ARM
 type V20170831ARMManagedContainerService struct {
 	TypeMeta
@@ -635,7 +635,7 @@ type V20170831ARMManagedContainerService struct {
 }
 
 // V20180331ARMManagedContainerService is the type we read and write from file
-// needed because the json that is sent to ARM and acs-engine
+// needed because the json that is sent to ARM and aks-engine
 // is different from the json that the ACS RP Api gets from ARM
 type V20180331ARMManagedContainerService struct {
 	TypeMeta

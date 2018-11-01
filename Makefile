@@ -16,7 +16,7 @@ GO              ?= go
 TAGS            :=
 LDFLAGS         :=
 BINDIR          := $(CURDIR)/bin
-BINARIES        := acs-engine
+BINARIES        := aks-engine
 VERSION         ?= $(shell git rev-parse HEAD)
 VERSION_SHORT   ?= $(shell git rev-parse --short HEAD)
 GITTAG          := $(shell git describe --exact-match --tags $(shell git log -n1 --pretty='%h') 2> /dev/null)
@@ -63,17 +63,17 @@ generate-azure-constants:
 .PHONY: build
 build: generate
 	GOBIN=$(BINDIR) $(GO) install $(GOFLAGS) -ldflags '$(LDFLAGS)'
-	cd test/acs-engine-test; go build $(GOFLAGS)
+	cd test/aks-engine-test; go build $(GOFLAGS)
 
 build-binary: generate
-	go build $(GOFLAGS) -v -ldflags "${LDFLAGS}" -o ${BINARY_DEST_DIR}/acs-engine .
+	go build $(GOFLAGS) -v -ldflags "${LDFLAGS}" -o ${BINARY_DEST_DIR}/aks-engine .
 
 # usage: make clean build-cross dist VERSION=v0.4.0
 .PHONY: build-cross
 build-cross: build
 build-cross: LDFLAGS += -extldflags "-static"
 build-cross:
-	CGO_ENABLED=0 gox -output="_dist/acs-engine-${GITTAG}-{{.OS}}-{{.Arch}}/{{.Dir}}" -osarch='$(TARGETS)' $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)'
+	CGO_ENABLED=0 gox -output="_dist/aks-engine-${GITTAG}-{{.OS}}-{{.Arch}}/{{.Dir}}" -osarch='$(TARGETS)' $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)'
 
 .PHONY: build-windows-k8s
 build-windows-k8s:
