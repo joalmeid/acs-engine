@@ -50,7 +50,7 @@ type deployCmd struct {
 	apiVersion       string
 	locale           *gotext.Locale
 
-	client        armhelpers.ACSEngineClient
+	client        armhelpers.AKSEngineClient
 	resourceGroup string
 	random        *rand.Rand
 	location      string

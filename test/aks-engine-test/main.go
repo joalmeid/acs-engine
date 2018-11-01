@@ -39,7 +39,7 @@ const (
 	combinedReport = "CombinedReport.json"
 
 	metricsEndpoint = ":8125"
-	metricsNS       = "ACSEngine"
+	metricsNS       = "AKSEngine"
 
 	metricError              = "Error"
 	metricDeploymentDuration = "DeploymentDuration"

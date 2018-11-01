@@ -39,10 +39,10 @@ type RoleAssignmentListResultPage interface {
 	Values() []authorization.RoleAssignment
 }
 
-// ACSEngineClient is the interface used to talk to an Azure environment.
+// AKSEngineClient is the interface used to talk to an Azure environment.
 // This interface exposes just the subset of Azure APIs and clients needed for
 // AKS Engine.
-type ACSEngineClient interface {
+type AKSEngineClient interface {
 
 	//AddAcceptLanguages sets the list of languages to accept on this request
 	AddAcceptLanguages(languages []string)

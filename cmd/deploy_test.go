@@ -56,13 +56,13 @@ const ExampleAPIModelWithoutServicePrincipalProfile = `{
 
 //mockAuthProvider implements AuthProvider and allows in particular to stub out getClient()
 type mockAuthProvider struct {
-	getClientMock armhelpers.ACSEngineClient
+	getClientMock armhelpers.AKSEngineClient
 	*authArgs
 }
 
-func (provider *mockAuthProvider) getClient() (armhelpers.ACSEngineClient, error) {
+func (provider *mockAuthProvider) getClient() (armhelpers.AKSEngineClient, error) {
 	if provider.getClientMock == nil {
-		return &armhelpers.MockACSEngineClient{}, nil
+		return &armhelpers.MockAKSEngineClient{}, nil
 	}
 	return provider.getClientMock, nil
 
@@ -237,7 +237,7 @@ func TestAutoSufixWithDnsPrefixInApiModel(t *testing.T) {
 		containerService: cs,
 		apiVersion:       ver,
 
-		client: &armhelpers.MockACSEngineClient{},
+		client: &armhelpers.MockAKSEngineClient{},
 		authProvider: &mockAuthProvider{
 			authArgs: &authArgs{},
 		},
@@ -281,7 +281,7 @@ func TestAPIModelWithoutServicePrincipalProfileAndClientIdAndSecretInCmd(t *test
 		containerService: cs,
 		apiVersion:       ver,
 
-		client: &armhelpers.MockACSEngineClient{},
+		client: &armhelpers.MockAKSEngineClient{},
 		authProvider: &mockAuthProvider{
 			authArgs: &authArgs{},
 		},
@@ -334,7 +334,7 @@ func TestAPIModelWithEmptyServicePrincipalProfileAndClientIdAndSecretInCmd(t *te
 		containerService: cs,
 		apiVersion:       ver,
 
-		client: &armhelpers.MockACSEngineClient{},
+		client: &armhelpers.MockAKSEngineClient{},
 		authProvider: &mockAuthProvider{
 			authArgs: &authArgs{},
 		},
@@ -380,7 +380,7 @@ func TestAPIModelWithoutServicePrincipalProfileAndWithoutClientIdAndSecretInCmd(
 		containerService: cs,
 		apiVersion:       ver,
 
-		client: &armhelpers.MockACSEngineClient{},
+		client: &armhelpers.MockAKSEngineClient{},
 		authProvider: &mockAuthProvider{
 			authArgs: &authArgs{},
 		},
@@ -417,7 +417,7 @@ func TestAPIModelWithEmptyServicePrincipalProfileAndWithoutClientIdAndSecretInCm
 		containerService: cs,
 		apiVersion:       ver,
 
-		client: &armhelpers.MockACSEngineClient{},
+		client: &armhelpers.MockAKSEngineClient{},
 		authProvider: &mockAuthProvider{
 			authArgs: &authArgs{},
 		},
@@ -469,7 +469,7 @@ func testAutodeployCredentialHandling(t *testing.T, useManagedIdentity bool, cli
 		containerService: cs,
 		apiVersion:       ver,
 
-		client: &armhelpers.MockACSEngineClient{},
+		client: &armhelpers.MockAKSEngineClient{},
 		authProvider: &mockAuthProvider{
 			authArgs: &authArgs{},
 		},
@@ -536,10 +536,10 @@ func TestDeployCmdMergeAPIModel(t *testing.T) {
 
 func TestDeployCmdRun(t *testing.T) {
 	d := &deployCmd{
-		client: &armhelpers.MockACSEngineClient{},
+		client: &armhelpers.MockAKSEngineClient{},
 		authProvider: &mockAuthProvider{
 			authArgs:      &authArgs{},
-			getClientMock: &armhelpers.MockACSEngineClient{},
+			getClientMock: &armhelpers.MockAKSEngineClient{},
 		},
 		apimodelPath:    "./this/is/unused.json",
 		outputDirectory: "_test_output",

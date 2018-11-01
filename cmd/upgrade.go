@@ -40,7 +40,7 @@ type upgradeCmd struct {
 	// derived
 	containerService    *api.ContainerService
 	apiVersion          string
-	client              armhelpers.ACSEngineClient
+	client              armhelpers.AKSEngineClient
 	locale              *gotext.Locale
 	nameSuffix          string
 	agentPoolsToUpgrade []string

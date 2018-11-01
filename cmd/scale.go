@@ -42,7 +42,7 @@ type scaleCmd struct {
 	apiVersion       string
 	apiModelPath     string
 	agentPool        *api.AgentPoolProfile
-	client           armhelpers.ACSEngineClient
+	client           armhelpers.AKSEngineClient
 	locale           *gotext.Locale
 	nameSuffix       string
 	agentPoolIndex   int

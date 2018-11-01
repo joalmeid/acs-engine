@@ -3,12 +3,12 @@
 **Bash**
 ```bash
 $ VERSION=0.16.0
-$ docker build --no-cache --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg ACSENGINE_VERSION="$VERSION" -t microsoft/aks-engine:$VERSION --file ./Dockerfile.linux .
+$ docker build --no-cache --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg AKSENGINE_VERSION="$VERSION" -t microsoft/aks-engine:$VERSION --file ./Dockerfile.linux .
 ```
 **PowerShell**
 ```powershell
 PS> $VERSION="0.16.0"
-PS> docker build --no-cache --build-arg BUILD_DATE=$(Get-Date((Get-Date).ToUniversalTime()) -UFormat "%Y-%m-%dT%H:%M:%SZ") --build-arg ACSENGINE_VERSION="$VERSION" -t microsoft/aks-engine:$VERSION --file .\Dockerfile.linux .
+PS> docker build --no-cache --build-arg BUILD_DATE=$(Get-Date((Get-Date).ToUniversalTime()) -UFormat "%Y-%m-%dT%H:%M:%SZ") --build-arg AKSENGINE_VERSION="$VERSION" -t microsoft/aks-engine:$VERSION --file .\Dockerfile.linux .
 ```
 
 # Inspect Docker image metadata

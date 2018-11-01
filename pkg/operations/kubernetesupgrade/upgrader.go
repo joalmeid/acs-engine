@@ -23,10 +23,10 @@ type Upgrader struct {
 	Translator *i18n.Translator
 	logger     *logrus.Entry
 	ClusterTopology
-	Client           armhelpers.ACSEngineClient
+	Client           armhelpers.AKSEngineClient
 	kubeConfig       string
 	stepTimeout      *time.Duration
-	ACSEngineVersion string
+	AKSEngineVersion string
 }
 
 type vmStatus int
@@ -44,14 +44,14 @@ type vmInfo struct {
 }
 
 // Init initializes an upgrader struct
-func (ku *Upgrader) Init(translator *i18n.Translator, logger *logrus.Entry, clusterTopology ClusterTopology, client armhelpers.ACSEngineClient, kubeConfig string, stepTimeout *time.Duration, acsEngineVersion string) {
+func (ku *Upgrader) Init(translator *i18n.Translator, logger *logrus.Entry, clusterTopology ClusterTopology, client armhelpers.AKSEngineClient, kubeConfig string, stepTimeout *time.Duration, AKSEngineVersion string) {
 	ku.Translator = translator
 	ku.logger = logger
 	ku.ClusterTopology = clusterTopology
 	ku.Client = client
 	ku.kubeConfig = kubeConfig
 	ku.stepTimeout = stepTimeout
-	ku.ACSEngineVersion = acsEngineVersion
+	ku.AKSEngineVersion = AKSEngineVersion
 }
 
 // RunUpgrade runs the upgrade pipeline
@@ -80,7 +80,7 @@ func (ku *Upgrader) upgradeMasterNodes(ctx context.Context) error {
 	}
 	ku.logger.Infof("Master nodes StorageProfile: %s", ku.ClusterTopology.DataModel.Properties.MasterProfile.StorageProfile)
 	// Upgrade Master VMs
-	templateMap, parametersMap, err := ku.generateUpgradeTemplate(ku.ClusterTopology.DataModel, ku.ACSEngineVersion)
+	templateMap, parametersMap, err := ku.generateUpgradeTemplate(ku.ClusterTopology.DataModel, ku.AKSEngineVersion)
 	if err != nil {
 		return ku.Translator.Errorf("error generating upgrade template: %s", err.Error())
 	}
@@ -204,7 +204,7 @@ func (ku *Upgrader) upgradeMasterNodes(ctx context.Context) error {
 func (ku *Upgrader) upgradeAgentPools(ctx context.Context) error {
 	for _, agentPool := range ku.ClusterTopology.AgentPools {
 		// Upgrade Agent VMs
-		templateMap, parametersMap, err := ku.generateUpgradeTemplate(ku.ClusterTopology.DataModel, ku.ACSEngineVersion)
+		templateMap, parametersMap, err := ku.generateUpgradeTemplate(ku.ClusterTopology.DataModel, ku.AKSEngineVersion)
 		if err != nil {
 			ku.logger.Errorf("Error generating upgrade template: %v", err)
 			return ku.Translator.Errorf("Error generating upgrade template: %s", err.Error())
@@ -389,7 +389,7 @@ func (ku *Upgrader) upgradeAgentScaleSets(ctx context.Context) error {
 		// need to apply the ARM template with target Kubernetes version to the VMSS first in order that the new VMSS instances
 		// created can get the expected Kubernetes version. Otherwise the new instances created still have old Kubernetes version
 		// if the topology doesn't have master nodes (so there are no ARM deployments in previous upgradeMasterNodes step)
-		templateMap, parametersMap, err := ku.generateUpgradeTemplate(ku.ClusterTopology.DataModel, ku.ACSEngineVersion)
+		templateMap, parametersMap, err := ku.generateUpgradeTemplate(ku.ClusterTopology.DataModel, ku.AKSEngineVersion)
 		if err != nil {
 			ku.logger.Errorf("error generating upgrade template in upgradeAgentScaleSets: %v", err)
 			return err

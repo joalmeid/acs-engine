@@ -32,7 +32,7 @@ type UpgradeAgentNode struct {
 	UpgradeContainerService *api.ContainerService
 	SubscriptionID          string
 	ResourceGroup           string
-	Client                  armhelpers.ACSEngineClient
+	Client                  armhelpers.AKSEngineClient
 	kubeConfig              string
 	timeout                 time.Duration
 }

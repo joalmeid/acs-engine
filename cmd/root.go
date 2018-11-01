@@ -86,7 +86,7 @@ func writeDefaultModel(out io.Writer) error {
 
 type authProvider interface {
 	getAuthArgs() *authArgs
-	getClient() (armhelpers.ACSEngineClient, error)
+	getClient() (armhelpers.AKSEngineClient, error)
 }
 
 type authArgs struct {
@@ -189,7 +189,7 @@ func getCloudSubFromAzConfig(cloud string, f *ini.File) (uuid.UUID, error) {
 	return uuid.FromString(sub.String())
 }
 
-func (authArgs *authArgs) getClient() (armhelpers.ACSEngineClient, error) {
+func (authArgs *authArgs) getClient() (armhelpers.AKSEngineClient, error) {
 	var client *armhelpers.AzureClient
 	env, err := azure.EnvironmentFromName(authArgs.RawAzureEnvironment)
 	if err != nil {
