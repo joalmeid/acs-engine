@@ -120,17 +120,8 @@ func (t *TemplateGenerator) verifyFiles() error {
 }
 
 func (t *TemplateGenerator) prepareTemplateFiles(properties *api.Properties) ([]string, string, error) {
-	var files []string
-	var baseFile string
-	switch properties.OrchestratorProfile.OrchestratorType {
-	case api.Kubernetes:
-		files = append(commonTemplateFiles, kubernetesTemplateFiles...)
-		baseFile = kubernetesBaseFile
-	default:
-		return nil, "", t.Translator.Errorf("orchestrator '%s' is unsupported", properties.OrchestratorProfile.OrchestratorType)
-	}
-
-	return files, baseFile, nil
+	var files = append(commonTemplateFiles, kubernetesTemplateFiles...)
+	return files, kubernetesBaseFile, nil
 }
 
 func (t *TemplateGenerator) getMasterCustomData(cs *api.ContainerService, textFilename string, profile *api.Properties) string {
