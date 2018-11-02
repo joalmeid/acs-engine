@@ -207,7 +207,6 @@ func (sc *scaleCmd) run(cmd *cobra.Command, args []string) error {
 
 	ctx, cancel := context.WithTimeout(context.Background(), armhelpers.DefaultARMOperationTimeout)
 	defer cancel()
-	orchestratorInfo := sc.containerService.Properties.OrchestratorProfile
 	var currentNodeCount, highestUsedIndex, index, winPoolIndex int
 	winPoolIndex = -1
 	indexes := make([]int, 0)
@@ -263,16 +262,13 @@ func (sc *scaleCmd) run(cmd *cobra.Command, args []string) error {
 				vmsToDelete = append(vmsToDelete, indexToVM[index])
 			}
 
-			switch orchestratorInfo.OrchestratorType {
-			case api.Kubernetes:
-				kubeConfig, err := engine.GenerateKubeConfig(sc.containerService.Properties, sc.location)
-				if err != nil {
-					return errors.Wrap(err, "failed to generate kube config")
-				}
-				err = sc.drainNodes(kubeConfig, vmsToDelete)
-				if err != nil {
-					return errors.Wrap(err, "Got error while draining the nodes to be deleted")
-				}
+			kubeConfig, err := engine.GenerateKubeConfig(sc.containerService.Properties, sc.location)
+			if err != nil {
+				return errors.Wrap(err, "failed to generate kube config")
+			}
+			err = sc.drainNodes(kubeConfig, vmsToDelete)
+			if err != nil {
+				return errors.Wrap(err, "Got error while draining the nodes to be deleted")
 			}
 
 			errList := operations.ScaleDownVMs(sc.client, sc.logger, sc.SubscriptionID.String(), sc.resourceGroupName, vmsToDelete...)
@@ -368,15 +364,12 @@ func (sc *scaleCmd) run(cmd *cobra.Command, args []string) error {
 	if winPoolIndex != -1 {
 		templateJSON["variables"].(map[string]interface{})[sc.agentPool.Name+"Index"] = winPoolIndex
 	}
-	switch orchestratorInfo.OrchestratorType {
-	case api.Kubernetes:
-		err = transformer.NormalizeForK8sVMASScalingUp(sc.logger, templateJSON)
-		if err != nil {
-			return errors.Wrapf(err, "error tranforming the template for scaling template %s", sc.apiModelPath)
-		}
-		if sc.agentPool.IsAvailabilitySets() {
-			addValue(parametersJSON, fmt.Sprintf("%sOffset", sc.agentPool.Name), highestUsedIndex+1)
-		}
+	err = transformer.NormalizeForK8sVMASScalingUp(sc.logger, templateJSON)
+	if err != nil {
+		return errors.Wrapf(err, "error tranforming the template for scaling template %s", sc.apiModelPath)
+	}
+	if sc.agentPool.IsAvailabilitySets() {
+		addValue(parametersJSON, fmt.Sprintf("%sOffset", sc.agentPool.Name), highestUsedIndex+1)
 	}
 
 	random := rand.New(rand.NewSource(time.Now().UnixNano()))
