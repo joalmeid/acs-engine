@@ -377,15 +377,6 @@ type CustomFile struct {
 	Dest   string `json:"dest,omitempty"`
 }
 
-// BootstrapProfile represents the definition of the DCOS bootstrap node used to deploy the cluster
-type BootstrapProfile struct {
-	VMSize       string `json:"vmSize,omitempty"`
-	OSDiskSizeGB int    `json:"osDiskSizeGB,omitempty"`
-	OAuthEnabled bool   `json:"oauthEnabled,omitempty"`
-	StaticIP     string `json:"staticIP,omitempty"`
-	Subnet       string `json:"subnet,omitempty"`
-}
-
 // MasterProfile represents the definition of the master cluster
 type MasterProfile struct {
 	Count                    int               `json:"count"`

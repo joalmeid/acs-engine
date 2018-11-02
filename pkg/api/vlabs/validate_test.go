@@ -149,7 +149,6 @@ func Test_OrchestratorProfile_Validate(t *testing.T) {
 			properties: &Properties{
 				OrchestratorProfile: &OrchestratorProfile{
 					OrchestratorType: "Kubernetes",
-					// DcosConfig:       &DcosConfig{},
 				},
 			},
 		},

@@ -22,9 +22,7 @@ def getAllSizes():
 
     return sizeMap
 
-min_cores_dcos = 2
 min_cores_k8s = 1
-dcos_masters_ephemeral_disk_min = 16384
 
 def getMasterAgentMap(sizeMap):
     agentMap = {}

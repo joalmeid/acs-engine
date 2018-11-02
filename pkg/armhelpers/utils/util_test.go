@@ -65,7 +65,7 @@ func Test_VmssNameParts(t *testing.T) {
 	}
 
 	for _, el := range data {
-		vmssName := fmt.Sprintf("swarmm-%s-%s-vmss", el.poolIdentifier, el.nameSuffix)
+		vmssName := fmt.Sprintf("kuberm-%s-%s-vmss", el.poolIdentifier, el.nameSuffix)
 		poolIdentifier, nameSuffix, err := VmssNameParts(vmssName)
 		if err != nil {
 			t.Fatalf("unexpected error: %s", err)
