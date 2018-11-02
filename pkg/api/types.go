@@ -49,7 +49,7 @@ type ContainerService struct {
 	Properties *Properties `json:"properties,omitempty"`
 }
 
-// Properties represents the ACS cluster definition
+// Properties represents the AKS cluster definition
 type Properties struct {
 	ClusterID               string
 	ProvisioningState       ProvisioningState        `json:"provisioningState,omitempty"`
@@ -71,7 +71,7 @@ type Properties struct {
 	FeatureFlags            *FeatureFlags            `json:"featureFlags,omitempty"`
 }
 
-// ClusterMetadata represents the metadata of the ACS cluster.
+// ClusterMetadata represents the metadata of the AKS cluster.
 type ClusterMetadata struct {
 	SubnetName                 string `json:"subnetName,omitempty"`
 	VNetResourceGroupName      string `json:"vnetResourceGroupName,omitempty"`

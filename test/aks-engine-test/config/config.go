@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 )
 
-// Deployment represents an ACS cluster deployment on Azure
+// Deployment represents an AKS cluster deployment on Azure
 type Deployment struct {
 	ClusterDefinition string `json:"cluster_definition"`
 	Location          string `json:"location"`

@@ -25,7 +25,7 @@ type Apiloader struct {
 	Translator *i18n.Translator
 }
 
-// LoadContainerServiceFromFile loads an ACS Cluster API Model from a JSON file
+// LoadContainerServiceFromFile loads an AKS cluster API Model from a JSON file
 func (a *Apiloader) LoadContainerServiceFromFile(jsonFile string, validate, isUpdate bool, existingContainerService *ContainerService) (*ContainerService, string, error) {
 	contents, e := ioutil.ReadFile(jsonFile)
 	if e != nil {
@@ -57,7 +57,7 @@ func LoadDefaultContainerServiceProperties() (TypeMeta, *vlabs.Properties) {
 	}
 }
 
-// DeserializeContainerService loads an ACS Cluster API Model, validates it, and returns the unversioned representation
+// DeserializeContainerService loads an AKS cluster API Model, validates it, and returns the unversioned representation
 func (a *Apiloader) DeserializeContainerService(contents []byte, validate, isUpdate bool, existingContainerService *ContainerService) (*ContainerService, string, error) {
 	m := &TypeMeta{}
 	if err := json.Unmarshal(contents, &m); err != nil {
@@ -76,7 +76,7 @@ func (a *Apiloader) DeserializeContainerService(contents []byte, validate, isUpd
 	return service, version, err
 }
 
-// LoadContainerService loads an ACS Cluster API Model, validates it, and returns the unversioned representation
+// LoadContainerService loads an AKS cluster API Model, validates it, and returns the unversioned representation
 func (a *Apiloader) LoadContainerService(
 	contents []byte,
 	version string,
@@ -194,7 +194,7 @@ func (a *Apiloader) LoadContainerService(
 	}
 }
 
-// LoadContainerServiceForAgentPoolOnlyCluster loads an ACS Cluster API Model, validates it, and returns the unversioned representation
+// LoadContainerServiceForAgentPoolOnlyCluster loads an AKS cluster API Model, validates it, and returns the unversioned representation
 func (a *Apiloader) LoadContainerServiceForAgentPoolOnlyCluster(
 	contents []byte,
 	version string,

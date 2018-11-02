@@ -87,7 +87,7 @@ type AKSEngineClient interface {
 
 	// GetStorageClient uses SRP to retrieve keys, and then an authenticated client for talking to the specified storage
 	// account.
-	GetStorageClient(ctx context.Context, resourceGroup, accountName string) (ACSStorageClient, error)
+	GetStorageClient(ctx context.Context, resourceGroup, accountName string) (AKSStorageClient, error)
 
 	//
 	// NETWORK
@@ -130,8 +130,8 @@ type AKSEngineClient interface {
 	ListDeploymentOperations(ctx context.Context, resourceGroupName string, deploymentName string, top *int32) (result DeploymentOperationsListResultPage, err error)
 }
 
-// ACSStorageClient interface models the azure storage client
-type ACSStorageClient interface {
+// AKSStorageClient interface models the azure storage client
+type AKSStorageClient interface {
 	// DeleteBlob deletes the specified blob in the specified container.
 	DeleteBlob(containerName, blobName string, options *azStorage.DeleteBlobOptions) error
 	// CreateContainer creates the CloudBlobContainer if it does not exist

@@ -9,7 +9,7 @@ fetch_k8s() {
 }
 
 set_git_config() {
-	git config user.name "ACS CI"
+	git config user.name "AKS CI"
 	git config user.email "containers@microsoft.com"
 }
 
@@ -212,7 +212,7 @@ k8s_18_cherry_pick() {
 	fi
 }
 
-apply_acs_cherry_picks() {
+apply_aks_cherry_picks() {
 	if [ "${KUBERNETES_RELEASE}" == "1.6" ]; then
 		k8s_16_cherry_pick
 	elif [ "${KUBERNETES_RELEASE}" == "1.7" ]; then
@@ -262,7 +262,7 @@ get_kube_binaries() {
 		fetch_k8s
 		set_git_config
 		create_version_branch
-		apply_acs_cherry_picks
+		apply_aks_cherry_picks
 
 		# Due to what appears to be a bug in the Kubernetes Windows build system, one
 		# has to first build a linux binary to generate _output/bin/deepcopy-gen.
@@ -330,7 +330,7 @@ upload_zip_to_blob_storage() {
 	az storage blob upload -f ${TOP_DIR}/../v${AKS_VERSION}int.zip -c ${AZURE_STORAGE_CONTAINER_NAME} -n v${AKS_VERSION}int.zip
 }
 
-push_acs_branch() {
+push_aks_branch() {
 	if version_lt "${KUBERNETES_RELEASE}" "1.9"; then
 		echo "push to azure repo..."
 		cd ${GOPATH}/src/k8s.io/kubernetes
@@ -349,9 +349,9 @@ cleanup_output() {
 AKS_ENGINE_HOME=${GOPATH}/src/github.com/Azure/aks-engine
 
 usage() {
-	echo "$0 [-v version] [-p acs_patch_version]"
+	echo "$0 [-v version] [-p aks_patch_version]"
 	echo " -v <version>: version"
-	echo " -p <patched version>: acs_patch_version"
+	echo " -p <patched version>: aks_patch_version"
 	echo " -u <version build for kubernetes upstream e2e tests>: k8s_e2e_upstream_version"
 	echo " -z <zip path>: zip_path"
 }
@@ -362,7 +362,7 @@ while getopts ":v:p:u:z:" opt; do
       version=${OPTARG}
       ;;
     p)
-      acs_patch_version=${OPTARG}
+      aks_patch_version=${OPTARG}
       ;;
 	u)
 	  k8s_e2e_upstream_version=${OPTARG}
@@ -381,7 +381,7 @@ KUBEPATH=${GOPATH}/src/k8s.io/kubernetes
 
 if [ -z "${k8s_e2e_upstream_version}" ]; then
 
-	if [ -z "${version}" ] || [ -z "${acs_patch_version}" ]; then
+	if [ -z "${version}" ] || [ -z "${aks_patch_version}" ]; then
 		usage
 			exit 1
 	fi
@@ -393,7 +393,7 @@ if [ -z "${k8s_e2e_upstream_version}" ]; then
 
 	KUBERNETES_RELEASE=$(echo $version | cut -d'.' -f1,2)
 	KUBERNETES_TAG_BRANCH=v${version}
-	AKS_VERSION=${version}-${acs_patch_version}
+	AKS_VERSION=${version}-${aks_patch_version}
 	AKS_BRANCH_NAME=acs-v${AKS_VERSION}
 	TOP_DIR=${AKS_ENGINE_HOME}/_dist/k8s-windows-v${AKS_VERSION}
 	DIST_DIR=${TOP_DIR}/k
@@ -405,7 +405,7 @@ if [ -z "${k8s_e2e_upstream_version}" ]; then
 	copy_dockerfile
 	create_zip
 	upload_zip_to_blob_storage
-	push_acs_branch
+	push_aks_branch
 	cleanup_output
 
 else

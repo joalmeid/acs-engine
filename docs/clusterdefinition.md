@@ -703,7 +703,7 @@ For apiVersion "2016-03-30", a cluster may have only 1 agent pool profiles.
 
 ### extensionProfiles
 
-A cluster can have 0 - N extensions in extension profiles. Extension profiles allow a user to easily add pre-packaged functionality into a cluster. An example would be configuring a monitoring solution on your cluster. You can think of extensions like a marketplace for acs clusters.
+A cluster can have 0 - N extensions in extension profiles. Extension profiles allow a user to easily add pre-packaged functionality into a cluster. An example would be configuring a monitoring solution on your cluster. You can think of extensions like a marketplace for AKS clusters.
 
 | Name                | Required | Description                                                                                                                                                                      |
 | ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	// ACSRPTests are the rp tests
-	ACSRPTests string = "ACSRpTests"
+	// AKSRPTests are the rp tests
+	AKSRPTests string = "AKSRPTests"
 	// AKSEngineTests are the AKS Engine tests
 	AKSEngineTests string = "AKSEngineTests"
 	// SimDemTests are the SimDem tests

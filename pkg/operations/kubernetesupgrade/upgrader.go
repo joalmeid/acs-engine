@@ -18,7 +18,7 @@ import (
 	"k8s.io/api/core/v1"
 )
 
-// Upgrader holds information on upgrading an ACS cluster
+// Upgrader holds information on upgrading an AKS cluster
 type Upgrader struct {
 	Translator *i18n.Translator
 	logger     *logrus.Entry

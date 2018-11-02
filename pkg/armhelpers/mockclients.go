@@ -520,7 +520,7 @@ func (mc *MockAKSEngineClient) ListVirtualMachineScaleSetVMs(ctx context.Context
 }
 
 //GetStorageClient mock
-func (mc *MockAKSEngineClient) GetStorageClient(ctx context.Context, resourceGroup, accountName string) (ACSStorageClient, error) {
+func (mc *MockAKSEngineClient) GetStorageClient(ctx context.Context, resourceGroup, accountName string) (AKSStorageClient, error) {
 	if mc.FailGetStorageClient {
 		return nil, errors.New("GetStorageClient failed")
 	}
